@@ -1,13 +1,21 @@
-# VernisAI
+# VernisAI Website
 
 <div align="center">
-  <img src="public/logo.svg" alt="VernisAI Logo" width="200" />
-  <p><strong>Your Personal AI Assistant for Everyday Tasks</strong></p>
+  <img src="public/vernis-ai-logo.svg" alt="VernisAI Logo" width="250" />
+  <p><strong>Official Website for VernisAI - Your Personal AI Assistant for Everyday Tasks</strong></p>
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![React](https://img.shields.io/badge/React-19.0-blue.svg)](https://reactjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
+  [![Vite](https://img.shields.io/badge/Vite-6.2-purple.svg)](https://vitejs.dev/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC.svg)](https://tailwindcss.com/)
+  [![CodeRabbit](https://img.shields.io/badge/CodeRabbit-AI-FF69B4.svg)](https://coderabbit.ai/)
+  [![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fvernis.ai)](https://vernis.ai)
 </div>
 
 ## 🚀 Overview
 
-VernisAI is an AI-powered no-code workflow automation platform that helps individuals and businesses save time and reduce stress by automating everyday tasks. Our mission is to democratize AI-driven automation, making it accessible to non-technical users without requiring any coding knowledge.
+This repository contains the source code for the official VernisAI website. VernisAI is an AI-powered no-code workflow automation platform that helps individuals and businesses save time and reduce stress by automating everyday tasks. Our mission is to democratize AI-driven automation, making it accessible to non-technical users without requiring any coding knowledge.
 
 With VernisAI, you can:
 
@@ -48,11 +56,13 @@ VernisAI can be applied to various scenarios, including:
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS, shadcn/ui
-- **UI Components**: Radix UI, Lucide icons, Framer Motion
-- **Form Handling**: React Hook Form, Zod validation
-- **Routing**: React Router
-- **Animations**: Lenis for smooth scrolling
+- **Frontend**: React 19, TypeScript 5.7, Vite 6.2, Tailwind CSS 4.0
+- **UI Components**: Radix UI, Lucide React 0.479, Framer Motion 12.4
+- **Form Handling**: React Hook Form 7.54, Zod 3.24
+- **Routing**: React Router 7.3
+- **Animations**: Lenis 1.2
+- **Code Quality**: ESLint 9.21, Prettier 3.5, TypeScript-ESLint 8.24
+- **CI/CD**: CodeRabbitAI for automated code reviews
 
 ## 🚀 Getting Started
 
@@ -102,7 +112,8 @@ The built files will be in the `dist` directory.
 
 ```
 vernisai-website/
-├── public/            # Static assets
+├── public/            # Static assets and images
+│   └── vernis-ai-logo.svg  # VernisAI logo
 ├── src/
 │   ├── assets/        # Images and other assets
 │   ├── components/    # Reusable UI components
@@ -124,6 +135,20 @@ vernisai-website/
 - **Format**: `npm run format` - Format code with Prettier
 - **Preview**: `npm run preview` - Preview production build locally
 
+## 🚀 Deployment
+
+The website is deployed using [Vercel](https://vercel.com) for continuous deployment. Any changes pushed to the main branch will automatically be deployed to production.
+
+To deploy manually:
+
+1. Build the project
+
+```bash
+npm run build
+```
+
+2. Deploy the `dist` directory to your hosting provider of choice
+
 ## 🤝 Contributing
 
 We welcome contributions to VernisAI! Please see our [Contributing Guidelines](.github/CONTRIBUTING.md) for more information.
@@ -132,9 +157,17 @@ We welcome contributions to VernisAI! Please see our [Contributing Guidelines](.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📬 Contact
+## 📬 Contact & Support
 
-- Website: [vernis.ai](https://vernis.ai)
-- Email: hello@monsoftsolutions.com
-- Twitter: [@VernisAI](https://twitter.com/VernisAI)
-- LinkedIn: [VernisAI](https://linkedin.com/company/vernisai)
+- **Website**: [vernis.ai](https://vernis.ai)
+- **Email**: hello@monsoftsolutions.com
+- **Twitter**: [@VernisAI](https://twitter.com/VernisAI)
+- **LinkedIn**: [VernisAI](https://linkedin.com/company/vernisai)
+- **Documentation**: [docs.vernis.ai](https://docs.vernis.ai)
+- **Support**: [support@vernis.ai](mailto:support@vernis.ai)
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by <a href="https://monsoftsolutions.com">Monsoft Solutions</a></sub>
+</div>
