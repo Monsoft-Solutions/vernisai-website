@@ -20,11 +20,11 @@ export function Features() {
             {/* Hero Section with gradient background and animation */}
             <div className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
                 <div className="absolute inset-0 z-0 opacity-30">
-                    <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-blue-200 blur-3xl"></div>
-                    <div className="absolute -left-24 top-1/2 h-64 w-64 rounded-full bg-purple-200 blur-3xl"></div>
+                    <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-200 blur-3xl"></div>
+                    <div className="absolute top-1/2 -left-24 h-64 w-64 rounded-full bg-purple-200 blur-3xl"></div>
                 </div>
 
-                <div className="container relative z-10 mx-auto px-4 py-24 sm:px-6 lg:px-8">
+                <div className="relative z-10 container mx-auto px-4 py-24 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -55,14 +55,14 @@ export function Features() {
                         >
                             <Link
                                 to="/waitlist"
-                                className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
                             >
                                 <span className="relative">Try for Free</span>
                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                             </Link>
                             <Link
                                 to="/demo"
-                                className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
                             >
                                 See 2-Minute Demo
                             </Link>
@@ -370,7 +370,7 @@ export function Features() {
                         className="overflow-hidden rounded-2xl bg-blue-600 shadow-xl"
                     >
                         <div className="relative px-6 py-10 sm:px-12 sm:py-16 md:px-16">
-                            <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-500 opacity-20"></div>
+                            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-blue-500 opacity-20"></div>
                             <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-blue-700 opacity-20"></div>
                             <div className="relative">
                                 <div className="mb-8 flex items-center justify-center">
@@ -383,7 +383,7 @@ export function Features() {
                                     </div>
                                 </div>
                                 <blockquote className="text-center">
-                                    <p className="text-xl font-medium leading-relaxed text-white sm:text-2xl">
+                                    <p className="text-xl leading-relaxed font-medium text-white sm:text-2xl">
                                         "I used to spend 2 hours every morning
                                         just updating spreadsheets and sending
                                         status emails. VernisAI now does it all

@@ -1,5 +1,5 @@
 // Import the Action type
-import { Action } from '../types/Action';
+import { Action } from '../types/action';
 import { ActionCategory } from '../types/ActionCategory';
 
 // Define the smart home actions

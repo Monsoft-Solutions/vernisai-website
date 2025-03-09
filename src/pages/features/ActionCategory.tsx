@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
@@ -183,7 +183,7 @@ export function ActionCategory() {
                                 </div>
 
                                 <div className="prose prose-gray max-w-none">
-                                    <h3 className="mb-2 mt-4 text-xl font-semibold">
+                                    <h3 className="mt-4 mb-2 text-xl font-semibold">
                                         Overview
                                     </h3>
                                     <p className="mb-4 text-gray-700">
@@ -193,7 +193,7 @@ export function ActionCategory() {
                                     {selectedAction.benefits &&
                                         selectedAction.benefits.length > 0 && (
                                             <>
-                                                <h3 className="mb-2 mt-6 text-xl font-semibold">
+                                                <h3 className="mt-6 mb-2 text-xl font-semibold">
                                                     Key Benefits
                                                 </h3>
                                                 <ul className="mb-4 list-disc space-y-1 pl-5">
@@ -214,7 +214,7 @@ export function ActionCategory() {
                                     {selectedAction.useCases &&
                                         selectedAction.useCases.length > 0 && (
                                             <>
-                                                <h3 className="mb-2 mt-6 text-xl font-semibold">
+                                                <h3 className="mt-6 mb-2 text-xl font-semibold">
                                                     Use Cases
                                                 </h3>
                                                 <ul className="mb-4 list-disc space-y-1 pl-5">
@@ -234,7 +234,7 @@ export function ActionCategory() {
 
                                     {selectedAction.implementation && (
                                         <>
-                                            <h3 className="mb-2 mt-6 text-xl font-semibold">
+                                            <h3 className="mt-6 mb-2 text-xl font-semibold">
                                                 Implementation
                                             </h3>
                                             <p className="text-gray-700">

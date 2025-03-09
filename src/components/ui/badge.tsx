@@ -1,17 +1,17 @@
-import React from 'react';
+import { type ReactNode, type HTMLAttributes } from 'react';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
     variant?: 'outline' | 'default';
     className?: string;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
-export const Badge: React.FC<BadgeProps> = ({
+export const Badge = ({
     children,
     variant = 'default',
     className = '',
     ...props
-}) => {
+}: BadgeProps) => {
     const variantClasses = {
         outline: 'border border-gray-200',
         default: 'bg-gray-100',

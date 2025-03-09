@@ -1,5 +1,5 @@
 // Import the Action type
-import { Action } from './Action';
+import { Action } from './action';
 
 // Define the ActionCategory type
 export type ActionCategory = {

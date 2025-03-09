@@ -1,5 +1,5 @@
 // Export all components
-export { Hero } from './hero';
+export { Hero } from './Hero';
 export { Benefits } from './Benefits';
 export { UseCaseHighlights } from './UseCaseHighlights';
 export { Waitlist } from './waitlist';

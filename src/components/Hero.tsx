@@ -1,16 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import {
     CheckCircle2,
     ArrowRight,
-    Zap,
     Clock,
-    Brain,
-    Shield,
     Star,
     BarChart,
-    Users,
     Sparkles,
 } from 'lucide-react';
 import { motion } from 'framer-motion';

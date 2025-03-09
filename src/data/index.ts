@@ -1,5 +1,5 @@
 // Export types
-export { type Action } from './types/Action';
+export { type Action } from './types/action';
 export { type ActionCategory } from './types/ActionCategory';
 
 // Export categories
@@ -29,7 +29,7 @@ import { taskProjectManagementCategory } from './categories/taskProjectManagemen
 import { analyticsReportingCategory } from './categories/analyticsReporting';
 import { notificationsAlertsCategory } from './categories/notificationsAlerts';
 import { contentDocumentationCategory } from './categories/contentDocumentation';
-import { Action } from './types/Action';
+import { Action } from './types/action';
 
 export const actionCategories = [
     fileOperationsCategory,

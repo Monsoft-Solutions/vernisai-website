@@ -16,7 +16,7 @@ export interface FeatureCardProps {
     /**
      * Description of the feature
      */
-    description: string;
+    description: string | ReactNode;
 
     /**
      * Background color class (Tailwind)
