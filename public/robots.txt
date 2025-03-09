@@ -1,3 +1,6 @@
+# Allow all web crawlers to access all content
 User-agent: *
 Allow: /
-Sitemap: https://vernisai.com/sitemap.xml 
+
+# Sitemap location
+Sitemap: https://vernis.ai/sitemap.xml 

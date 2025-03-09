@@ -134,7 +134,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-- Website: [vernisai.com](https://vernisai.com)
-- Email: info@vernisai.com
+- Website: [vernis.ai](https://vernis.ai)
+- Email: hello@monsoftsolutions.com
 - Twitter: [@VernisAI](https://twitter.com/VernisAI)
 - LinkedIn: [VernisAI](https://linkedin.com/company/vernisai)

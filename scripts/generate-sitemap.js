@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define your site URL
-const SITE_URL = 'https://vernisai.com';
+const SITE_URL = 'https://vernis.ai';
 
 // Define all routes in your application
 const routes = [

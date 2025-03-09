@@ -6,6 +6,7 @@ export { Waitlist } from './waitlist';
 export { Testimonials } from './Testimonials';
 export { CallToAction } from './CallToAction';
 export { FAQ } from './FAQ';
+export { SEO } from './seo/SEO';
 export {
     WaitlistCTA,
     CenteredWaitlistCTA,
