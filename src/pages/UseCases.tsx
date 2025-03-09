@@ -192,15 +192,15 @@ export function UseCases() {
             <div className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden">
                 {/* Background decorative elements */}
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-blue-100 opacity-80 blur-3xl"></div>
-                    <div className="absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-indigo-100 opacity-80 blur-3xl"></div>
+                    <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-100 opacity-80 blur-3xl"></div>
+                    <div className="absolute top-1/3 right-0 h-[500px] w-[500px] rounded-full bg-indigo-100 opacity-80 blur-3xl"></div>
                     <div className="absolute -bottom-24 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-purple-100 opacity-80 blur-3xl"></div>
-                    <div className="absolute bottom-1/4 right-1/4 h-64 w-64 rounded-full bg-amber-100 opacity-60 blur-3xl"></div>
+                    <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-amber-100 opacity-60 blur-3xl"></div>
                     {/* Add subtle animated gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white/80 mix-blend-overlay"></div>
                 </div>
 
-                <div className="container relative z-10 mx-auto flex min-h-[100dvh] flex-col items-center justify-center px-4 py-8">
+                <div className="relative z-10 container mx-auto flex min-h-[100dvh] flex-col items-center justify-center px-4 py-8">
                     <div className="mx-auto max-w-4xl text-center">
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
@@ -254,7 +254,7 @@ export function UseCases() {
                                 delay: 0.3,
                                 ease: 'easeOut',
                             }}
-                            className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-8 sm:space-y-0"
+                            className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-8"
                         >
                             <div className="flex flex-row justify-between gap-4">
                                 <Link to="/waitlist">

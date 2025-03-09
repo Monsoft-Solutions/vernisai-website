@@ -1,4 +1,3 @@
-import React from 'react';
 import { Download, Mail, Star, Users, Rocket } from 'lucide-react';
 import { CallToAction } from './CallToAction';
 

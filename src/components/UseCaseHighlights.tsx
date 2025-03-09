@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -17,17 +16,57 @@ import { cn } from '@/lib/utils';
 
 export function UseCaseHighlights() {
     const navigate = useNavigate();
-    
+
     // Card color variants for visual appeal
     const cardVariants = [
-        { bg: 'bg-blue-50/80', border: 'border-blue-200', shadow: 'shadow-blue-100', icon: 'text-blue-600' },
-        { bg: 'bg-purple-50/80', border: 'border-purple-200', shadow: 'shadow-purple-100', icon: 'text-purple-600' },
-        { bg: 'bg-green-50/80', border: 'border-green-200', shadow: 'shadow-green-100', icon: 'text-green-600' },
-        { bg: 'bg-amber-50/80', border: 'border-amber-200', shadow: 'shadow-amber-100', icon: 'text-amber-600' },
-        { bg: 'bg-red-50/80', border: 'border-red-200', shadow: 'shadow-red-100', icon: 'text-red-600' },
-        { bg: 'bg-indigo-50/80', border: 'border-indigo-200', shadow: 'shadow-indigo-100', icon: 'text-indigo-600' },
-        { bg: 'bg-teal-50/80', border: 'border-teal-200', shadow: 'shadow-teal-100', icon: 'text-teal-600' },
-        { bg: 'bg-rose-50/80', border: 'border-rose-200', shadow: 'shadow-rose-100', icon: 'text-rose-600' },
+        {
+            bg: 'bg-blue-50/80',
+            border: 'border-blue-200',
+            shadow: 'shadow-blue-100',
+            icon: 'text-blue-600',
+        },
+        {
+            bg: 'bg-purple-50/80',
+            border: 'border-purple-200',
+            shadow: 'shadow-purple-100',
+            icon: 'text-purple-600',
+        },
+        {
+            bg: 'bg-green-50/80',
+            border: 'border-green-200',
+            shadow: 'shadow-green-100',
+            icon: 'text-green-600',
+        },
+        {
+            bg: 'bg-amber-50/80',
+            border: 'border-amber-200',
+            shadow: 'shadow-amber-100',
+            icon: 'text-amber-600',
+        },
+        {
+            bg: 'bg-red-50/80',
+            border: 'border-red-200',
+            shadow: 'shadow-red-100',
+            icon: 'text-red-600',
+        },
+        {
+            bg: 'bg-indigo-50/80',
+            border: 'border-indigo-200',
+            shadow: 'shadow-indigo-100',
+            icon: 'text-indigo-600',
+        },
+        {
+            bg: 'bg-teal-50/80',
+            border: 'border-teal-200',
+            shadow: 'shadow-teal-100',
+            icon: 'text-teal-600',
+        },
+        {
+            bg: 'bg-rose-50/80',
+            border: 'border-rose-200',
+            shadow: 'shadow-rose-100',
+            icon: 'text-rose-600',
+        },
     ];
 
     const useCases = [
@@ -95,7 +134,7 @@ export function UseCaseHighlights() {
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-gray-50 to-white">
                 <div className="absolute inset-0 bg-[url('/src/styles/patterns.css')] opacity-5"></div>
             </div>
-            
+
             <div className="container px-4 md:px-6">
                 <motion.div
                     className="mx-auto mb-16 max-w-3xl text-center"
@@ -105,18 +144,24 @@ export function UseCaseHighlights() {
                     transition={{ duration: 0.6 }}
                 >
                     <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                        What Can You Do With <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">VernisAI</span>?
+                        What Can You Do With{' '}
+                        <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                            VernisAI
+                        </span>
+                        ?
                     </h2>
                     <p className="mt-6 text-xl text-gray-600">
-                        Discover how our AI automation can transform your daily workflows
+                        Discover how our AI automation can transform your daily
+                        workflows
                     </p>
                 </motion.div>
 
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {useCases.map((useCase, index) => {
-                            const variant = cardVariants[index % cardVariants.length];
-                            
+                            const variant =
+                                cardVariants[index % cardVariants.length];
+
                             return (
                                 <motion.div
                                     key={index}
@@ -130,15 +175,35 @@ export function UseCaseHighlights() {
                                     className="group relative"
                                 >
                                     <FeatureCard
-                                        icon={<div className={cn("h-6 w-6", variant.icon)}>{useCase.icon}</div>}
+                                        icon={
+                                            <div
+                                                className={cn(
+                                                    'h-6 w-6',
+                                                    variant.icon,
+                                                )}
+                                            >
+                                                {useCase.icon}
+                                            </div>
+                                        }
                                         title={useCase.title}
                                         description={
                                             <div className="space-y-2">
                                                 <p>{useCase.description}</p>
-                                                <div className="text-sm font-medium text-blue-600 flex items-center sm:hidden pt-2">
+                                                <div className="flex items-center pt-2 text-sm font-medium text-blue-600 sm:hidden">
                                                     Learn more
-                                                    <svg className="ml-1 h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                    <svg
+                                                        className="ml-1 h-3.5 w-3.5"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M9 5l7 7-7 7"
+                                                        />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -146,13 +211,24 @@ export function UseCaseHighlights() {
                                         color={variant.bg}
                                         borderColor={variant.border}
                                         shadowColor={variant.shadow}
-                                        className="h-full cursor-pointer relative"
+                                        className="relative h-full cursor-pointer"
                                         onClick={() => navigate(useCase.link)}
                                     />
                                     {/* Desktop indicator (hidden on small screens) */}
-                                    <div className="absolute -right-1 -top-1 origin-top-right scale-0 transform rounded-full bg-blue-600 p-1 text-white opacity-0 transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100 hidden sm:block">
-                                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    <div className="absolute -top-1 -right-1 hidden origin-top-right scale-0 transform rounded-full bg-blue-600 p-1 text-white opacity-0 transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100 sm:block">
+                                        <svg
+                                            className="h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M9 5l7 7-7 7"
+                                            />
                                         </svg>
                                     </div>
                                 </motion.div>
@@ -172,10 +248,24 @@ export function UseCaseHighlights() {
                             size="lg"
                             className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 px-10 text-white shadow-lg transition-all duration-300 hover:shadow-xl"
                         >
-                            <Link to="/use-cases" className="flex items-center gap-2">
+                            <Link
+                                to="/use-cases"
+                                className="flex items-center gap-2"
+                            >
                                 Explore All Use Cases
-                                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7-7 7" />
+                                <svg
+                                    className="h-5 w-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M14 5l7 7-7 7"
+                                    />
                                 </svg>
                             </Link>
                         </Button>

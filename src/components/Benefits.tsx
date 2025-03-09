@@ -62,7 +62,7 @@ export function Benefits() {
     return (
         <section className="relative w-full overflow-hidden bg-gradient-to-b from-white to-gray-50 py-20 md:py-32">
             {/* Background elements */}
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-100 opacity-30 blur-3xl" />
+            <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-blue-100 opacity-30 blur-3xl" />
             <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-purple-100 opacity-30 blur-3xl" />
 
             <div className="px-4 md:px-6">

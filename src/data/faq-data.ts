@@ -1,4 +1,3 @@
-import React from 'react';
 import { FAQItem } from '../components/FAQ';
 
 // General FAQ items about the company and platform
@@ -146,24 +145,16 @@ export const technicalFAQItems: FAQItem[] = [
 export const gettingStartedFAQItems: FAQItem[] = [
     {
         question: 'How can I get started with VernisAI?',
-        answer: React.createElement(
-            React.Fragment,
-            null,
-            React.createElement('p', null, 'Getting started is easy! Simply:'),
-            React.createElement(
-                'ol',
-                { className: 'list-decimal pl-5 mt-2 space-y-1' },
-                React.createElement('li', null, 'Sign up for an account'),
-                React.createElement('li', null, 'Complete your profile'),
-                React.createElement('li', null, 'Connect your data sources'),
-                React.createElement('li', null, 'Start exploring insights'),
-            ),
-            React.createElement(
-                'p',
-                { className: 'mt-2' },
-                'Our team is also available to help with onboarding if needed.',
-            ),
-        ),
+        answer: `
+            <p>Getting started is easy! Simply:</p>
+            <ol class="list-decimal pl-5 mt-2 space-y-1">
+                <li>Sign up for an account</li>
+                <li>Complete your profile</li>
+                <li>Connect your data sources</li>
+                <li>Start exploring insights</li>
+            </ol>
+            <p class="mt-2">Our team is also available to help with onboarding if needed.</p>
+        `,
     },
     {
         question: 'How long does it take to set up VernisAI?',

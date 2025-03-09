@@ -41,7 +41,7 @@ export function CTAWorkflowAutomation({
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-16 sm:p-16">
                         {/* Abstract shapes for visual interest */}
-                        <div className="absolute right-0 top-0 -mr-10 -mt-10 h-40 w-40 rounded-full bg-white opacity-10"></div>
+                        <div className="absolute top-0 right-0 -mt-10 -mr-10 h-40 w-40 rounded-full bg-white opacity-10"></div>
                         <div className="absolute bottom-0 left-0 -mb-10 -ml-10 h-40 w-40 rounded-full bg-white opacity-10"></div>
 
                         <div className="relative mx-auto max-w-xl text-center">
@@ -66,7 +66,7 @@ export function CTAWorkflowAutomation({
                                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                                     <Link
                                         to={buttonLink}
-                                        className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 text-base font-bold text-blue-600 shadow-lg transition-all duration-300 hover:bg-blue-50 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+                                        className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 text-base font-bold text-blue-600 shadow-lg transition-all duration-300 hover:bg-blue-50 hover:shadow-xl focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 focus:outline-none"
                                     >
                                         <span className="relative">
                                             {buttonText}
@@ -77,7 +77,7 @@ export function CTAWorkflowAutomation({
                                     {secondaryButton && (
                                         <Link
                                             to={secondaryButton.link}
-                                            className="inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-3 text-base font-medium text-white transition-all hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+                                            className="inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-3 text-base font-medium text-white transition-all hover:bg-white/10 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 focus:outline-none"
                                         >
                                             {secondaryButton.text}
                                         </Link>
@@ -120,7 +120,7 @@ export function CTAWorkflowAutomation({
                     <div className="mt-8 flex justify-center">
                         <Link
                             to={buttonLink}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
                         >
                             <span className="relative">{buttonText}</span>
                             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

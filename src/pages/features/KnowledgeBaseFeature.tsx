@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
 import { Database, CheckCircle2 } from 'lucide-react';
@@ -104,7 +103,7 @@ export function KnowledgeBaseFeature() {
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         {supportedFormats.map((format, index) => (
                             <div key={index} className="flex items-start">
-                                <CheckCircle2 className="mr-2 mt-1 h-5 w-5 text-gray-700" />
+                                <CheckCircle2 className="mt-1 mr-2 h-5 w-5 text-gray-700" />
                                 <span>{format}</span>
                             </div>
                         ))}

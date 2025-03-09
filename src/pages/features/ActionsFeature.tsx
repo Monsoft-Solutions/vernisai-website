@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
 import {
@@ -190,10 +190,10 @@ export function ActionsFeature() {
                                 {category.description}
                             </p>
                             <div className="mb-4">
-                                <Badge variant="outline" className="mb-2 mr-2">
+                                <Badge variant="outline" className="mr-2 mb-2">
                                     {category.actions.length} Actions
                                 </Badge>
-                                <Badge variant="outline" className="mb-2 mr-2">
+                                <Badge variant="outline" className="mr-2 mb-2">
                                     MCP
                                 </Badge>
                             </div>
@@ -205,14 +205,14 @@ export function ActionsFeature() {
                                             key={actionIndex}
                                             className="flex items-start"
                                         >
-                                            <CheckCircle2 className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-gray-700" />
+                                            <CheckCircle2 className="mt-1 mr-2 h-4 w-4 flex-shrink-0 text-gray-700" />
                                             <span className="text-gray-700">
                                                 {action.name}
                                             </span>
                                         </li>
                                     ))}
                                 {category.actions.length > 3 && (
-                                    <li className="text-sm italic text-gray-500">
+                                    <li className="text-sm text-gray-500 italic">
                                         +{category.actions.length - 3} more
                                         actions
                                     </li>
