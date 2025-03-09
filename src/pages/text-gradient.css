@@ -1,0 +1,58 @@
+/* Blue gradient text styles */
+.text-gradient-blue {
+    background: linear-gradient(90deg, #2563eb, #4f46e5, #7c3aed);
+    background-size: 200% auto;
+    color: #2563eb; /* Fallback color */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 6s ease infinite;
+    /* text-shadow: 0 2px 4px rgb(44, 34, 150); */
+    /* filter: drop-shadow(0 2px 2px rgb(0, 0, 0)); */
+    letter-spacing: -0.02em;
+    font-weight: 900;
+    position: relative;
+    z-index: 10;
+    display: inline-block; /* Ensure the gradient applies correctly */
+}
+
+/* Animation for the gradient */
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* For browsers that don't support background-clip: text */
+@supports not (background-clip: text) {
+    .text-gradient-blue {
+        background: none;
+        color: #4f46e5;
+        -webkit-text-fill-color: #4f46e5;
+        text-shadow: 0 2px 4px rgba(43, 34, 150, 0.2);
+    }
+}
+
+/* Add a subtle glow effect to enhance readability */
+.text-gradient-blue::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, #2563eb, #4f46e5, #7c3aed);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.5;
+    filter: blur(8px);
+    transform: translateZ(0);
+    animation: gradientText 6s ease infinite;
+}

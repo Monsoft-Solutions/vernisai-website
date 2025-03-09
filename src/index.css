@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import 'lenis/dist/lenis.css';
+
+@layer base {
+    * {
+        @apply border-[#e2e8f0];
+    }
+    body {
+        @apply bg-[white] text-[#1a202c];
+        font-feature-settings:
+            'rlig' 1,
+            'calt' 1;
+    }
+}
