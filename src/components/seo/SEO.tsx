@@ -1,5 +1,20 @@
 import { Helmet } from 'react-helmet-async';
 
+// Define a more specific type for structured data
+type StructuredDataType = {
+    '@context': string;
+    '@type': string;
+    [key: string]:
+        | string
+        | number
+        | boolean
+        | null
+        | undefined
+        | string[]
+        | Record<string, unknown>
+        | Array<Record<string, unknown>>;
+};
+
 export interface SEOProps {
     title: string;
     description: string;
@@ -8,7 +23,7 @@ export interface SEOProps {
     ogUrl?: string;
     twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player';
     canonicalUrl?: string;
-    structuredData?: Record<string, any>;
+    structuredData?: StructuredDataType;
 }
 
 export function SEO({
