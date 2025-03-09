@@ -141,6 +141,9 @@ export function WaitlistPage() {
                                 waitlist@vernis.ai
                             </a>
                         </p>
+                        <p className="text-muted-foreground mt-2 text-xs">
+                            We typically respond within 24-48 hours.
+                        </p>
                     </motion.div>
                 </div>
             </div>
