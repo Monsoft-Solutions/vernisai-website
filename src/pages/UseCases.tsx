@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CTAWorkflowAutomation } from '../components/CTA';
-import { FAQ } from '../components';
+import { FAQ, SEO } from '../components';
 import { useCasesFAQItems } from '../data/faq-data';
 import { Button } from '../components/ui/button';
 import { Separator } from '../components/ui/separator';
@@ -415,6 +415,26 @@ export function UseCases() {
                 variant="light"
                 className="py-20"
                 titleClassName="text-purple-600"
+            />
+
+            <SEO
+                title="Use Cases | VernisAI"
+                description="Discover how VernisAI can transform your workflow and boost productivity across different areas of your business."
+                keywords="AI assistant, task automation, knowledge management, content creation, meeting enhancement, project management, personal assistant, learning acceleration, data analysis"
+                canonicalUrl="https://vernis.ai/use-cases"
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'WebPage',
+                    name: 'VernisAI Use Cases',
+                    description:
+                        'Discover how VernisAI can transform your workflow and boost productivity across different areas of your business.',
+                    url: 'https://vernis.ai/use-cases',
+                    publisher: {
+                        '@type': 'Organization',
+                        name: 'VernisAI',
+                        logo: 'https://vernis.ai/images/vernisai-logo.png',
+                    },
+                }}
             />
         </div>
     );

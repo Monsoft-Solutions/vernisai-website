@@ -36,8 +36,8 @@ export function SEO({
     canonicalUrl,
     structuredData,
 }: SEOProps) {
-    const siteUrl = 'https://vernisai.com'; // Replace with actual URL when deployed
-    const defaultImage = '/og-image.jpg'; // Default OG image path
+    const siteUrl = 'https://vernis.ai'; // Replace with actual URL when deployed
+    const defaultImage = '/images/vernisai-logo.png'; // Default OG image path
     const fullTitle = `${title} | VernisAI`;
 
     return (

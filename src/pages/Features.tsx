@@ -1,5 +1,5 @@
 import { Features as FeaturesComponent } from '../components/Features';
-import { FAQ } from '../components';
+import { FAQ, SEO } from '../components';
 import { featuresFAQItems } from '../data/faq-data';
 import { motion } from 'framer-motion';
 import {
@@ -17,6 +17,29 @@ import { CTAWorkflowAutomation } from '../components/CTA';
 export function Features() {
     return (
         <div className="flex min-h-screen flex-col">
+            <SEO
+                title="Features - AI-Powered Workflow Automation Tools"
+                description="Explore VernisAI's powerful features for workflow automation, knowledge management, and AI-assisted content creation. Build custom workflows without coding."
+                keywords="AI features, workflow automation features, no-code tools, AI pipelines, knowledge base, agents"
+                canonicalUrl="https://vernis.ai/features"
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Product',
+                    name: 'VernisAI Platform',
+                    description:
+                        'AI-Powered No-Code Workflow Automation Platform',
+                    url: 'https://vernis.ai/features',
+                    brand: {
+                        '@type': 'Brand',
+                        name: 'VernisAI',
+                        logo: 'https://vernis.ai/images/vernisai-logo.png',
+                    },
+                    offers: {
+                        '@type': 'Offer',
+                        availability: 'https://schema.org/ComingSoon',
+                    },
+                }}
+            />
             {/* Hero Section with gradient background and animation */}
             <div className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
                 <div className="absolute inset-0 z-0 opacity-30">
