@@ -8,7 +8,6 @@ import { Input } from './ui/input';
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -60,7 +59,7 @@ export function Waitlist() {
     return (
         <section className="w-full py-12 md:py-24 lg:py-32">
             <div className="container grid items-center gap-8 px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
-                <motion.div 
+                <motion.div
                     className="space-y-4"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -79,18 +78,21 @@ export function Waitlist() {
                         workflow automation. Sign up for early access and
                         updates.
                     </p>
-                    
+
                     <div className="mt-8 space-y-3">
                         <p className="font-medium">Early access benefits:</p>
                         <ul className="space-y-3">
                             {benefits.map((benefit, index) => (
-                                <motion.li 
-                                    key={index} 
+                                <motion.li
+                                    key={index}
                                     className="flex items-start gap-2"
                                     initial={{ opacity: 0, x: -10 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    transition={{
+                                        duration: 0.3,
+                                        delay: index * 0.1,
+                                    }}
                                 >
                                     <CheckCircle className="mt-0.5 h-5 w-5 text-blue-500" />
                                     <span>{benefit}</span>
@@ -99,8 +101,8 @@ export function Waitlist() {
                         </ul>
                     </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="mx-auto w-full max-w-md space-y-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-lg lg:mx-0"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -109,9 +111,11 @@ export function Waitlist() {
                 >
                     <div className="space-y-2 text-center">
                         <h3 className="text-xl font-bold">Reserve Your Spot</h3>
-                        <p className="text-muted-foreground text-sm">Complete the form below to join our waitlist</p>
+                        <p className="text-muted-foreground text-sm">
+                            Complete the form below to join our waitlist
+                        </p>
                     </div>
-                    
+
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
@@ -157,7 +161,12 @@ export function Waitlist() {
                                 name="company"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Company <span className="text-muted-foreground text-xs">(optional)</span></FormLabel>
+                                        <FormLabel>
+                                            Company{' '}
+                                            <span className="text-muted-foreground text-xs">
+                                                (optional)
+                                            </span>
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 placeholder="Your company name"
@@ -180,20 +189,28 @@ export function Waitlist() {
                             </Button>
                         </form>
                     </Form>
-                    
+
                     <div className="pt-2">
                         <p className="text-muted-foreground text-center text-xs">
                             By signing up, you agree to our{' '}
-                            <a href="#" className="text-blue-600 hover:underline underline-offset-2">
+                            <a
+                                href="#"
+                                className="text-blue-600 underline-offset-2 hover:underline"
+                            >
                                 Terms of Service
                             </a>{' '}
                             and{' '}
-                            <a href="#" className="text-blue-600 hover:underline underline-offset-2">
+                            <a
+                                href="#"
+                                className="text-blue-600 underline-offset-2 hover:underline"
+                            >
                                 Privacy Policy
-                            </a>.
+                            </a>
+                            .
                         </p>
                         <p className="text-muted-foreground mt-1 text-center text-xs">
-                            We'll never share your information with third parties.
+                            We'll never share your information with third
+                            parties.
                         </p>
                     </div>
                 </motion.div>
