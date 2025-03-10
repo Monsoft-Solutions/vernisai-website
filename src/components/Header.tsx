@@ -60,12 +60,12 @@ ListItem.displayName = 'ListItem';
 
 export function Header() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm shadow-sm">
+        <header className="sticky top-0 z-50 w-full border-b bg-white/95 shadow-sm backdrop-blur-sm">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link 
-                        to="/" 
+                    <Link
+                        to="/"
                         className="flex items-center transition-transform hover:scale-105"
                         aria-label="VernisAI Homepage"
                     >
@@ -79,7 +79,7 @@ export function Header() {
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-1">
+                <div className="hidden items-center space-x-1 md:flex">
                     <NavigationMenu>
                         <NavigationMenuList className="gap-1">
                             <NavigationMenuItem>
@@ -93,9 +93,7 @@ export function Header() {
                                                 to="/features"
                                                 className="flex items-center gap-2 rounded-md px-2 py-1 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50"
                                             >
-                                                <span>
-                                                    How It All Works
-                                                </span>
+                                                <span>How It All Works</span>
                                                 <ChevronRight className="h-4 w-4" />
                                             </Link>
                                         </div>
@@ -119,8 +117,7 @@ export function Header() {
                                                             Actions
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Well-defined,
-                                                            atomic
+                                                            Well-defined, atomic
                                                             operations that
                                                             interact with
                                                             third-party
@@ -149,10 +146,9 @@ export function Header() {
                                                             Pipelines
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Define sequences
-                                                            of actions in a
-                                                            structured
-                                                            workflow.
+                                                            Define sequences of
+                                                            actions in a
+                                                            structured workflow.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -177,12 +173,10 @@ export function Header() {
                                                             Agents
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            AI-driven
-                                                            entities that
-                                                            execute
+                                                            AI-driven entities
+                                                            that execute
                                                             pipelines with
-                                                            context
-                                                            awareness.
+                                                            context awareness.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -207,10 +201,9 @@ export function Header() {
                                                             Knowledge Base
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Contextual data
-                                                            for agents to
-                                                            retrieve and use
-                                                            efficiently.
+                                                            Contextual data for
+                                                            agents to retrieve
+                                                            and use efficiently.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -254,10 +247,9 @@ export function Header() {
                                                             Task Automation
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Automate
-                                                            repetitive tasks
-                                                            to save time and
-                                                            reduce manual
+                                                            Automate repetitive
+                                                            tasks to save time
+                                                            and reduce manual
                                                             effort.
                                                         </p>
                                                     </div>
@@ -280,14 +272,12 @@ export function Header() {
                                                     </div>
                                                     <div>
                                                         <h3 className="text-base font-medium">
-                                                            Knowledge
-                                                            Management
+                                                            Knowledge Management
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
                                                             Quickly access,
                                                             organize, and
-                                                            retrieve
-                                                            important
+                                                            retrieve important
                                                             information.
                                                         </p>
                                                     </div>
@@ -338,13 +328,12 @@ export function Header() {
                                                     </div>
                                                     <div>
                                                         <h3 className="text-base font-medium">
-                                                            Meeting
-                                                            Enhancement
+                                                            Meeting Enhancement
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Make meetings
-                                                            more efficient
-                                                            and productive.
+                                                            Make meetings more
+                                                            efficient and
+                                                            productive.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -366,14 +355,12 @@ export function Header() {
                                                     </div>
                                                     <div>
                                                         <h3 className="text-base font-medium">
-                                                            Project
-                                                            Management
+                                                            Project Management
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Streamline
-                                                            project
-                                                            workflows and
-                                                            task management.
+                                                            Streamline project
+                                                            workflows and task
+                                                            management.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -395,14 +382,13 @@ export function Header() {
                                                     </div>
                                                     <div>
                                                         <h3 className="text-base font-medium">
-                                                            Personal
-                                                            Assistant
+                                                            Personal Assistant
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
                                                             Handle daily
-                                                            organizational
-                                                            tasks to free up
-                                                            mental space.
+                                                            organizational tasks
+                                                            to free up mental
+                                                            space.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -428,8 +414,7 @@ export function Header() {
                                                             Acceleration
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Speed up
-                                                            learning
+                                                            Speed up learning
                                                             processes with
                                                             AI-assisted
                                                             education.
@@ -457,10 +442,9 @@ export function Header() {
                                                             Data Analysis
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Analyze and
-                                                            extract insights
-                                                            from data more
-                                                            efficiently.
+                                                            Analyze and extract
+                                                            insights from data
+                                                            more efficiently.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -506,26 +490,24 @@ export function Header() {
                         >
                             <Button
                                 asChild
-                                className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md transition-all duration-200 hover:shadow-lg hover:from-purple-700 hover:to-indigo-700"
+                                className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md transition-all duration-200 hover:from-purple-700 hover:to-indigo-700 hover:shadow-lg"
                             >
-                                <Link to="/waitlist">
-                                    Join Waitlist
-                                </Link>
+                                <Link to="/waitlist">Join Waitlist</Link>
                             </Button>
                         </motion.div>
                     </div>
                 </div>
 
                 {/* Mobile Navigation - Only show on mobile */}
-                <div className="md:hidden flex items-center">
+                <div className="flex items-center md:hidden">
                     {/* Mobile Waitlist Button */}
-                    <Link 
+                    <Link
                         to="/waitlist"
-                        className="mr-2 px-3 py-1.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 shadow-sm"
+                        className="mr-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm"
                     >
                         Join Waitlist
                     </Link>
-                    
+
                     {/* Mobile Menu Trigger */}
                     <MobileNav />
                 </div>

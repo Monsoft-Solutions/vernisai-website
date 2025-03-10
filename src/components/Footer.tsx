@@ -9,7 +9,7 @@ import {
     Mail,
     Youtube,
     ArrowRight,
-    Sparkles
+    Sparkles,
 } from 'lucide-react';
 
 export function Footer() {
@@ -17,15 +17,19 @@ export function Footer() {
         <footer className="bg-background w-full border-t px-6">
             <div className="mx-auto max-w-7xl">
                 {/* Newsletter Section */}
-                <div className="py-10 border-b">
-                    <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div className="border-b py-10">
+                    <div className="grid items-center gap-10 md:grid-cols-2">
                         <div className="space-y-4">
-                            <h3 className="text-xl font-semibold tracking-tight">Stay updated with VernisAI</h3>
+                            <h3 className="text-xl font-semibold tracking-tight">
+                                Stay updated with VernisAI
+                            </h3>
                             <p className="text-muted-foreground">
-                                Subscribe to our newsletter for updates, tips, and exclusive insights about AI workflow automation.
+                                Subscribe to our newsletter for updates, tips,
+                                and exclusive insights about AI workflow
+                                automation.
                             </p>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-3">
+                        <div className="flex flex-col gap-3 sm:flex-row">
                             <Input
                                 type="email"
                                 placeholder="Enter your email"
@@ -33,7 +37,8 @@ export function Footer() {
                                 aria-label="Email address"
                             />
                             <Button className="shrink-0">
-                                Subscribe <ArrowRight className="ml-2 h-4 w-4" />
+                                Subscribe{' '}
+                                <ArrowRight className="ml-2 h-4 w-4" />
                             </Button>
                         </div>
                     </div>
@@ -41,14 +46,15 @@ export function Footer() {
 
                 {/* Main Footer Content */}
                 <div className="py-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8">
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12">
                         {/* Brand Section */}
-                        <div className="lg:col-span-4 sm:col-span-2 space-y-4">
+                        <div className="space-y-4 sm:col-span-2 lg:col-span-4">
                             <Logo logoSize="lg" />
-                            <p className="text-muted-foreground text-sm max-w-xs">
-                                AI-Powered No-Code Workflow Automation that adapts to your business needs.
+                            <p className="text-muted-foreground max-w-xs text-sm">
+                                AI-Powered No-Code Workflow Automation that
+                                adapts to your business needs.
                             </p>
-                            <div className="flex gap-4 mt-1">
+                            <div className="mt-1 flex gap-4">
                                 <a
                                     href="https://twitter.com"
                                     target="_blank"
@@ -87,9 +93,9 @@ export function Footer() {
                                 </a>
                             </div>
                         </div>
-                        
+
                         {/* Links Sections - Product and Resources */}
-                        <div className="lg:col-span-8 sm:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-2 gap-8 sm:col-span-2 md:grid-cols-4 lg:col-span-8">
                             <div className="space-y-4">
                                 <h4 className="text-sm font-medium">Product</h4>
                                 <ul className="space-y-3 text-sm">
@@ -122,14 +128,17 @@ export function Footer() {
                                             to="/waitlist"
                                             className="text-muted-foreground hover:text-foreground flex items-center gap-1"
                                         >
-                                            Waitlist <Sparkles className="h-3 w-3" />
+                                            Waitlist{' '}
+                                            <Sparkles className="h-3 w-3" />
                                         </Link>
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div className="space-y-4">
-                                <h4 className="text-sm font-medium">Resources</h4>
+                                <h4 className="text-sm font-medium">
+                                    Resources
+                                </h4>
                                 <ul className="space-y-3 text-sm">
                                     <li>
                                         <Link
@@ -165,7 +174,7 @@ export function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div className="space-y-4">
                                 <h4 className="text-sm font-medium">Company</h4>
                                 <ul className="space-y-3 text-sm">
@@ -198,12 +207,13 @@ export function Footer() {
                                             href="mailto:info@vernisai.com"
                                             className="text-muted-foreground hover:text-foreground flex items-center gap-1"
                                         >
-                                            Email Us <Mail className="h-3 w-3" />
+                                            Email Us{' '}
+                                            <Mail className="h-3 w-3" />
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div className="space-y-4">
                                 <h4 className="text-sm font-medium">Legal</h4>
                                 <ul className="space-y-3 text-sm">
@@ -236,11 +246,12 @@ export function Footer() {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Copyright Section */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t py-6">
-                    <p className="text-muted-foreground text-xs text-center sm:text-left">
-                        &copy; {new Date().getFullYear()} VernisAI. All rights reserved. Developed by{' '}
+                <div className="flex flex-col items-center justify-between gap-4 border-t py-6 sm:flex-row">
+                    <p className="text-muted-foreground text-center text-xs sm:text-left">
+                        &copy; {new Date().getFullYear()} VernisAI. All rights
+                        reserved. Developed by{' '}
                         <a
                             href="https://monsoftsolutions.com"
                             target="_blank"
@@ -253,13 +264,13 @@ export function Footer() {
                     <div className="flex gap-5">
                         <Link
                             to="/sitemap"
-                            className="text-xs text-muted-foreground hover:text-foreground"
+                            className="text-muted-foreground hover:text-foreground text-xs"
                         >
                             Sitemap
                         </Link>
                         <Link
                             to="/accessibility"
-                            className="text-xs text-muted-foreground hover:text-foreground"
+                            className="text-muted-foreground hover:text-foreground text-xs"
                         >
                             Accessibility
                         </Link>
