@@ -11,14 +11,7 @@ import { AgentsFeature } from './pages/features/AgentsFeature';
 import { KnowledgeBaseFeature } from './pages/features/KnowledgeBaseFeature';
 // Import Use Cases pages
 import { UseCases } from './pages/UseCases';
-import { TaskAutomation } from './pages/use-cases/TaskAutomation';
-import { KnowledgeManagement } from './pages/use-cases/KnowledgeManagement';
-import { ContentCreation } from './pages/use-cases/ContentCreation';
-import { MeetingEnhancement } from './pages/use-cases/MeetingEnhancement';
-import { ProjectManagement } from './pages/use-cases/ProjectManagement';
-import { PersonalAssistant } from './pages/use-cases/PersonalAssistant';
-import { LearningAcceleration } from './pages/use-cases/LearningAcceleration';
-import { DataAnalysis } from './pages/use-cases/DataAnalysis';
+import { UseCaseDetail } from './pages/use-cases/UseCaseDetail';
 
 function App() {
     return (
@@ -56,38 +49,7 @@ function App() {
 
                     {/* Use Cases Routes */}
                     <Route path="use-cases" element={<UseCases />} />
-                    <Route
-                        path="use-cases/task-automation"
-                        element={<TaskAutomation />}
-                    />
-                    <Route
-                        path="use-cases/knowledge-management"
-                        element={<KnowledgeManagement />}
-                    />
-                    <Route
-                        path="use-cases/content-creation"
-                        element={<ContentCreation />}
-                    />
-                    <Route
-                        path="use-cases/meeting-enhancement"
-                        element={<MeetingEnhancement />}
-                    />
-                    <Route
-                        path="use-cases/project-management"
-                        element={<ProjectManagement />}
-                    />
-                    <Route
-                        path="use-cases/personal-assistant"
-                        element={<PersonalAssistant />}
-                    />
-                    <Route
-                        path="use-cases/learning-acceleration"
-                        element={<LearningAcceleration />}
-                    />
-                    <Route
-                        path="use-cases/data-analysis"
-                        element={<DataAnalysis />}
-                    />
+                    <Route path="use-cases/:id" element={<UseCaseDetail />} />
 
                     {/* Add more routes as needed */}
                     <Route path="*" element={<Navigate to="/" replace />} />

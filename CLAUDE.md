@@ -39,3 +39,8 @@
 - Implement form validation with Zod and react-hook-form
 - Provide helpful error messages to users
 - Log errors appropriately in development
+
+## Closing Up
+
+- Run `npm run validate`, and fix possible issues
+- Run `npm run build` and fix possible issues
