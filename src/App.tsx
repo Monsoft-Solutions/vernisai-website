@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
+    useLocation,
+} from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { WaitlistPage } from './pages/WaitlistPage';
@@ -12,10 +18,25 @@ import { KnowledgeBaseFeature } from './pages/features/KnowledgeBaseFeature';
 // Import Use Cases pages
 import { UseCases } from './pages/UseCases';
 import { UseCaseDetail } from './pages/use-cases/UseCaseDetail';
+import { useEffect } from 'react';
+
+function ScrollToTop() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, [pathname]);
+
+    return null;
+}
 
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
