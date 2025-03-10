@@ -6,6 +6,9 @@ import { knowledgeManagementUseCase } from './knowledge-management';
 import { learningAccelerationUseCase } from './learning-acceleration';
 import { personalAssistantUseCase } from './personal-assistant';
 import { projectManagementUseCase } from './project-management';
+import { emailManagementUseCase } from './email-management';
+import { customerSupportUseCase } from './customer-support';
+import { scheduleManagementUseCase } from './schedule-management';
 
 export const useCases: UseCase[] = [
     contentCreationUseCase,
@@ -15,6 +18,9 @@ export const useCases: UseCase[] = [
     learningAccelerationUseCase,
     personalAssistantUseCase,
     projectManagementUseCase,
+    emailManagementUseCase,
+    customerSupportUseCase,
+    scheduleManagementUseCase,
     // Add more use cases as they are created
 ];
 
@@ -35,6 +41,9 @@ export const useCaseIconNames: UseCaseIconMapping = {
     'learning-acceleration': 'GraduationCap',
     'personal-assistant': 'UserCheck',
     'project-management': 'Kanban',
+    'email-management': 'Mail',
+    'customer-support': 'MessageSquare',
+    'schedule-management': 'Calendar',
     // Add additional mappings as new use cases are created
 };
 
@@ -45,3 +54,6 @@ export * from './knowledge-management';
 export * from './learning-acceleration';
 export * from './personal-assistant';
 export * from './project-management';
+export * from './email-management';
+export * from './customer-support';
+export * from './schedule-management';
