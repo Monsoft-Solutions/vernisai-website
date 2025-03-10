@@ -13,6 +13,8 @@ import {
 import { Button } from './ui/button';
 import { FeatureCard } from './ui/feature-card';
 import { cn } from '@/lib/utils';
+// Import use cases data
+import { useCases as allUseCases } from '@/data/use-cases';
 
 export function UseCaseHighlights() {
     const navigate = useNavigate();
@@ -69,62 +71,69 @@ export function UseCaseHighlights() {
         },
     ];
 
+    // Helper function to get use case ID
+    const getUseCaseId = (name: string, fallback: string) => {
+        const useCase = allUseCases.find((uc) => uc.name === name);
+        return useCase ? useCase.id : fallback;
+    };
+
+    // Define highlighted use cases with icons
     const useCases = [
         {
             icon: <Mail className="h-6 w-6" />,
             title: 'Email Management',
             description:
                 'Automatically sort, respond to, and follow up on emails based on your preferences.',
-            link: '/use-cases/task-automation',
+            link: `/use-cases/${getUseCaseId('Email Management', 'email-management')}`,
         },
         {
             icon: <BarChart2 className="h-6 w-6" />,
             title: 'Data Organization',
             description:
                 'Automatically collect and organize information from multiple sources into one place.',
-            link: '/use-cases/knowledge-management',
+            link: `/use-cases/${getUseCaseId('Knowledge Management', 'knowledge-management')}`,
         },
         {
             icon: <Calendar className="h-6 w-6" />,
             title: 'Schedule Management',
             description:
                 'Let AI handle your meeting scheduling, reminders, and follow-ups automatically.',
-            link: '/use-cases/meeting-enhancement',
+            link: `/use-cases/${getUseCaseId('Schedule Management', 'schedule-management')}`,
         },
         {
             icon: <MessageSquare className="h-6 w-6" />,
             title: 'Customer Support',
             description:
                 'Respond to common customer questions instantly while you focus on more complex issues.',
-            link: '/use-cases/personal-assistant',
+            link: `/use-cases/${getUseCaseId('Customer Support', 'customer-support')}`,
         },
         {
             icon: <FileText className="h-6 w-6" />,
             title: 'Content Creation',
             description:
                 'Generate drafts, summaries, and creative content for various purposes.',
-            link: '/use-cases/content-creation',
+            link: `/use-cases/${getUseCaseId('Content Creation', 'content-creation')}`,
         },
         {
             icon: <BrainCircuit className="h-6 w-6" />,
             title: 'Learning Assistance',
             description:
                 'Accelerate your learning with AI-powered summaries, quizzes, and explanations.',
-            link: '/use-cases/learning-acceleration',
+            link: `/use-cases/${getUseCaseId('Learning Acceleration', 'learning-acceleration')}`,
         },
         {
             icon: <Briefcase className="h-6 w-6" />,
             title: 'Project Management',
             description:
                 'Keep projects on track with automated task assignments, updates, and reporting.',
-            link: '/use-cases/project-management',
+            link: `/use-cases/${getUseCaseId('Project Management', 'project-management')}`,
         },
         {
             icon: <Database className="h-6 w-6" />,
             title: 'Data Analysis',
             description:
                 'Extract insights from your data with automated analysis and visualization.',
-            link: '/use-cases/data-analysis',
+            link: `/use-cases/${getUseCaseId('Data Analysis', 'data-analysis')}`,
         },
     ];
 
