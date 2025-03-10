@@ -19,6 +19,10 @@ import { KnowledgeBaseFeature } from './pages/features/KnowledgeBaseFeature';
 import { UseCases } from './pages/UseCases';
 import { UseCaseDetail } from './pages/use-cases/UseCaseDetail';
 import { useEffect } from 'react';
+// Import Legal pages
+import { PrivacyPolicy } from './pages/legal/PrivacyPolicy';
+import { TermsOfService } from './pages/legal/TermsOfService';
+import { CookiePolicy } from './pages/legal/CookiePolicy';
 
 function ScrollToTop() {
     const { pathname } = useLocation();
@@ -71,6 +75,11 @@ function App() {
                     {/* Use Cases Routes */}
                     <Route path="use-cases" element={<UseCases />} />
                     <Route path="use-cases/:id" element={<UseCaseDetail />} />
+
+                    {/* Legal Pages */}
+                    <Route path="privacy" element={<PrivacyPolicy />} />
+                    <Route path="terms" element={<TermsOfService />} />
+                    <Route path="cookies" element={<CookiePolicy />} />
 
                     {/* Add more routes as needed */}
                     <Route path="*" element={<Navigate to="/" replace />} />

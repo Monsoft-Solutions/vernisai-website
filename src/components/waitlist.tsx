@@ -194,14 +194,14 @@ export function Waitlist() {
                         <p className="text-muted-foreground text-center text-xs">
                             By signing up, you agree to our{' '}
                             <a
-                                href="#"
+                                href="/terms"
                                 className="text-blue-600 underline-offset-2 hover:underline"
                             >
                                 Terms of Service
                             </a>{' '}
                             and{' '}
                             <a
-                                href="#"
+                                href="/privacy"
                                 className="text-blue-600 underline-offset-2 hover:underline"
                             >
                                 Privacy Policy
