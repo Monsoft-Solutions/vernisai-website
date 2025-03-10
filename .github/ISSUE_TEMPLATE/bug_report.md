@@ -1,9 +1,7 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: '[BUG] '
-labels: bug
-assignees: ''
+name: <name of the issue>
+about: <summary of the issue in 1 sentetence>
+labels: [labels]
+
 ---
 
 ## Bug Description
