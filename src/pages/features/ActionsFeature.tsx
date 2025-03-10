@@ -82,7 +82,7 @@ export function ActionsFeature() {
     );
 
     // Get icon component from name
-    const getIconComponent = (iconName: string, className = "") => {
+    const getIconComponent = (iconName: string, className = '') => {
         const IconComponent = iconMap[iconName];
         return IconComponent ? (
             <IconComponent className={`h-6 w-6 ${className}`} />
@@ -102,14 +102,14 @@ export function ActionsFeature() {
         'file-operations': 'bg-blue-100 text-blue-600',
         'development-tools': 'bg-green-100 text-green-600',
         'web-search': 'bg-amber-100 text-amber-600',
-        'communication': 'bg-purple-100 text-purple-600',
+        communication: 'bg-purple-100 text-purple-600',
         'smart-home': 'bg-sky-100 text-sky-600',
         'marketing-social-media': 'bg-rose-100 text-rose-600',
-        'ecommerce': 'bg-emerald-100 text-emerald-600',
+        ecommerce: 'bg-emerald-100 text-emerald-600',
         'task-project-management': 'bg-orange-100 text-orange-600',
         'analytics-reporting': 'bg-cyan-100 text-cyan-600',
         'notifications-alerts': 'bg-red-100 text-red-600',
-        'content-documentation': 'bg-teal-100 text-teal-600'
+        'content-documentation': 'bg-teal-100 text-teal-600',
     };
 
     // Get color for category
@@ -170,8 +170,11 @@ export function ActionsFeature() {
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.3 }}
                             >
-                                <span className="font-medium text-indigo-600">{totalActions}+</span> powerful operations that interact
-                                with third-party services to transform your workflow
+                                <span className="font-medium text-indigo-600">
+                                    {totalActions}+
+                                </span>{' '}
+                                powerful operations that interact with
+                                third-party services to transform your workflow
                             </motion.p>
                         </div>
 
@@ -188,11 +191,12 @@ export function ActionsFeature() {
                                     Model Context Protocol (MCP)
                                 </span>
                                 <span className="mx-2">—</span>
-                                an open standard that enables AI agents to securely 
-                                interact with a wide range of tools and services.
-                                Our platform provides access to hundreds of actions
-                                that can be combined to create powerful automation
-                                workflows without writing any code.
+                                an open standard that enables AI agents to
+                                securely interact with a wide range of tools and
+                                services. Our platform provides access to
+                                hundreds of actions that can be combined to
+                                create powerful automation workflows without
+                                writing any code.
                             </p>
                         </motion.div>
                     </div>
@@ -221,22 +225,27 @@ export function ActionsFeature() {
                                     }
                                 />
                                 {searchTerm && (
-                                    <Button 
-                                        variant="ghost" 
-                                        size="sm" 
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
                                         className="h-8 w-8 p-0"
                                         onClick={() => setSearchTerm('')}
                                     >
-                                        <span className="sr-only">Clear search</span>
-                                        <svg 
-                                            width="15" 
-                                            height="15" 
-                                            viewBox="0 0 15 15" 
-                                            fill="none" 
+                                        <span className="sr-only">
+                                            Clear search
+                                        </span>
+                                        <svg
+                                            width="15"
+                                            height="15"
+                                            viewBox="0 0 15 15"
+                                            fill="none"
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-4 w-4 text-gray-500"
                                         >
-                                            <path d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" fill="currentColor"></path>
+                                            <path
+                                                d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                                                fill="currentColor"
+                                            ></path>
                                         </svg>
                                     </Button>
                                 )}
@@ -269,10 +278,12 @@ export function ActionsFeature() {
                                 onClick={() => handleCategoryClick(category.id)}
                             >
                                 {/* Subtle background gradient for visual interest */}
-                                <div className="absolute inset-0 right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-indigo-50/30 to-purple-50/30 opacity-50"></div>
-                                
+                                <div className="absolute inset-0 top-0 right-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-indigo-50/30 to-purple-50/30 opacity-50"></div>
+
                                 <div className="mb-5 flex items-center">
-                                    <div className={`mr-4 flex h-12 w-12 items-center justify-center rounded-lg shadow-sm ${getCategoryColors(category.id)}`}>
+                                    <div
+                                        className={`mr-4 flex h-12 w-12 items-center justify-center rounded-lg shadow-sm ${getCategoryColors(category.id)}`}
+                                    >
                                         {getIconComponent(category.iconName)}
                                     </div>
                                     <h2 className="text-xl font-semibold text-gray-900">
@@ -288,13 +299,11 @@ export function ActionsFeature() {
                                     >
                                         {category.actions.length} Actions
                                     </Badge>
-                                    <Badge
-                                        className="bg-gray-100 text-gray-700"
-                                    >
+                                    <Badge className="bg-gray-100 text-gray-700">
                                         MCP
                                     </Badge>
                                 </div>
-                                
+
                                 {/* Display actions with improved visual hierarchy */}
                                 <ul className="mb-5 space-y-3 border-t border-gray-100 pt-4">
                                     {category.actions
@@ -309,7 +318,7 @@ export function ActionsFeature() {
                                                     <span className="font-medium text-gray-800">
                                                         {action.name}
                                                     </span>
-                                                    <p className="text-sm text-gray-500 line-clamp-1">
+                                                    <p className="line-clamp-1 text-sm text-gray-500">
                                                         {action.description}
                                                     </p>
                                                 </div>
@@ -317,11 +326,12 @@ export function ActionsFeature() {
                                         ))}
                                     {category.actions.length > 3 && (
                                         <li className="text-sm font-medium text-indigo-600">
-                                            +{category.actions.length - 3} more actions
+                                            +{category.actions.length - 3} more
+                                            actions
                                         </li>
                                     )}
                                 </ul>
-                                
+
                                 {/* View category button with hover effect */}
                                 <div className="inline-flex items-center font-medium text-indigo-600 transition-all group-hover:translate-x-1">
                                     View Category
@@ -346,57 +356,67 @@ export function ActionsFeature() {
 
                     {/* How it works section with visual improvements */}
                     <motion.div
-                        className="mb-16 mt-20"
+                        className="mt-20 mb-16"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.9 }}
                     >
                         <h2 className="mb-10 text-center text-3xl font-bold tracking-tight text-gray-900">
-                            How Actions <span className="text-indigo-600">Work</span>
+                            How Actions{' '}
+                            <span className="text-indigo-600">Work</span>
                         </h2>
                         <div className="relative grid grid-cols-1 gap-10 md:grid-cols-3">
                             {/* Connection line for desktop */}
-                            <div className="absolute left-1/2 top-16 hidden h-0.5 w-3/4 -translate-x-1/2 bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 md:block"></div>
-                            
+                            <div className="absolute top-16 left-1/2 hidden h-0.5 w-3/4 -translate-x-1/2 bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 md:block"></div>
+
                             <div className="relative flex flex-col items-center text-center">
                                 <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-indigo-100 to-indigo-200 shadow-sm">
                                     <Zap className="h-9 w-9 text-indigo-600" />
                                 </div>
-                                <span className="absolute -top-2 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">1</span>
+                                <span className="absolute -top-2 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">
+                                    1
+                                </span>
                                 <h3 className="mb-3 text-xl font-semibold text-gray-900">
                                     Select Actions
                                 </h3>
                                 <p className="text-gray-600">
-                                    Choose from our extensive library of pre-built actions or 
-                                    create custom ones to suit your specific business needs.
+                                    Choose from our extensive library of
+                                    pre-built actions or create custom ones to
+                                    suit your specific business needs.
                                 </p>
                             </div>
-                            
+
                             <div className="relative flex flex-col items-center text-center">
                                 <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-purple-100 to-purple-200 shadow-sm">
                                     <Briefcase className="h-9 w-9 text-purple-600" />
                                 </div>
-                                <span className="absolute -top-2 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-purple-600 text-sm font-bold text-white">2</span>
+                                <span className="absolute -top-2 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-purple-600 text-sm font-bold text-white">
+                                    2
+                                </span>
                                 <h3 className="mb-3 text-xl font-semibold text-gray-900">
                                     Build Workflows
                                 </h3>
                                 <p className="text-gray-600">
-                                    Combine multiple actions into powerful workflows using our
-                                    intuitive drag-and-drop interface—no coding required.
+                                    Combine multiple actions into powerful
+                                    workflows using our intuitive drag-and-drop
+                                    interface—no coding required.
                                 </p>
                             </div>
-                            
+
                             <div className="relative flex flex-col items-center text-center">
                                 <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 shadow-sm">
                                     <BarChart2 className="h-9 w-9 text-blue-600" />
                                 </div>
-                                <span className="absolute -top-2 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">3</span>
+                                <span className="absolute -top-2 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                                    3
+                                </span>
                                 <h3 className="mb-3 text-xl font-semibold text-gray-900">
                                     Automate & Monitor
                                 </h3>
                                 <p className="text-gray-600">
-                                    Deploy your workflows to run automatically on triggers or schedules, 
-                                    and monitor their performance in real-time through dashboards.
+                                    Deploy your workflows to run automatically
+                                    on triggers or schedules, and monitor their
+                                    performance in real-time through dashboards.
                                 </p>
                             </div>
                         </div>
@@ -411,17 +431,19 @@ export function ActionsFeature() {
                     >
                         <div className="relative px-8 py-12 sm:px-12">
                             {/* Decorative elements */}
-                            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+                            <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
                             <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-white/10 blur-3xl"></div>
-                            
+
                             <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                                 <div className="max-w-xl">
                                     <h2 className="mb-3 text-3xl font-bold tracking-tight text-white">
                                         Ready to automate your workflows?
                                     </h2>
                                     <p className="mb-6 text-lg text-indigo-100">
-                                        Join our waitlist to be among the first to experience the power 
-                                        of VernisAI's action-based automation and transform how your team works.
+                                        Join our waitlist to be among the first
+                                        to experience the power of VernisAI's
+                                        action-based automation and transform
+                                        how your team works.
                                     </p>
                                     <div className="flex flex-wrap gap-4">
                                         <Button

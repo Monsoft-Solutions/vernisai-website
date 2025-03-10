@@ -25,7 +25,7 @@ import {
     GitBranch,
     Bot,
     Check,
-    LucideIcon
+    LucideIcon,
 } from 'lucide-react';
 import { getCategoryById, Action } from '../../data';
 import { SEO } from '../../components';
@@ -56,16 +56,16 @@ const iconComponents: Record<string, LucideIcon> = {
 const categoryColorMap: Record<string, string> = {
     'ai-data': 'bg-indigo-100 text-indigo-600',
     'file-operations': 'bg-blue-100 text-blue-600',
-    'development-tools': 'bg-green-100 text-green-600', 
+    'development-tools': 'bg-green-100 text-green-600',
     'web-search': 'bg-amber-100 text-amber-600',
-    'communication': 'bg-purple-100 text-purple-600',
+    communication: 'bg-purple-100 text-purple-600',
     'smart-home': 'bg-sky-100 text-sky-600',
     'marketing-social-media': 'bg-rose-100 text-rose-600',
-    'ecommerce': 'bg-emerald-100 text-emerald-600',
+    ecommerce: 'bg-emerald-100 text-emerald-600',
     'task-project-management': 'bg-orange-100 text-orange-600',
     'analytics-reporting': 'bg-cyan-100 text-cyan-600',
     'notifications-alerts': 'bg-red-100 text-red-600',
-    'content-documentation': 'bg-teal-100 text-teal-600'
+    'content-documentation': 'bg-teal-100 text-teal-600',
 };
 
 export function ActionCategory() {
@@ -92,7 +92,7 @@ export function ActionCategory() {
     }
 
     // Get icon component based on name
-    const getIconComponent = (iconName: string, className = "h-6 w-6") => {
+    const getIconComponent = (iconName: string, className = 'h-6 w-6') => {
         // Default to Zap icon if the requested icon is not found
         const IconComponent =
             iconComponents[iconName as keyof typeof iconComponents] || Zap;
@@ -107,9 +107,9 @@ export function ActionCategory() {
     // Get color for action
     const getActionColors = (action: Action) => {
         if (action.id === selectedAction?.id) {
-            return "bg-gradient-to-r from-indigo-50 to-indigo-100 border-l-4 border-indigo-500";
+            return 'bg-gradient-to-r from-indigo-50 to-indigo-100 border-l-4 border-indigo-500';
         }
-        return "hover:bg-gray-50 border-l-4 border-transparent";
+        return 'hover:bg-gray-50 border-l-4 border-transparent';
     };
 
     return (
@@ -134,14 +134,16 @@ export function ActionCategory() {
                             Back to Actions
                         </Button>
 
-                        <motion.div 
+                        <motion.div
                             className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <div className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl shadow-sm ${getCategoryColors(category.id)}`}>
-                                {getIconComponent(category.iconName, "h-8 w-8")}
+                            <div
+                                className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl shadow-sm ${getCategoryColors(category.id)}`}
+                            >
+                                {getIconComponent(category.iconName, 'h-8 w-8')}
                             </div>
                             <div>
                                 <h1 className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl">
@@ -151,11 +153,17 @@ export function ActionCategory() {
                                     {category.description}
                                 </p>
                                 <div className="mt-4 flex flex-wrap gap-2">
-                                    <Badge className={`${getCategoryColors(category.id)}`}>
+                                    <Badge
+                                        className={`${getCategoryColors(category.id)}`}
+                                    >
                                         {category.actions.length} Actions
                                     </Badge>
-                                    <Badge className="bg-purple-100 text-purple-700">Model Context Protocol</Badge>
-                                    <Badge className="bg-gray-100 text-gray-700">No-Code Integration</Badge>
+                                    <Badge className="bg-purple-100 text-purple-700">
+                                        Model Context Protocol
+                                    </Badge>
+                                    <Badge className="bg-gray-100 text-gray-700">
+                                        No-Code Integration
+                                    </Badge>
                                 </div>
                             </div>
                         </motion.div>
@@ -165,7 +173,7 @@ export function ActionCategory() {
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
                         {/* Sidebar with action list */}
                         <div className="md:col-span-4 lg:col-span-3">
-                            <motion.div 
+                            <motion.div
                                 className="sticky top-24"
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -175,7 +183,10 @@ export function ActionCategory() {
                                     <h2 className="text-xl font-semibold text-gray-900">
                                         Available Actions
                                     </h2>
-                                    <Badge variant="outline" className="bg-white">
+                                    <Badge
+                                        variant="outline"
+                                        className="bg-white"
+                                    >
                                         {category.actions.length}
                                     </Badge>
                                 </div>
@@ -184,13 +195,18 @@ export function ActionCategory() {
                                         <div
                                             key={action.id}
                                             className={`cursor-pointer p-3 transition-all duration-200 ${getActionColors(action)}`}
-                                            onClick={() => setSelectedAction(action)}
+                                            onClick={() =>
+                                                setSelectedAction(action)
+                                            }
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${getCategoryColors(category.id)}`}>
+                                                <div
+                                                    className={`flex h-9 w-9 items-center justify-center rounded-lg ${getCategoryColors(category.id)}`}
+                                                >
                                                     {getIconComponent(
-                                                        action.iconName || category.iconName,
-                                                        "h-5 w-5"
+                                                        action.iconName ||
+                                                            category.iconName,
+                                                        'h-5 w-5',
                                                     )}
                                                 </div>
                                                 <div className="flex-1">
@@ -201,7 +217,8 @@ export function ActionCategory() {
                                                         {action.description}
                                                     </p>
                                                 </div>
-                                                {selectedAction?.id === action.id && (
+                                                {selectedAction?.id ===
+                                                    action.id && (
                                                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100">
                                                         <Check className="h-4 w-4 text-indigo-600" />
                                                     </div>
@@ -226,10 +243,13 @@ export function ActionCategory() {
                                     {/* Action Header */}
                                     <div className="border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white p-6 pb-5">
                                         <div className="mb-4 flex items-center gap-4">
-                                            <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl shadow-sm ${getCategoryColors(category.id)}`}>
+                                            <div
+                                                className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl shadow-sm ${getCategoryColors(category.id)}`}
+                                            >
                                                 {getIconComponent(
-                                                    selectedAction.iconName || category.iconName,
-                                                    "h-7 w-7"
+                                                    selectedAction.iconName ||
+                                                        category.iconName,
+                                                    'h-7 w-7',
                                                 )}
                                             </div>
                                             <div>
@@ -251,66 +271,87 @@ export function ActionCategory() {
                                                     Overview
                                                 </h3>
                                                 <p className="text-indigo-800">
-                                                    {selectedAction.longDescription}
+                                                    {
+                                                        selectedAction.longDescription
+                                                    }
                                                 </p>
                                             </div>
 
                                             <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                                                 {/* Benefits Section */}
-                                                {selectedAction.benefits && selectedAction.benefits.length > 0 && (
-                                                    <div className="rounded-lg border border-gray-200 p-5">
-                                                        <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900">
-                                                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
-                                                                <Check className="h-5 w-5 text-green-600" />
-                                                            </span>
-                                                            Key Benefits
-                                                        </h3>
-                                                        <ul className="space-y-3">
-                                                            {selectedAction.benefits.map(
-                                                                (benefit, index) => (
-                                                                    <li
-                                                                        key={index}
-                                                                        className="flex items-start"
-                                                                    >
-                                                                        <Check className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-green-500" />
-                                                                        <span className="text-gray-700">
-                                                                            {benefit}
-                                                                        </span>
-                                                                    </li>
-                                                                ),
-                                                            )}
-                                                        </ul>
-                                                    </div>
-                                                )}
+                                                {selectedAction.benefits &&
+                                                    selectedAction.benefits
+                                                        .length > 0 && (
+                                                        <div className="rounded-lg border border-gray-200 p-5">
+                                                            <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900">
+                                                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
+                                                                    <Check className="h-5 w-5 text-green-600" />
+                                                                </span>
+                                                                Key Benefits
+                                                            </h3>
+                                                            <ul className="space-y-3">
+                                                                {selectedAction.benefits.map(
+                                                                    (
+                                                                        benefit,
+                                                                        index,
+                                                                    ) => (
+                                                                        <li
+                                                                            key={
+                                                                                index
+                                                                            }
+                                                                            className="flex items-start"
+                                                                        >
+                                                                            <Check className="mt-1 mr-2 h-4 w-4 flex-shrink-0 text-green-500" />
+                                                                            <span className="text-gray-700">
+                                                                                {
+                                                                                    benefit
+                                                                                }
+                                                                            </span>
+                                                                        </li>
+                                                                    ),
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    )}
 
                                                 {/* Use Cases Section */}
-                                                {selectedAction.useCases && selectedAction.useCases.length > 0 && (
-                                                    <div className="rounded-lg border border-gray-200 p-5">
-                                                        <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900">
-                                                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                                                                <Briefcase className="h-5 w-5 text-blue-600" />
-                                                            </span>
-                                                            Use Cases
-                                                        </h3>
-                                                        <ul className="space-y-3">
-                                                            {selectedAction.useCases.map(
-                                                                (useCase, index) => (
-                                                                    <li
-                                                                        key={index}
-                                                                        className="flex items-start"
-                                                                    >
-                                                                        <div className="mr-2 mt-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-600">
-                                                                            {index + 1}
-                                                                        </div>
-                                                                        <span className="text-gray-700">
-                                                                            {useCase}
-                                                                        </span>
-                                                                    </li>
-                                                                ),
-                                                            )}
-                                                        </ul>
-                                                    </div>
-                                                )}
+                                                {selectedAction.useCases &&
+                                                    selectedAction.useCases
+                                                        .length > 0 && (
+                                                        <div className="rounded-lg border border-gray-200 p-5">
+                                                            <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900">
+                                                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
+                                                                    <Briefcase className="h-5 w-5 text-blue-600" />
+                                                                </span>
+                                                                Use Cases
+                                                            </h3>
+                                                            <ul className="space-y-3">
+                                                                {selectedAction.useCases.map(
+                                                                    (
+                                                                        useCase,
+                                                                        index,
+                                                                    ) => (
+                                                                        <li
+                                                                            key={
+                                                                                index
+                                                                            }
+                                                                            className="flex items-start"
+                                                                        >
+                                                                            <div className="mt-1 mr-2 flex h-4 w-4 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-600">
+                                                                                {index +
+                                                                                    1}
+                                                                            </div>
+                                                                            <span className="text-gray-700">
+                                                                                {
+                                                                                    useCase
+                                                                                }
+                                                                            </span>
+                                                                        </li>
+                                                                    ),
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    )}
                                             </div>
 
                                             {/* Implementation Section */}
@@ -323,27 +364,40 @@ export function ActionCategory() {
                                                         Implementation Details
                                                     </h3>
                                                     <p className="mb-2 text-gray-700">
-                                                        This action is implemented using the{' '}
+                                                        This action is
+                                                        implemented using the{' '}
                                                         <span className="rounded-md bg-white px-2 py-0.5 font-mono text-sm font-medium text-indigo-600">
-                                                            {selectedAction.implementation}
+                                                            {
+                                                                selectedAction.implementation
+                                                            }
                                                         </span>
                                                     </p>
                                                     {selectedAction.source && (
                                                         <div className="mt-3 flex items-center gap-2 rounded-lg bg-gray-100 p-3 text-sm">
                                                             <Code className="h-4 w-4 text-gray-500" />
-                                                            <span className="text-gray-600">Source: </span>
+                                                            <span className="text-gray-600">
+                                                                Source:{' '}
+                                                            </span>
                                                             {selectedAction.sourceUrl ? (
                                                                 <a
-                                                                    href={selectedAction.sourceUrl}
+                                                                    href={
+                                                                        selectedAction.sourceUrl
+                                                                    }
                                                                     target="_blank"
                                                                     rel="noopener noreferrer"
                                                                     className="inline-flex items-center font-medium text-indigo-600 hover:text-indigo-800 hover:underline"
                                                                 >
-                                                                    {selectedAction.source}
+                                                                    {
+                                                                        selectedAction.source
+                                                                    }
                                                                     <ExternalLink className="ml-1 h-3 w-3" />
                                                                 </a>
                                                             ) : (
-                                                                <span className="font-medium text-gray-700">{selectedAction.source}</span>
+                                                                <span className="font-medium text-gray-700">
+                                                                    {
+                                                                        selectedAction.source
+                                                                    }
+                                                                </span>
                                                             )}
                                                         </div>
                                                     )}
@@ -354,7 +408,9 @@ export function ActionCategory() {
                                         {/* Action Footer */}
                                         <div className="mt-8 flex flex-col gap-4 border-t border-gray-100 pt-6 sm:flex-row sm:justify-between">
                                             <div>
-                                                <Badge className={`${getCategoryColors(category.id)}`}>
+                                                <Badge
+                                                    className={`${getCategoryColors(category.id)}`}
+                                                >
                                                     {category.name}
                                                 </Badge>
                                             </div>
@@ -368,8 +424,8 @@ export function ActionCategory() {
                                                         Explore Other Features
                                                     </Link>
                                                 </Button>
-                                                <Button 
-                                                    asChild 
+                                                <Button
+                                                    asChild
                                                     className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700"
                                                 >
                                                     <Link to="/waitlist">
@@ -390,9 +446,10 @@ export function ActionCategory() {
                                             Select an Action
                                         </h3>
                                         <p className="text-gray-600">
-                                            Choose an action from the list to view
-                                            its details and learn how it can help
-                                            automate your workflows with VernisAI.
+                                            Choose an action from the list to
+                                            view its details and learn how it
+                                            can help automate your workflows
+                                            with VernisAI.
                                         </p>
                                     </div>
                                 </div>
