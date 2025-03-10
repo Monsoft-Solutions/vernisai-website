@@ -7,8 +7,8 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
 } from './ui/navigation-menu';
+import { navigationMenuTriggerStyle } from './ui/navigation-menu-utils';
 import { cn } from '../lib/utils';
 import { Button } from './ui/button';
 import {
@@ -64,18 +64,14 @@ export function Header() {
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link
-                        to="/"
+                    <Logo
+                        showLogo={true}
+                        showText={true}
+                        logoSize="md"
+                        textSize="md"
+                        linkTo="/"
                         className="flex items-center transition-transform hover:scale-105"
-                        aria-label="VernisAI Homepage"
-                    >
-                        <Logo
-                            showLogo={true}
-                            showText={true}
-                            logoSize="md"
-                            textSize="md"
-                        />
-                    </Link>
+                    />
                 </div>
 
                 {/* Desktop Navigation */}
