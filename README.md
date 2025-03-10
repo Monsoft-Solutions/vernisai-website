@@ -135,6 +135,22 @@ vernisai-website/
 - **Format**: `npm run format` - Format code with Prettier
 - **Preview**: `npm run preview` - Preview production build locally
 
+## 🔍 Pre-Commit Hooks
+
+This project uses Husky and lint-staged to enforce code quality standards before commits:
+
+- **Linting**: ESLint automatically checks and fixes JavaScript/TypeScript code
+- **Formatting**: Prettier ensures consistent code style
+- **Build Verification**: A test build is performed to catch compilation errors
+
+These checks run automatically when you commit changes. If any check fails, the commit will be blocked until the issues are fixed.
+
+To bypass pre-commit hooks in exceptional cases (not recommended), use:
+
+```bash
+git commit -m "Your message" --no-verify
+```
+
 ## 🚀 Deployment
 
 The website is deployed using [Vercel](https://vercel.com) for continuous deployment. Any changes pushed to the main branch will automatically be deployed to production.
