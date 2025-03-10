@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, ChevronRight } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from './ui/button';
 import {
     Sheet,
@@ -11,16 +11,19 @@ import {
 } from './ui/sheet';
 import { Logo } from './ui/logo';
 import {
-    Zap,
     UserCircle,
     FileText,
-    Calendar,
-    BookOpen,
     BrainCircuit,
     Workflow,
     Puzzle,
     Sparkles,
     Brain,
+    Share2,
+    GraduationCap,
+    Kanban,
+    BarChart3,
+    Library,
+    ChevronRight,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -190,15 +193,111 @@ export function MobileNav() {
                                     className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
                                     onClick={() =>
                                         handleNavigation(
-                                            '/use-cases/task-automation',
+                                            '/use-cases/content-creation',
                                         )
                                     }
                                 >
-                                    <div className="rounded-full bg-yellow-100 p-1.5">
-                                        <Zap className="h-3.5 w-3.5 text-yellow-600" />
+                                    <div className="rounded-full bg-green-100 p-1.5">
+                                        <FileText className="h-3.5 w-3.5 text-green-600" />
                                     </div>
                                     <span className="text-sm font-medium">
-                                        Task Automation
+                                        Content Creation
+                                    </span>
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                whileHover={{ x: 5 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 400,
+                                }}
+                            >
+                                <div
+                                    className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
+                                    onClick={() =>
+                                        handleNavigation(
+                                            '/use-cases/data-analysis',
+                                        )
+                                    }
+                                >
+                                    <div className="rounded-full bg-orange-100 p-1.5">
+                                        <BarChart3 className="h-3.5 w-3.5 text-orange-600" />
+                                    </div>
+                                    <span className="text-sm font-medium">
+                                        Data Analysis
+                                    </span>
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                whileHover={{ x: 5 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 400,
+                                }}
+                            >
+                                <div
+                                    className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
+                                    onClick={() =>
+                                        handleNavigation(
+                                            '/use-cases/social-media-management',
+                                        )
+                                    }
+                                >
+                                    <div className="rounded-full bg-blue-100 p-1.5">
+                                        <Share2 className="h-3.5 w-3.5 text-blue-600" />
+                                    </div>
+                                    <span className="text-sm font-medium">
+                                        Social Media
+                                    </span>
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                whileHover={{ x: 5 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 400,
+                                }}
+                            >
+                                <div
+                                    className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
+                                    onClick={() =>
+                                        handleNavigation(
+                                            '/use-cases/knowledge-management',
+                                        )
+                                    }
+                                >
+                                    <div className="rounded-full bg-purple-100 p-1.5">
+                                        <Library className="h-3.5 w-3.5 text-purple-600" />
+                                    </div>
+                                    <span className="text-sm font-medium">
+                                        Knowledge Mgmt
+                                    </span>
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                whileHover={{ x: 5 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 400,
+                                }}
+                            >
+                                <div
+                                    className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
+                                    onClick={() =>
+                                        handleNavigation(
+                                            '/use-cases/learning-acceleration',
+                                        )
+                                    }
+                                >
+                                    <div className="rounded-full bg-cyan-100 p-1.5">
+                                        <GraduationCap className="h-3.5 w-3.5 text-cyan-600" />
+                                    </div>
+                                    <span className="text-sm font-medium">
+                                        Learning
                                     </span>
                                 </div>
                             </motion.div>
@@ -238,63 +337,15 @@ export function MobileNav() {
                                     className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
                                     onClick={() =>
                                         handleNavigation(
-                                            '/use-cases/content-creation',
+                                            '/use-cases/project-management',
                                         )
                                     }
                                 >
-                                    <div className="rounded-full bg-green-100 p-1.5">
-                                        <FileText className="h-3.5 w-3.5 text-green-600" />
+                                    <div className="rounded-full bg-rose-100 p-1.5">
+                                        <Kanban className="h-3.5 w-3.5 text-rose-600" />
                                     </div>
                                     <span className="text-sm font-medium">
-                                        Content Creation
-                                    </span>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                whileHover={{ x: 5 }}
-                                transition={{
-                                    type: 'spring',
-                                    stiffness: 400,
-                                }}
-                            >
-                                <div
-                                    className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
-                                    onClick={() =>
-                                        handleNavigation(
-                                            '/use-cases/knowledge-management',
-                                        )
-                                    }
-                                >
-                                    <div className="rounded-full bg-blue-100 p-1.5">
-                                        <BookOpen className="h-3.5 w-3.5 text-blue-600" />
-                                    </div>
-                                    <span className="text-sm font-medium">
-                                        Knowledge Mgmt
-                                    </span>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                whileHover={{ x: 5 }}
-                                transition={{
-                                    type: 'spring',
-                                    stiffness: 400,
-                                }}
-                            >
-                                <div
-                                    className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
-                                    onClick={() =>
-                                        handleNavigation(
-                                            '/use-cases/meeting-enhancement',
-                                        )
-                                    }
-                                >
-                                    <div className="rounded-full bg-purple-100 p-1.5">
-                                        <Calendar className="h-3.5 w-3.5 text-purple-600" />
-                                    </div>
-                                    <span className="text-sm font-medium">
-                                        Meetings
+                                        Project Management
                                     </span>
                                 </div>
                             </motion.div>
