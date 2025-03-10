@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { UseCaseTemplate } from '../../components/use-cases/use-case-template';
 import { getUseCaseById } from '../../data/use-cases';
-import { getIconComponent } from '../../components/use-cases/use-case-icon';
+import { getIconComponent } from '../../components/use-cases/icon-utils';
 
 export const UseCaseDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
