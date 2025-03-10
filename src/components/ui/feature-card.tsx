@@ -85,7 +85,7 @@ export function FeatureCard({
                 {icon}
             </div>
             <h3 className="mb-3 text-xl font-bold text-gray-900">{title}</h3>
-            <p className="text-gray-700">{description}</p>
+            <div className="text-gray-700">{description}</div>
         </motion.div>
     );
 }

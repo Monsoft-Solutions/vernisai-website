@@ -196,7 +196,7 @@ export function UseCaseHighlights() {
                                         }
                                         title={useCase.title}
                                         description={
-                                            <div className="space-y-2">
+                                            <>
                                                 <p>{useCase.description}</p>
                                                 <div className="flex items-center pt-2 text-sm font-medium text-blue-600 sm:hidden">
                                                     Learn more
@@ -215,7 +215,7 @@ export function UseCaseHighlights() {
                                                         />
                                                     </svg>
                                                 </div>
-                                            </div>
+                                            </>
                                         }
                                         color={variant.bg}
                                         borderColor={variant.border}
