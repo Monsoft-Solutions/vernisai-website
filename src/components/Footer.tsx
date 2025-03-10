@@ -28,6 +28,15 @@ export function Footer() {
                                 and exclusive insights about AI workflow
                                 automation.
                             </p>
+                            <p className="text-muted-foreground text-xs">
+                                By subscribing, you agree to our{' '}
+                                <Link
+                                    to="/privacy"
+                                    className="text-primary hover:underline"
+                                >
+                                    Privacy Policy
+                                </Link>
+                            </p>
                         </div>
                         <div className="flex flex-col gap-3 sm:flex-row">
                             <Input
@@ -204,7 +213,7 @@ export function Footer() {
                                     </li>
                                     <li>
                                         <a
-                                            href="mailto:info@vernisai.com"
+                                            href="mailto:info@vernis.ai"
                                             className="text-muted-foreground hover:text-foreground flex items-center gap-1"
                                         >
                                             Email Us{' '}
