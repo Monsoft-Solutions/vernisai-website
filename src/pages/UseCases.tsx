@@ -1,14 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-    ArrowRight,
-    Zap,
-    BrainCircuit,
-    FileText,
-    Calendar,
-    Briefcase,
-    Database,
-    UserRound,
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CTAWorkflowAutomation } from '../components/CTA';
 import { FAQ, SEO } from '../components';
@@ -16,6 +7,8 @@ import { useCasesFAQItems } from '../data/faq-data';
 import { Button } from '../components/ui/button';
 import { Separator } from '../components/ui/separator';
 import { useEffect, useState } from 'react';
+import { useCases } from '../data/use-cases';
+import { UseCaseIcon } from '../components/use-cases/use-case-icon';
 
 // Add custom CSS for the blue gradient text
 import './text-gradient.css';
@@ -71,87 +64,6 @@ const RotatingText = ({
 };
 
 export function UseCases() {
-    const useCases = [
-        {
-            id: 'task-automation',
-            title: 'Task Automation',
-            description:
-                'Automate repetitive tasks to save time and reduce manual effort.',
-            icon: <Zap className="h-6 w-6 text-amber-600" />,
-            color: 'bg-amber-50 border-amber-200',
-            textColor: 'text-amber-700',
-            hoverColor: 'group-hover:bg-amber-100',
-        },
-        {
-            id: 'knowledge-management',
-            title: 'Knowledge Management',
-            description:
-                'Quickly access, organize, and retrieve important information.',
-            icon: <BrainCircuit className="h-6 w-6 text-blue-600" />,
-            color: 'bg-blue-50 border-blue-200',
-            textColor: 'text-blue-700',
-            hoverColor: 'group-hover:bg-blue-100',
-        },
-        {
-            id: 'content-creation',
-            title: 'Content Creation',
-            description:
-                'Generate and optimize various types of content faster.',
-            icon: <FileText className="h-6 w-6 text-emerald-600" />,
-            color: 'bg-emerald-50 border-emerald-200',
-            textColor: 'text-emerald-700',
-            hoverColor: 'group-hover:bg-emerald-100',
-        },
-        {
-            id: 'meeting-enhancement',
-            title: 'Meeting Enhancement',
-            description: 'Make meetings more efficient and productive.',
-            icon: <Calendar className="h-6 w-6 text-purple-600" />,
-            color: 'bg-purple-50 border-purple-200',
-            textColor: 'text-purple-700',
-            hoverColor: 'group-hover:bg-purple-100',
-        },
-        {
-            id: 'project-management',
-            title: 'Project Management',
-            description: 'Streamline project workflows and task management.',
-            icon: <Briefcase className="h-6 w-6 text-rose-600" />,
-            color: 'bg-rose-50 border-rose-200',
-            textColor: 'text-rose-700',
-            hoverColor: 'group-hover:bg-rose-100',
-        },
-        {
-            id: 'personal-assistant',
-            title: 'Personal Assistant',
-            description:
-                'Handle daily organizational tasks to free up mental space.',
-            icon: <UserRound className="h-6 w-6 text-indigo-600" />,
-            color: 'bg-indigo-50 border-indigo-200',
-            textColor: 'text-indigo-700',
-            hoverColor: 'group-hover:bg-indigo-100',
-        },
-        {
-            id: 'learning-acceleration',
-            title: 'Learning Acceleration',
-            description:
-                'Speed up learning processes with AI-assisted education.',
-            icon: <BrainCircuit className="h-6 w-6 text-pink-600" />,
-            color: 'bg-pink-50 border-pink-200',
-            textColor: 'text-pink-700',
-            hoverColor: 'group-hover:bg-pink-100',
-        },
-        {
-            id: 'data-analysis',
-            title: 'Data Analysis',
-            description:
-                'Analyze and extract insights from data more efficiently.',
-            icon: <Database className="h-6 w-6 text-orange-600" />,
-            color: 'bg-orange-50 border-orange-200',
-            textColor: 'text-orange-700',
-            hoverColor: 'group-hover:bg-orange-100',
-        },
-    ];
-
     // Rotating text phrases that audience can relate to
     const rotatingPhrases = [
         'Analyze Data',
@@ -353,21 +265,24 @@ export function UseCases() {
                                 >
                                     <div className="mb-6 flex items-start justify-between">
                                         <div
-                                            className={`flex h-14 w-14 items-center justify-center rounded-lg border ${useCase.color} transition-colors duration-300 ${useCase.hoverColor}`}
+                                            className={`flex h-14 w-14 items-center justify-center rounded-lg border ${useCase.iconBgColor} transition-colors duration-300`}
                                         >
-                                            {useCase.icon}
+                                            <UseCaseIcon
+                                                iconName={useCase.iconName}
+                                                className={`h-6 w-6 ${useCase.iconColor}`}
+                                            />
                                         </div>
                                         <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 transition-colors duration-300 group-hover:bg-gray-200">
                                             Explore
                                         </span>
                                     </div>
                                     <h3
-                                        className={`mb-3 text-xl font-semibold ${useCase.textColor}`}
+                                        className={`mb-3 text-xl font-semibold ${useCase.iconColor}`}
                                     >
-                                        {useCase.title}
+                                        {useCase.name}
                                     </h3>
                                     <p className="mb-6 flex-grow text-gray-600">
-                                        {useCase.description}
+                                        {useCase.shortDescription}
                                     </p>
                                     <div className="mt-auto flex items-center text-blue-600 transition-all duration-300 group-hover:translate-x-1">
                                         <span className="font-medium">
