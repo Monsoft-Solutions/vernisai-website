@@ -9,6 +9,7 @@ import {
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { CallToAction } from '@/components/CallToAction';
+import '@/styles/fix-overflow.css';
 
 export function WorkflowsFeature() {
     const creationMethods = [
@@ -77,7 +78,7 @@ export function WorkflowsFeature() {
                 {/* Hero Section */}
                 <div className="relative mb-16 text-center md:mb-24">
                     {/* Background gradient blob */}
-                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
+                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-full max-w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
 
                     <motion.div
                         className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-purple-500/30 md:mb-8 md:h-24 md:w-24"
@@ -169,14 +170,14 @@ export function WorkflowsFeature() {
 
                 {/* Creation Methods */}
                 <motion.div
-                    className="relative mb-20 overflow-hidden rounded-2xl md:mb-24"
+                    className="no-overflow relative mb-20 overflow-hidden rounded-2xl md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
                     transition={{ ...animationSettings, delay: 0.5 }}
                 >
                     {/* Background decoration */}
-                    <div className="absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
+                    <div className="decorative-element absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
 
                     <div className="p-8 md:p-12">
                         <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
@@ -186,7 +187,7 @@ export function WorkflowsFeature() {
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
                             {creationMethods.map((method, index) => (
                                 <motion.div
                                     key={index}
@@ -230,7 +231,7 @@ export function WorkflowsFeature() {
                     <div className="absolute inset-0 -z-10 rotate-1 transform rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
                     <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
 
-                    <div className="relative overflow-hidden rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
+                    <div className="relative rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
                         {/* Decorative elements */}
                         <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/20 opacity-30 blur-3xl filter"></div>
                         <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/2 rounded-full bg-purple-600/20 opacity-30 blur-3xl filter"></div>
@@ -242,7 +243,7 @@ export function WorkflowsFeature() {
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
                             {workflowExamples.map((example, index) => (
                                 <motion.div
                                     key={index}
