@@ -221,40 +221,51 @@ export function WorkflowsFeature() {
 
                 {/* Examples Section */}
                 <motion.div
-                    className="mb-20 rounded-2xl bg-gradient-to-r from-gray-900 to-blue-900 px-6 py-10 text-white shadow-xl md:mb-24 md:py-12"
+                    className="relative mb-20 md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
                     transition={{ ...animationSettings, delay: 0.6 }}
                 >
-                    <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
-                        Popular Workflow Examples
-                    </h2>
-                    <div className="mb-8 flex justify-center md:mb-10">
-                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 md:w-20"></div>
-                    </div>
+                    <div className="absolute inset-0 -z-10 rotate-1 transform rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
+                    <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
 
-                    <div className="space-y-6 md:space-y-8">
-                        {workflowExamples.map((example, index) => (
-                            <motion.div
-                                key={index}
-                                className="rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 md:p-8"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{
-                                    ...animationSettings,
-                                    delay: 0.6 + index * 0.1,
-                                }}
-                            >
-                                <h3 className="mb-3 flex items-center text-xl font-semibold text-white">
-                                    <ArrowRight className="mr-2 h-5 w-5 text-blue-300" />
-                                    {example.title}
-                                </h3>
-                                <p className="ml-7 text-gray-200">
-                                    {example.description}
-                                </p>
-                            </motion.div>
-                        ))}
+                    <div className="relative overflow-hidden rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
+                        {/* Decorative elements */}
+                        <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/20 opacity-30 blur-3xl filter"></div>
+                        <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/2 rounded-full bg-purple-600/20 opacity-30 blur-3xl filter"></div>
+
+                        <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
+                            Popular Workflow Examples
+                        </h2>
+                        <div className="mb-10 flex justify-center">
+                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                            {workflowExamples.map((example, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-xl md:p-8"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{
+                                        ...animationSettings,
+                                        delay: 0.6 + index * 0.1,
+                                    }}
+                                >
+                                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 p-3">
+                                        <ArrowRight className="h-5 w-5 text-blue-300" />
+                                    </div>
+                                    <h3 className="mb-3 text-xl font-semibold text-white">
+                                        {example.title}
+                                    </h3>
+                                    <p className="mt-auto text-gray-200">
+                                        {example.description}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
 

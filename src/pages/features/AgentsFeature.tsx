@@ -13,7 +13,6 @@ import {
 import { motion } from 'framer-motion';
 import { FeatureCard } from '@/components/ui/feature-card';
 import { CallToAction } from '@/components/CallToAction';
-import { cn } from '@/lib/utils';
 
 export function AgentsFeature() {
     const agentBenefits = [
@@ -270,104 +269,124 @@ export function AgentsFeature() {
 
                 {/* Agent Types */}
                 <motion.div
-                    className="mb-20 rounded-2xl bg-gradient-to-r from-gray-900 to-blue-900 px-6 py-10 text-white shadow-xl md:mb-24 md:py-12"
+                    className="relative mb-20 md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
                     transition={{ ...animationSettings, delay: 0.7 }}
                 >
-                    <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
-                        Start With The Help You Need Most
-                    </h2>
-                    <div className="mb-8 flex justify-center md:mb-10">
-                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 md:w-20"></div>
-                    </div>
+                    <div className="absolute inset-0 -z-10 rotate-1 transform rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
+                    <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-                        {agentTypes.map((type, index) => (
-                            <motion.div
-                                key={index}
-                                className={cn(
-                                    'rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm md:p-8',
-                                    'text-center transition-all duration-300 hover:-translate-y-2 hover:bg-white/20',
-                                )}
-                                whileHover={{ scale: 1.03 }}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{
-                                    ...animationSettings,
-                                    delay: 0.7 + index * 0.1,
-                                }}
-                            >
-                                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 md:h-16 md:w-16">
-                                    {type.icon}
-                                </div>
-                                <h3 className="mb-3 text-xl font-semibold text-white md:mb-4">
-                                    {type.title}
-                                </h3>
-                                <p className="text-gray-200">
-                                    {type.description}
-                                </p>
-                            </motion.div>
-                        ))}
+                    <div className="relative overflow-hidden rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
+                        {/* Decorative elements */}
+                        <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/20 opacity-30 blur-3xl filter"></div>
+                        <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/2 rounded-full bg-purple-600/20 opacity-30 blur-3xl filter"></div>
+
+                        <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
+                            Start With The Help You Need Most
+                        </h2>
+                        <div className="mb-10 flex justify-center">
+                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                            {agentTypes.map((type, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-xl md:p-8"
+                                    whileHover={{ scale: 1.03 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{
+                                        ...animationSettings,
+                                        delay: 0.7 + index * 0.1,
+                                    }}
+                                >
+                                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-white/10 shadow-inner">
+                                        {type.icon}
+                                    </div>
+                                    <h3 className="mb-3 text-xl font-semibold text-white md:mb-4">
+                                        {type.title}
+                                    </h3>
+                                    <p className="text-gray-200">
+                                        {type.description}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
 
                 {/* Advanced Features */}
                 <motion.div
-                    className="mb-16 rounded-xl bg-gradient-to-br from-gray-900 to-blue-900 p-8 text-white md:p-10"
+                    className="relative mb-16"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
                     transition={{ ...animationSettings, delay: 0.8 }}
                 >
-                    <h2 className="mb-6 text-center text-2xl font-bold md:mb-8 md:text-3xl">
-                        The Technology That Makes It Possible
-                    </h2>
+                    <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
+                    <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
 
-                    <div className="mb-8 md:mb-10">
-                        <div className="mb-3 flex items-center md:mb-4">
-                            <Brain className="mr-3 h-6 w-6 text-blue-300" />
-                            <h3 className="text-lg font-semibold md:text-xl">
-                                Memory That Builds Over Time
-                            </h3>
-                        </div>
-                        <p className="ml-9 text-gray-200">
-                            Unlike basic chatbots, your agents remember every
-                            interaction you've had, learning your preferences
-                            and communication style with each task they
-                            complete.
-                        </p>
-                    </div>
+                    <div className="relative rounded-2xl px-8 py-12 text-white md:px-12 md:py-14">
+                        <div className="absolute top-0 left-0 h-80 w-80 -translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/10 opacity-30 blur-3xl filter"></div>
 
-                    <div className="mb-8 md:mb-10">
-                        <div className="mb-3 flex items-center md:mb-4">
-                            <Settings className="mr-3 h-6 w-6 text-blue-300" />
-                            <h3 className="text-lg font-semibold md:text-xl">
-                                Your Process, Automated
-                            </h3>
+                        <h2 className="mb-8 text-center text-2xl font-bold md:text-3xl">
+                            The Technology That Makes It Possible
+                        </h2>
+                        <div className="mb-10 flex justify-center">
+                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-20"></div>
                         </div>
-                        <p className="ml-9 text-gray-200">
-                            Map your exact workflow into an agent that follows
-                            your precise instructions. From research format to
-                            email tone to content structure—your agents do it
-                            exactly how you would.
-                        </p>
-                    </div>
 
-                    <div>
-                        <div className="mb-3 flex items-center md:mb-4">
-                            <Repeat className="mr-3 h-6 w-6 text-blue-300" />
-                            <h3 className="text-lg font-semibold md:text-xl">
-                                Agents That Work Together
-                            </h3>
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-900/50 p-3">
+                                    <Brain className="h-6 w-6 text-blue-300" />
+                                </div>
+                                <h3 className="mb-3 text-lg font-semibold md:text-xl">
+                                    Memory That Builds Over Time
+                                </h3>
+                                <p className="text-gray-200">
+                                    Unlike basic chatbots, your agents remember
+                                    every interaction you've had, learning your
+                                    preferences and communication style with
+                                    each task they complete.
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-900/50 p-3">
+                                    <Settings className="h-6 w-6 text-purple-300" />
+                                </div>
+                                <h3 className="mb-3 text-lg font-semibold md:text-xl">
+                                    Your Process, Automated
+                                </h3>
+                                <p className="text-gray-200">
+                                    Map your exact workflow into an agent that
+                                    follows your precise instructions. From
+                                    research format to email tone to content
+                                    structure—your agents do it exactly how you
+                                    would.
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-900/50 p-3">
+                                    <Repeat className="h-6 w-6 text-indigo-300" />
+                                </div>
+                                <h3 className="mb-3 text-lg font-semibold md:text-xl">
+                                    Agents That Work Together
+                                </h3>
+                                <p className="text-gray-200">
+                                    Complex tasks? No problem. Multiple agents
+                                    can collaborate—one researches, another
+                                    drafts content, and a third polishes the
+                                    final output—all while you're focused
+                                    elsewhere.
+                                </p>
+                            </div>
                         </div>
-                        <p className="ml-9 text-gray-200">
-                            Complex tasks? No problem. Multiple agents can
-                            collaborate—one researches, another drafts content,
-                            and a third polishes the final output—all while
-                            you're focused elsewhere.
-                        </p>
                     </div>
                 </motion.div>
 
