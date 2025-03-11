@@ -12,7 +12,7 @@ import { Features } from './pages/Features';
 import { FeatureDetail } from './pages/FeatureDetail';
 import { ActionsFeature } from './pages/features/ActionsFeature';
 import { ActionCategory } from './pages/features/ActionCategory';
-import { PipelinesFeature } from './pages/features/PipelinesFeature';
+import { WorkflowsFeature } from './pages/features/WorkflowsFeature';
 import { AgentsFeature } from './pages/features/AgentsFeature';
 import { KnowledgeBaseFeature } from './pages/features/KnowledgeBaseFeature';
 // Import Use Cases pages
@@ -57,8 +57,8 @@ function App() {
                         element={<ActionCategory />}
                     />
                     <Route
-                        path="features/pipelines"
-                        element={<PipelinesFeature />}
+                        path="features/workflows"
+                        element={<WorkflowsFeature />}
                     />
                     <Route path="features/agents" element={<AgentsFeature />} />
                     <Route

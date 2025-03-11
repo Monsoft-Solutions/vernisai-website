@@ -1,78 +1,58 @@
 import {
-    Database,
+    GitBranch,
     CheckCircle2,
-    Book,
-    FileText,
-    Image,
-    Link as LinkIcon,
-    Clock,
-    GitMerge,
-    Award,
-    Shield,
+    ArrowRight,
+    Wand2,
+    LayoutTemplate,
+    Workflow,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import { CallToAction } from '@/components/CallToAction';
 
-export function KnowledgeBaseFeature() {
-    const supportedFormats = [
+export function WorkflowsFeature() {
+    const creationMethods = [
         {
-            icon: <FileText className="h-6 w-6 text-blue-500" />,
-            title: 'Text & Documents',
+            icon: <Workflow className="h-6 w-6 text-blue-500" />,
+            title: 'Drag-and-Drop Builder',
             description:
-                'Import text, Word docs, and PDFs seamlessly into your knowledge base.',
+                'Visually connect actions to define workflow logic with our intuitive interface. No coding required — just drag, drop, and connect.',
             color: 'bg-blue-50',
             borderColor: 'border-blue-100',
         },
         {
-            icon: <Image className="h-6 w-6 text-purple-500" />,
-            title: 'Images & Media',
+            icon: <Wand2 className="h-6 w-6 text-purple-500" />,
+            title: 'Natural Language Configuration',
             description:
-                'Visual information is analyzed and indexed for your agents to reference.',
+                'Describe your workflow in plain English: "Every morning at 8 AM, check my website uptime and notify me on Slack." VernisAI builds it for you.',
             color: 'bg-purple-50',
             borderColor: 'border-purple-100',
         },
         {
-            icon: <LinkIcon className="h-6 w-6 text-green-500" />,
-            title: 'URLs & Web Content',
+            icon: <LayoutTemplate className="h-6 w-6 text-green-500" />,
+            title: 'Prebuilt Templates',
             description:
-                'Capture web resources with automated crawling and updates.',
+                'Start instantly with ready-made workflows for social media automation, customer support, data monitoring, and dozens more common use cases.',
             color: 'bg-green-50',
             borderColor: 'border-green-100',
         },
-        {
-            icon: <Database className="h-6 w-6 text-amber-500" />,
-            title: 'Structured Data',
-            description:
-                'Connect databases, spreadsheets, and APIs for real-time information access.',
-            color: 'bg-amber-50',
-            borderColor: 'border-amber-100',
-        },
     ];
 
-    const enhancedFeatures = [
+    const workflowExamples = [
         {
-            icon: <Clock className="h-6 w-6 text-blue-500" />,
-            title: 'Auto-Knowledge Refresh',
+            title: 'Content Publishing Workflow',
             description:
-                'Schedule automatic updates for live data sources, ensuring your knowledge base stays current without manual intervention.',
+                'From draft to social media, automatically post content across platforms with customized formatting for each channel.',
         },
         {
-            icon: <GitMerge className="h-6 w-6 text-purple-500" />,
-            title: 'Version Control',
+            title: 'Data Collection & Analysis',
             description:
-                'Track changes in your knowledge base over time with complete history and the ability to revert to previous versions.',
+                'Gather information from multiple sources, process it with AI, and generate visual reports delivered to your inbox.',
         },
         {
-            icon: <Award className="h-6 w-6 text-green-500" />,
-            title: 'Source Prioritization',
+            title: 'Customer Support Automation',
             description:
-                'Rank sources by reliability and importance so your agents always reference the most authoritative information first.',
-        },
-        {
-            icon: <Shield className="h-6 w-6 text-amber-500" />,
-            title: 'Conflict Resolution',
-            description:
-                'Define rules for handling conflicting data from multiple sources, ensuring consistency in your knowledge base.',
+                'Categorize incoming requests, generate responses for common issues, and escalate complex problems to your team.',
         },
     ];
 
@@ -108,7 +88,7 @@ export function KnowledgeBaseFeature() {
                             delay: 0.1,
                         }}
                     >
-                        <Book className="h-10 w-10 text-white md:h-12 md:w-12" />
+                        <GitBranch className="h-10 w-10 text-white md:h-12 md:w-12" />
                     </motion.div>
                     <motion.h1
                         className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold tracking-tight text-transparent md:mb-6 md:text-6xl"
@@ -116,7 +96,7 @@ export function KnowledgeBaseFeature() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ ...animationSettings, delay: 0.2 }}
                     >
-                        Advanced Knowledge Base
+                        Powerful AI Workflows
                     </motion.h1>
                     <motion.p
                         className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 md:text-2xl"
@@ -124,8 +104,8 @@ export function KnowledgeBaseFeature() {
                         animate={{ opacity: 1 }}
                         transition={{ ...animationSettings, delay: 0.3 }}
                     >
-                        Empower your AI assistants with the exact information
-                        they need, exactly when they need it
+                        Connect multiple actions to create end-to-end automation
+                        without writing a single line of code
                     </motion.p>
                 </div>
 
@@ -138,63 +118,56 @@ export function KnowledgeBaseFeature() {
                 >
                     <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-md md:p-10">
                         <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">
-                            What Is A Knowledge Base?
+                            What Are Workflows?
                         </h2>
                         <div className="mb-8 flex justify-start">
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
                         </div>
                         <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                            A <strong>knowledge base</strong> serves as the
-                            memory and reference library for your AI agents,
-                            providing them with the contextual information they
-                            need to make informed decisions and take appropriate
-                            actions. Unlike typical document storage, our
-                            knowledge base transforms your information into
-                            vector embeddings that allow for semantic search and
-                            contextual retrieval.
+                            A <strong>workflow</strong> defines the sequence of
+                            actions an AI assistant follows, structured as a
+                            Directed Acyclic Graph (DAG). Workflows let you
+                            connect multiple actions together to create powerful
+                            automations without writing any code.
                         </p>
 
                         <h3 className="mb-4 text-2xl font-semibold text-gray-800">
-                            Key Capabilities
+                            Key Characteristics
                         </h3>
                         <ul className="space-y-3 text-gray-700">
                             <li className="flex items-start">
                                 <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
                                 <span>
-                                    <strong>Semantic Understanding</strong> -
-                                    Agents grasp the meaning behind your
-                                    documents, not just keywords
+                                    <strong>Nodes</strong> = Actions (Send
+                                    email, Process data, Generate content)
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
                                 <span>
-                                    <strong>Multi-Format Support</strong> -
-                                    Import virtually any type of content into
-                                    your knowledge base
+                                    <strong>Edges</strong> = Context and data
+                                    passed between actions
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
                                 <span>
-                                    <strong>Real-time Access</strong> -
-                                    Information is retrieved in milliseconds,
-                                    making your agents incredibly responsive
+                                    Supports <strong>conditional logic</strong>{' '}
+                                    (if/then branches) and parallel execution
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
                                 <span>
-                                    <strong>Granular Permissions</strong> -
-                                    Control exactly which agents can access
-                                    specific knowledge assets
+                                    Run workflows on schedule, trigger them
+                                    manually, or connect to external events
                                 </span>
                             </li>
                         </ul>
                     </div>
                 </motion.div>
 
-                {/* Supported Formats Section */}
+                {/* Creation Methods */}
                 <motion.div
                     className="relative mb-20 overflow-hidden rounded-2xl md:mb-24"
                     variants={fadeInUpVariant}
@@ -207,17 +180,22 @@ export function KnowledgeBaseFeature() {
 
                     <div className="p-8 md:p-12">
                         <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
-                            Supports All Your Content Types
+                            Three Ways to Create Workflows
                         </h2>
                         <div className="mb-8 flex justify-center md:mb-10">
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-                            {supportedFormats.map((format, index) => (
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                            {creationMethods.map((method, index) => (
                                 <motion.div
                                     key={index}
-                                    className={`rounded-xl border p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-lg ${format.color} ${format.borderColor}`}
+                                    className={cn(
+                                        'rounded-xl border p-6 shadow-md md:p-8',
+                                        'transition-all duration-300 hover:-translate-y-2 hover:shadow-lg',
+                                        method.color,
+                                        method.borderColor,
+                                    )}
                                     whileHover={{ scale: 1.03 }}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -227,13 +205,13 @@ export function KnowledgeBaseFeature() {
                                     }}
                                 >
                                     <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-white p-3 shadow-sm">
-                                        {format.icon}
+                                        {method.icon}
                                     </div>
                                     <h3 className="mb-3 text-xl font-bold text-gray-900">
-                                        {format.title}
+                                        {method.title}
                                     </h3>
                                     <p className="text-gray-700">
-                                        {format.description}
+                                        {method.description}
                                     </p>
                                 </motion.div>
                             ))}
@@ -241,7 +219,7 @@ export function KnowledgeBaseFeature() {
                     </div>
                 </motion.div>
 
-                {/* Enhanced Management Section */}
+                {/* Examples Section */}
                 <motion.div
                     className="relative mb-20 md:mb-24"
                     variants={fadeInUpVariant}
@@ -258,14 +236,14 @@ export function KnowledgeBaseFeature() {
                         <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/2 rounded-full bg-purple-600/20 opacity-30 blur-3xl filter"></div>
 
                         <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
-                            Enterprise-Grade Knowledge Management
+                            Popular Workflow Examples
                         </h2>
                         <div className="mb-10 flex justify-center">
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-                            {enhancedFeatures.map((feature, index) => (
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                            {workflowExamples.map((example, index) => (
                                 <motion.div
                                     key={index}
                                     className="flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-xl md:p-8"
@@ -277,13 +255,13 @@ export function KnowledgeBaseFeature() {
                                     }}
                                 >
                                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 p-3">
-                                        {feature.icon}
+                                        <ArrowRight className="h-5 w-5 text-blue-300" />
                                     </div>
                                     <h3 className="mb-3 text-xl font-semibold text-white">
-                                        {feature.title}
+                                        {example.title}
                                     </h3>
-                                    <p className="text-gray-200">
-                                        {feature.description}
+                                    <p className="mt-auto text-gray-200">
+                                        {example.description}
                                     </p>
                                 </motion.div>
                             ))}
@@ -293,8 +271,8 @@ export function KnowledgeBaseFeature() {
 
                 {/* Call to Action */}
                 <CallToAction
-                    title="Ready to Transform Your Knowledge?"
-                    description="Give your AI agents access to your most valuable information with our powerful knowledge base technology."
+                    title="Ready to Automate Your Work?"
+                    description="Join our waitlist to be among the first to create powerful AI workflows that save you hours every day."
                     buttonText="Join Waitlist"
                     buttonLink="/waitlist"
                     height="tall"

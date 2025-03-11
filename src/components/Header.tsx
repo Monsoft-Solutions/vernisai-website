@@ -131,7 +131,7 @@ export function Header() {
                                                 }}
                                             >
                                                 <Link
-                                                    to="/features/pipelines"
+                                                    to="/features/workflows"
                                                     className="flex items-center gap-4 rounded-md p-2 transition-colors duration-200 hover:bg-gray-50"
                                                 >
                                                     <div className="rounded-full bg-blue-100 p-2">
@@ -139,12 +139,13 @@ export function Header() {
                                                     </div>
                                                     <div>
                                                         <h3 className="text-base font-medium">
-                                                            Pipelines
+                                                            Workflows
                                                         </h3>
                                                         <p className="text-sm text-gray-600">
-                                                            Define sequences of
-                                                            actions in a
-                                                            structured workflow.
+                                                            Connect multiple
+                                                            actions to create
+                                                            powerful end-to-end
+                                                            automations.
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -171,7 +172,7 @@ export function Header() {
                                                         <p className="text-sm text-gray-600">
                                                             AI-driven entities
                                                             that execute
-                                                            pipelines with
+                                                            workflows with
                                                             context awareness.
                                                         </p>
                                                     </div>

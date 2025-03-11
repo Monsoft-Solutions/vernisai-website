@@ -67,18 +67,18 @@ export function Features() {
                         whileHover={{ y: -10 }}
                         transition={{ type: 'spring', stiffness: 300 }}
                     >
-                        <Link to="/features/pipelines" className="block h-full">
+                        <Link to="/features/workflows" className="block h-full">
                             <div className="h-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl">
                                 <div className="p-6">
                                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100">
                                         <GitBranch className="h-6 w-6 text-gray-700" />
                                     </div>
                                     <h3 className="mb-2 text-xl font-semibold">
-                                        Pipelines
+                                        Workflows
                                     </h3>
                                     <p className="mb-4 text-gray-600">
-                                        Define sequences of actions in a
-                                        structured workflow, with support for
+                                        Connect multiple actions in powerful
+                                        end-to-end automations with support for
                                         conditional logic and parallel
                                         execution.
                                     </p>
@@ -119,7 +119,7 @@ export function Features() {
                                     </h3>
                                     <p className="mb-4 text-gray-600">
                                         AI-driven entities that execute
-                                        pipelines in a consistent and
+                                        workflows in a consistent and
                                         context-aware manner, with customizable
                                         behavior.
                                     </p>
