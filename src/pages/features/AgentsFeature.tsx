@@ -1,170 +1,386 @@
-import { Link } from 'react-router-dom';
-import { Button } from '../../components/ui/button';
-import { Bot, CheckCircle2 } from 'lucide-react';
+import {
+    Bot,
+    CheckCircle2,
+    Clock,
+    Sparkles,
+    Zap,
+    Brain,
+    Repeat,
+    Settings,
+    Users,
+    LayoutPanelTop,
+} from 'lucide-react';
 import { motion } from 'framer-motion';
+import { FeatureCard } from '@/components/ui/feature-card';
+import { CallToAction } from '@/components/CallToAction';
+import { cn } from '@/lib/utils';
 
 export function AgentsFeature() {
-    const agentComponents = [
+    const agentBenefits = [
         {
-            title: 'Pipeline Execution',
-            description: 'Defines how the agent acts.',
-        },
-        {
-            title: 'Custom System Prompt',
+            icon: <Clock className="h-6 w-6 text-blue-500" />,
+            title: 'Reclaim Your Time',
             description:
-                'Determines behavior (e.g., "You are a social media manager...").',
+                'Stop wasting 2-3 hours daily on mundane tasks. Your AI team handles the routine work while you focus on what matters.',
         },
         {
-            title: 'Knowledge Base',
-            description: 'Context source (documents, websites, images, etc.).',
+            icon: <Sparkles className="h-6 w-6 text-purple-500" />,
+            title: 'Works Day One',
+            description:
+                'No training needed. Your agents are ready to help immediately, or customize them in minutes to match your exact needs.',
         },
         {
-            title: 'History Context',
-            description: 'Retains past interactions.',
+            icon: <Zap className="h-6 w-6 text-yellow-500" />,
+            title: 'Lightning-Fast Results',
+            description:
+                'Your hour-long tasks completed in seconds. No more waiting or context-switching that kills your productivity.',
+        },
+        {
+            icon: <Brain className="h-6 w-6 text-green-500" />,
+            title: 'Gets Smarter Every Day',
+            description:
+                'Your agents learn your preferences, writing style, and decision patterns, becoming more valuable over time.',
+        },
+    ];
+
+    const agentCapabilities = [
+        {
+            icon: <CheckCircle2 className="h-5 w-5 text-blue-500" />,
+            title: 'Tame Your Inbox',
+            description:
+                'Never face an overwhelming inbox again. Your agents sort, summarize, and draft responses to emails in your writing style.',
+            color: 'bg-blue-50',
+            borderColor: 'border-blue-100',
+            shadowColor: 'shadow-blue-100',
+        },
+        {
+            icon: <CheckCircle2 className="h-5 w-5 text-purple-500" />,
+            title: 'Research While You Sleep',
+            description:
+                'Wake up to comprehensive research reports that would have taken you hours to compile, analyze, and format.',
+            color: 'bg-purple-50',
+            borderColor: 'border-purple-100',
+            shadowColor: 'shadow-purple-100',
+        },
+        {
+            icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
+            title: 'Create Content That Converts',
+            description:
+                'Generate website copy, social posts, newsletters, and presentations that sound like you wrote them—because you guided the process.',
+            color: 'bg-green-50',
+            borderColor: 'border-green-100',
+            shadowColor: 'shadow-green-100',
+        },
+        {
+            icon: <CheckCircle2 className="h-5 w-5 text-amber-500" />,
+            title: 'Never Miss Another Meeting',
+            description:
+                'Let your agents handle scheduling, reminders, and calendar management across all your platforms. Say goodbye to double-bookings.',
+            color: 'bg-amber-50',
+            borderColor: 'border-amber-100',
+            shadowColor: 'shadow-amber-100',
         },
     ];
 
     const agentTypes = [
         {
-            title: 'Built-in Agents',
-            description: 'Pre-configured templates.',
+            icon: <LayoutPanelTop className="h-6 w-6 text-blue-500" />,
+            title: 'Instant Experts',
+            description:
+                'Need a marketing assistant now? Social media manager? Email wizard? Choose from dozens of pre-built agents ready to work immediately.',
         },
         {
-            title: 'Custom Agents',
-            description: 'Created by users for specific workflows.',
+            icon: <Settings className="h-6 w-6 text-purple-500" />,
+            title: 'Build Your Dream Assistant',
+            description:
+                'Create the perfect AI helper by defining exactly what you need. Your custom agent will execute tasks precisely how you want them done.',
         },
         {
-            title: 'Organization-wide Agents',
-            description: 'Shared within teams.',
+            icon: <Users className="h-6 w-6 text-green-500" />,
+            title: 'Supercharge Your Team',
+            description:
+                'Share powerful agents across your organization to ensure everyone follows the same processes with consistent, high-quality outputs.',
         },
     ];
 
+    const fadeInUpVariant = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+    };
+
+    // Ensure animations respect user's reduced motion preferences
+    const prefersReducedMotion =
+        typeof window !== 'undefined'
+            ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            : false;
+
+    const animationSettings = prefersReducedMotion
+        ? { duration: 0 }
+        : { type: 'spring', stiffness: 300, damping: 20 };
+
     return (
-        <div className="container mx-auto px-4 py-16">
-            <div className="mx-auto max-w-4xl">
-                <div className="mb-12 text-center">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+            <div className="mx-auto max-w-5xl">
+                {/* Hero Section */}
+                <div className="relative mb-16 text-center md:mb-24">
+                    {/* Background gradient blob */}
+                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
+
                     <motion.div
-                        className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100"
+                        className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-purple-500/30 md:mb-8 md:h-24 md:w-24"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{
-                            type: 'spring',
-                            stiffness: 300,
+                            ...animationSettings,
                             delay: 0.1,
                         }}
                     >
-                        <Bot className="h-8 w-8 text-gray-700" />
+                        <Bot className="h-10 w-10 text-white md:h-12 md:w-12" />
                     </motion.div>
                     <motion.h1
-                        className="mb-4 text-4xl font-bold tracking-tight"
+                        className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold tracking-tight text-transparent md:mb-6 md:text-6xl"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ ...animationSettings, delay: 0.2 }}
                     >
-                        Agents
+                        Your Personal AI Team
                     </motion.h1>
                     <motion.p
-                        className="text-xl text-gray-600"
+                        className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 md:text-2xl"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
+                        transition={{ ...animationSettings, delay: 0.3 }}
                     >
-                        AI-driven entities that execute pipelines with context
-                        awareness
+                        Stop doing everything yourself. Delegate tasks to AI
+                        agents that learn your preferences and handle your
+                        workload exactly how you would.
                     </motion.p>
                 </div>
 
+                {/* Value Proposition */}
                 <motion.div
-                    className="prose prose-lg mb-12 max-w-none"
+                    className="prose prose-lg mb-16 max-w-none text-center md:mb-24"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
+                    transition={{ ...animationSettings, delay: 0.4 }}
                 >
-                    <p>
-                        An <strong>agent</strong> is an AI-driven entity that
-                        executes pipelines in a consistent and context-aware
-                        manner. Agents are the intelligent workers that carry
-                        out your automation workflows, making decisions and
-                        adapting to different situations based on their
-                        configuration and the data they have access to.
+                    <h2 className="mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-3xl font-bold text-transparent md:mb-8 md:text-4xl">
+                        What Would You Do With Extra Hours Every Day?
+                    </h2>
+                    <div className="mb-6 flex justify-center">
+                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
+                    </div>
+                    <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700 md:text-xl">
+                        While your AI team handles your email, research,
+                        scheduling, and content creation, you're free to focus
+                        on what truly matters - creative thinking, meaningful
+                        connections, and the work only you can do. No more late
+                        nights handling routine tasks.
                     </p>
                 </motion.div>
 
+                {/* Benefits Grid */}
                 <motion.div
-                    className="mb-12 rounded-lg bg-gray-50 p-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
+                    className="relative mb-20 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-xl md:mb-24 md:p-12"
+                    variants={fadeInUpVariant}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ ...animationSettings, delay: 0.5 }}
                 >
-                    <h2 className="mb-6 text-2xl font-semibold">
-                        Agent Components
+                    {/* Decorative elements */}
+                    <div className="absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-200/30 blur-2xl"></div>
+                    <div className="absolute bottom-0 left-0 h-24 w-24 -translate-x-1/2 translate-y-1/2 rounded-full bg-purple-200/30 blur-2xl"></div>
+
+                    <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
+                        Life-Changing Benefits
                     </h2>
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        {agentComponents.map((component, index) => (
-                            <div
+                    <div className="mb-8 flex justify-center md:mb-10">
+                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                        {agentBenefits.map((benefit, index) => (
+                            <motion.div
                                 key={index}
-                                className="rounded-lg bg-white p-6 shadow-sm"
+                                className="flex rounded-xl border border-gray-100 bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    ...animationSettings,
+                                    delay: 0.5 + index * 0.1,
+                                }}
                             >
-                                <h3 className="mb-2 flex items-center text-lg font-semibold">
-                                    <CheckCircle2 className="mr-2 h-5 w-5 text-gray-700" />
-                                    {component.title}
-                                </h3>
-                                <p className="text-gray-600">
-                                    {component.description}
-                                </p>
-                            </div>
+                                <div className="mt-1 mr-5">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100">
+                                        {benefit.icon}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                                        {benefit.title}
+                                    </h3>
+                                    <p className="leading-relaxed text-gray-700">
+                                        {benefit.description}
+                                    </p>
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </motion.div>
 
+                {/* What Agents Can Do */}
                 <motion.div
-                    className="mb-12 rounded-lg bg-gray-50 p-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
+                    className="relative mb-20 px-2 md:mb-24 md:px-4"
+                    variants={fadeInUpVariant}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ ...animationSettings, delay: 0.6 }}
                 >
-                    <h2 className="mb-6 text-2xl font-semibold">Agent Types</h2>
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                        {agentTypes.map((type, index) => (
-                            <div
+                    {/* Background decoration */}
+                    <div className="absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
+
+                    <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
+                        Your Digital Workforce In Action
+                    </h2>
+                    <div className="mb-8 flex justify-center md:mb-10">
+                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                        {agentCapabilities.map((capability, index) => (
+                            <motion.div
                                 key={index}
-                                className="rounded-lg bg-white p-6 shadow-sm"
+                                whileHover={{
+                                    y: -8,
+                                    transition: { duration: 0.3 },
+                                }}
                             >
-                                <h3 className="mb-2 flex items-center text-lg font-semibold">
-                                    <CheckCircle2 className="mr-2 h-5 w-5 text-gray-700" />
+                                <FeatureCard
+                                    icon={capability.icon}
+                                    title={capability.title}
+                                    description={capability.description}
+                                    color={capability.color}
+                                    borderColor={capability.borderColor}
+                                    shadowColor={capability.shadowColor}
+                                    className="h-full shadow-md hover:shadow-lg"
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Agent Types */}
+                <motion.div
+                    className="mb-20 rounded-2xl bg-gradient-to-r from-gray-900 to-blue-900 px-6 py-10 text-white shadow-xl md:mb-24 md:py-12"
+                    variants={fadeInUpVariant}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ ...animationSettings, delay: 0.7 }}
+                >
+                    <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
+                        Start With The Help You Need Most
+                    </h2>
+                    <div className="mb-8 flex justify-center md:mb-10">
+                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 md:w-20"></div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                        {agentTypes.map((type, index) => (
+                            <motion.div
+                                key={index}
+                                className={cn(
+                                    'rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm md:p-8',
+                                    'text-center transition-all duration-300 hover:-translate-y-2 hover:bg-white/20',
+                                )}
+                                whileHover={{ scale: 1.03 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    ...animationSettings,
+                                    delay: 0.7 + index * 0.1,
+                                }}
+                            >
+                                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 md:h-16 md:w-16">
+                                    {type.icon}
+                                </div>
+                                <h3 className="mb-3 text-xl font-semibold text-white md:mb-4">
                                     {type.title}
                                 </h3>
-                                <p className="text-gray-600">
+                                <p className="text-gray-200">
                                     {type.description}
                                 </p>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </motion.div>
 
+                {/* Advanced Features */}
                 <motion.div
-                    className="rounded-lg border border-gray-200 bg-white p-8 shadow-md"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
+                    className="mb-16 rounded-xl bg-gradient-to-br from-gray-900 to-blue-900 p-8 text-white md:p-10"
+                    variants={fadeInUpVariant}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ ...animationSettings, delay: 0.8 }}
                 >
-                    <h2 className="mb-4 text-2xl font-semibold">
-                        Multi-Agent Collaboration
+                    <h2 className="mb-6 text-center text-2xl font-bold md:mb-8 md:text-3xl">
+                        The Technology That Makes It Possible
                     </h2>
-                    <p className="mb-6 text-gray-600">
-                        Agents can work together in complex workflows. One
-                        agent's output can trigger another agent's pipeline,
-                        allowing for sophisticated automation scenarios that
-                        would otherwise require extensive coding.
-                    </p>
-                    <Button
-                        asChild
-                        variant="black"
-                        className="transform transition-all duration-300 hover:scale-105"
-                    >
-                        <Link to="/waitlist">Join Waitlist</Link>
-                    </Button>
+
+                    <div className="mb-8 md:mb-10">
+                        <div className="mb-3 flex items-center md:mb-4">
+                            <Brain className="mr-3 h-6 w-6 text-blue-300" />
+                            <h3 className="text-lg font-semibold md:text-xl">
+                                Memory That Builds Over Time
+                            </h3>
+                        </div>
+                        <p className="ml-9 text-gray-200">
+                            Unlike basic chatbots, your agents remember every
+                            interaction you've had, learning your preferences
+                            and communication style with each task they
+                            complete.
+                        </p>
+                    </div>
+
+                    <div className="mb-8 md:mb-10">
+                        <div className="mb-3 flex items-center md:mb-4">
+                            <Settings className="mr-3 h-6 w-6 text-blue-300" />
+                            <h3 className="text-lg font-semibold md:text-xl">
+                                Your Process, Automated
+                            </h3>
+                        </div>
+                        <p className="ml-9 text-gray-200">
+                            Map your exact workflow into an agent that follows
+                            your precise instructions. From research format to
+                            email tone to content structure—your agents do it
+                            exactly how you would.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div className="mb-3 flex items-center md:mb-4">
+                            <Repeat className="mr-3 h-6 w-6 text-blue-300" />
+                            <h3 className="text-lg font-semibold md:text-xl">
+                                Agents That Work Together
+                            </h3>
+                        </div>
+                        <p className="ml-9 text-gray-200">
+                            Complex tasks? No problem. Multiple agents can
+                            collaborate—one researches, another drafts content,
+                            and a third polishes the final output—all while
+                            you're focused elsewhere.
+                        </p>
+                    </div>
                 </motion.div>
+
+                {/* Call to Action */}
+                <CallToAction
+                    title="Ready for Your AI Team to Start Working?"
+                    description="Join thousands of professionals who now finish a day's work by lunch. Your AI agents are waiting to help."
+                    buttonText="Get Early Access Today"
+                    buttonLink="/waitlist"
+                    height="tall"
+                    alignment="center"
+                    gradient="from-blue-600 to-purple-700"
+                />
             </div>
         </div>
     );
