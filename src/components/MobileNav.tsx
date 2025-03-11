@@ -107,14 +107,14 @@ export function MobileNav() {
                                 <div
                                     className="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-50"
                                     onClick={() =>
-                                        handleNavigation('/features/pipelines')
+                                        handleNavigation('/features/workflows')
                                     }
                                 >
                                     <div className="rounded-full bg-blue-100 p-1.5">
                                         <Workflow className="h-3.5 w-3.5 text-blue-700" />
                                     </div>
                                     <span className="text-sm font-medium">
-                                        Pipelines
+                                        Workflows
                                     </span>
                                 </div>
                             </motion.div>
