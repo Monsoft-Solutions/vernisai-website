@@ -9,6 +9,7 @@ import {
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { CallToAction } from '@/components/CallToAction';
+import '@/styles/fix-overflow.css';
 
 export function WorkflowsFeature() {
     const creationMethods = [
@@ -77,7 +78,7 @@ export function WorkflowsFeature() {
                 {/* Hero Section */}
                 <div className="relative mb-16 text-center md:mb-24">
                     {/* Background gradient blob */}
-                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
+                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-full max-w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
 
                     <motion.div
                         className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-purple-500/30 md:mb-8 md:h-24 md:w-24"
@@ -169,14 +170,14 @@ export function WorkflowsFeature() {
 
                 {/* Creation Methods */}
                 <motion.div
-                    className="relative mb-20 overflow-hidden rounded-2xl md:mb-24"
+                    className="no-overflow relative mb-20 overflow-hidden rounded-2xl md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
                     transition={{ ...animationSettings, delay: 0.5 }}
                 >
                     {/* Background decoration */}
-                    <div className="absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
+                    <div className="decorative-element absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
 
                     <div className="p-8 md:p-12">
                         <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
@@ -221,7 +222,7 @@ export function WorkflowsFeature() {
 
                 {/* Examples Section */}
                 <motion.div
-                    className="relative mb-20 md:mb-24"
+                    className="no-overflow relative mb-20 md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"

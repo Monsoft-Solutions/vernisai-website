@@ -13,6 +13,7 @@ import {
 import { motion } from 'framer-motion';
 import { FeatureCard } from '@/components/ui/feature-card';
 import { CallToAction } from '@/components/CallToAction';
+import '@/styles/fix-overflow.css';
 
 export function AgentsFeature() {
     const agentBenefits = [
@@ -123,7 +124,7 @@ export function AgentsFeature() {
                 {/* Hero Section */}
                 <div className="relative mb-16 text-center md:mb-24">
                     {/* Background gradient blob */}
-                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
+                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-full max-w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
 
                     <motion.div
                         className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-purple-500/30 md:mb-8 md:h-24 md:w-24"
@@ -187,8 +188,8 @@ export function AgentsFeature() {
                     transition={{ ...animationSettings, delay: 0.5 }}
                 >
                     {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-200/30 blur-2xl"></div>
-                    <div className="absolute bottom-0 left-0 h-24 w-24 -translate-x-1/2 translate-y-1/2 rounded-full bg-purple-200/30 blur-2xl"></div>
+                    <div className="decorative-element absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-200/30 blur-2xl"></div>
+                    <div className="decorative-element absolute bottom-0 left-0 h-24 w-24 -translate-x-1/2 translate-y-1/2 rounded-full bg-purple-200/30 blur-2xl"></div>
 
                     <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
                         Life-Changing Benefits
@@ -269,7 +270,7 @@ export function AgentsFeature() {
 
                 {/* Agent Types */}
                 <motion.div
-                    className="relative mb-20 md:mb-24"
+                    className="no-overflow relative mb-20 md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
@@ -320,7 +321,7 @@ export function AgentsFeature() {
 
                 {/* Advanced Features */}
                 <motion.div
-                    className="relative mb-16"
+                    className="no-overflow relative mb-16"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"

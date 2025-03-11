@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'lenis/dist/lenis.css';
+@import './styles/fix-overflow.css';
 
 /* Theme color variables - reusable across the website */
 :root {
