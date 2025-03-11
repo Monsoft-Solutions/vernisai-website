@@ -1,0 +1,49 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "ui": "tui",
+    "globalDependencies": ["**/.env*", "tsconfig.json"],
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build", "typecheck"],
+            "outputs": ["dist/**", ".next/**", "public/dist/**"],
+            "cache": true
+        },
+        "lint": {
+            "dependsOn": ["^lint"],
+            "outputs": []
+        },
+        "lint:fix": {
+            "dependsOn": ["^lint:fix"],
+            "cache": false
+        },
+        "typecheck": {
+            "dependsOn": ["^typecheck"],
+            "outputs": []
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true,
+            "dependsOn": ["^build"]
+        },
+        "clean": {
+            "cache": false
+        },
+        "format": {
+            "cache": false
+        },
+        "validate": {
+            "dependsOn": ["typecheck", "lint:fix", "format"],
+            "outputs": []
+        },
+        "test": {
+            "dependsOn": ["build"],
+            "outputs": ["coverage/**"],
+            "inputs": [
+                "src/**/*.tsx",
+                "src/**/*.ts",
+                "test/**/*.ts",
+                "test/**/*.tsx"
+            ]
+        }
+    }
+}

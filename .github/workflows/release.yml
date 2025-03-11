@@ -1,0 +1,116 @@
+name: Release
+
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: 'Version to release (e.g., "1.0.0", "patch", "minor", "major")'
+                required: true
+                default: 'patch'
+            package:
+                description: 'Package to release (leave empty for all)'
+                required: false
+
+jobs:
+    release:
+        name: Release
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            # Setup Turborepo cache
+            - name: Setup Turborepo cache
+              uses: actions/cache@v3
+              with:
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
+
+            - name: Validate
+              run: npm run validate
+
+            - name: Build
+              run: npm run build
+
+            - name: Configure Git
+              run: |
+                  git config --global user.name "GitHub Actions"
+                  git config --global user.email "actions@github.com"
+
+            - name: Bump version
+              id: bump-version
+              run: |
+                  if [ -z "${{ github.event.inputs.package }}" ]; then
+                    # Update version in root package.json
+                    if [ "${{ github.event.inputs.version }}" = "patch" ] || [ "${{ github.event.inputs.version }}" = "minor" ] || [ "${{ github.event.inputs.version }}" = "major" ]; then
+                      npm version ${{ github.event.inputs.version }} --no-git-tag-version
+                      VERSION=$(node -p "require('./package.json').version")
+                    else
+                      npm version ${{ github.event.inputs.version }} --no-git-tag-version
+                      VERSION=${{ github.event.inputs.version }}
+                    fi
+                    
+                    # Update versions in all workspace packages
+                    for PKG_DIR in packages/* apps/*; do
+                      if [ -f "$PKG_DIR/package.json" ]; then
+                        cd $PKG_DIR
+                        npm version $VERSION --no-git-tag-version
+                        cd ../..
+                      fi
+                    done
+                  else
+                    # Update version in specific package
+                    if [ -d "packages/${{ github.event.inputs.package }}" ]; then
+                      cd packages/${{ github.event.inputs.package }}
+                    elif [ -d "apps/${{ github.event.inputs.package }}" ]; then
+                      cd apps/${{ github.event.inputs.package }}
+                    else
+                      echo "Package ${{ github.event.inputs.package }} not found"
+                      exit 1
+                    fi
+                    
+                    if [ "${{ github.event.inputs.version }}" = "patch" ] || [ "${{ github.event.inputs.version }}" = "minor" ] || [ "${{ github.event.inputs.version }}" = "major" ]; then
+                      npm version ${{ github.event.inputs.version }} --no-git-tag-version
+                      VERSION=$(node -p "require('./package.json').version")
+                    else
+                      npm version ${{ github.event.inputs.version }} --no-git-tag-version
+                      VERSION=${{ github.event.inputs.version }}
+                    fi
+                    cd ../..
+                  fi
+
+                  echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+            - name: Commit changes
+              run: |
+                  git add .
+                  git commit -m "chore: release v${{ steps.bump-version.outputs.version }}"
+                  git tag -a "v${{ steps.bump-version.outputs.version }}" -m "Release v${{ steps.bump-version.outputs.version }}"
+                  git push
+                  git push --tags
+
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v1
+              with:
+                  tag_name: v${{ steps.bump-version.outputs.version }}
+                  name: Release v${{ steps.bump-version.outputs.version }}
+                  draft: false
+                  prerelease: false
+                  generate_release_notes: true
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

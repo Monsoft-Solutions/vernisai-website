@@ -1,7 +1,7 @@
-# VernisAI Website
+# VernisAI Monorepo
 
 <div align="center">
-  <img src="public/vernis-ai-logo.svg" alt="VernisAI Logo" width="250" />
+  <img src="apps/website/public/vernis-ai-logo.svg" alt="VernisAI Logo" width="250" />
   <p><strong>Official Website for VernisAI - Your Personal AI Assistant for Everyday Tasks</strong></p>
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -9,13 +9,13 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
   [![Vite](https://img.shields.io/badge/Vite-6.2-purple.svg)](https://vitejs.dev/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC.svg)](https://tailwindcss.com/)
-  [![CodeRabbit](https://img.shields.io/badge/CodeRabbit-AI-FF69B4.svg)](https://coderabbit.ai/)
+  [![Turborepo](https://img.shields.io/badge/Turborepo-2.4-green.svg)](https://turbo.build/)
   [![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fvernis.ai)](https://vernis.ai)
 </div>
 
 ## 🚀 Overview
 
-This repository contains the source code for the official VernisAI website. VernisAI is an AI-powered no-code workflow automation platform that helps individuals and businesses save time and reduce stress by automating everyday tasks. Our mission is to democratize AI-driven automation, making it accessible to non-technical users without requiring any coding knowledge.
+This monorepo contains the source code for VernisAI. VernisAI is an AI-powered no-code workflow automation platform that helps individuals and businesses save time and reduce stress by automating everyday tasks. Our mission is to democratize AI-driven automation, making it accessible to non-technical users without requiring any coding knowledge.
 
 With VernisAI, you can:
 
@@ -24,6 +24,20 @@ With VernisAI, you can:
 - **Minimize human error** in repetitive processes
 - **Boost productivity** by delegating routine work to AI assistants
 - **Enhance collaboration** with automated information sharing
+
+## 📂 Repository Structure
+
+```
+vernisai-monorepo/
+├── apps/
+│   └── website/       # Main VernisAI website
+├── packages/
+│   ├── ui/            # Shared UI components
+│   ├── utils/         # Shared utility functions
+│   └── config/        # Shared configuration files
+├── turbo.json         # Turborepo configuration
+└── package.json       # Root package.json
+```
 
 ## ✨ Key Features
 
@@ -43,33 +57,22 @@ Connect multiple actions and agents into cohesive workflows, enabling complex au
 
 Allow your agents to access and utilize specific information relevant to your business, enabling more contextually aware automations.
 
-## 🔍 Use Cases
-
-VernisAI can be applied to various scenarios, including:
-
-- **Task Automation**: Automate data entry, file management, and routine operations
-- **Knowledge Management**: Organize documents, extract key information, create searchable knowledge bases
-- **Content Creation**: Generate drafts, optimize content, schedule publications
-- **Meeting Enhancement**: Schedule meetings, create agendas, take notes, generate action items
-- **Project Management**: Automate task assignment, progress tracking, deadline reminders
-- **Personal Assistant**: Manage calendars, prioritize emails, set reminders, handle correspondence
-
 ## 🛠️ Tech Stack
 
+- **Build System**: Turborepo 2.4
 - **Frontend**: React 19, TypeScript 5.7, Vite 6.2, Tailwind CSS 4.0
 - **UI Components**: Radix UI, Lucide React 0.479, Framer Motion 12.4
 - **Form Handling**: React Hook Form 7.54, Zod 3.24
 - **Routing**: React Router 7.3
 - **Animations**: Lenis 1.2
 - **Code Quality**: ESLint 9.21, Prettier 3.5, TypeScript-ESLint 8.24
-- **CI/CD**: CodeRabbitAI for automated code reviews
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js (v16 or higher)
-- npm or yarn
+- npm
 
 ### Installation
 
@@ -84,56 +87,45 @@ cd vernisai-website
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
 3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
+```
+
+To start a specific application:
+
+```bash
+npm run dev --filter=website
 ```
 
 4. Open your browser and navigate to `http://localhost:5173`
 
 ## 📦 Building for Production
 
+To build all applications:
+
 ```bash
 npm run build
-# or
-yarn build
 ```
 
-The built files will be in the `dist` directory.
+To build a specific application:
 
-## 📂 Project Structure
-
-```
-vernisai-website/
-├── public/            # Static assets and images
-│   └── vernis-ai-logo.svg  # VernisAI logo
-├── src/
-│   ├── assets/        # Images and other assets
-│   ├── components/    # Reusable UI components
-│   │   └── ui/        # shadcn/ui components
-│   ├── data/          # Static data and content
-│   ├── hooks/         # Custom React hooks
-│   ├── lib/           # Utility functions
-│   ├── pages/         # Page components
-│   └── styles/        # Global styles
-├── .github/           # GitHub templates and workflows
-└── ...                # Configuration files
+```bash
+npm run build --filter=website
 ```
 
 ## 🧪 Development Commands
 
-- **Development**: `npm run dev` - Start the development server
-- **Build**: `npm run build` - Build for production
-- **Lint**: `npm run lint` - Run ESLint
+- **Development**: `npm run dev` - Start the development server for all applications
+- **Build**: `npm run build` - Build all applications for production
+- **Lint**: `npm run lint` - Run ESLint for all applications
+- **Lint Fix**: `npm run lint:fix` - Fix linting issues for all applications
+- **Typecheck**: `npm run typecheck` - Run type checking for all applications
 - **Format**: `npm run format` - Format code with Prettier
-- **Preview**: `npm run preview` - Preview production build locally
+- **Clean**: `npm run clean` - Clean build artifacts
 
 ## 🔍 Pre-Commit Hooks
 
@@ -141,33 +133,12 @@ This project uses Husky and lint-staged to enforce code quality standards before
 
 - **Linting**: ESLint automatically checks and fixes JavaScript/TypeScript code
 - **Formatting**: Prettier ensures consistent code style
-- **Build Verification**: A test build is performed to catch compilation errors
 
 These checks run automatically when you commit changes. If any check fails, the commit will be blocked until the issues are fixed.
-
-To bypass pre-commit hooks in exceptional cases (not recommended), use:
-
-```bash
-git commit -m "Your message" --no-verify
-```
 
 ## 🚀 Deployment
 
 The website is deployed using [Vercel](https://vercel.com) for continuous deployment. Any changes pushed to the main branch will automatically be deployed to production.
-
-To deploy manually:
-
-1. Build the project
-
-```bash
-npm run build
-```
-
-2. Deploy the `dist` directory to your hosting provider of choice
-
-## 🤝 Contributing
-
-We welcome contributions to VernisAI! Please see our [Contributing Guidelines](.github/CONTRIBUTING.md) for more information.
 
 ## 📄 License
 

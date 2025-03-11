@@ -12,9 +12,6 @@ export function AnalyticsExample() {
             button_name: 'example_button',
             page: window.location.pathname,
         });
-
-        // Your actual button logic here
-        console.log('Button clicked and event tracked');
     };
 
     return (
