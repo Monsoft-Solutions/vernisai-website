@@ -127,13 +127,6 @@ npm run build --filter=website
 - **Format**: `npm run format` - Format code with Prettier
 - **Clean**: `npm run clean` - Clean build artifacts
 
-## 🚀 Migration
-
-If you're migrating from the previous non-monorepo structure, please see:
-
-- [Migration Guide](./MIGRATION-GUIDE.md)
-- [Next Steps](./NEXT-STEPS.md)
-
 ## 🔍 Pre-Commit Hooks
 
 This project uses Husky and lint-staged to enforce code quality standards before commits:
