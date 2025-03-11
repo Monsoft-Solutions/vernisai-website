@@ -60,7 +60,6 @@ function writeSitemap() {
     }
 
     fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap);
-    console.log('Sitemap generated successfully!');
 }
 
 // Execute the function

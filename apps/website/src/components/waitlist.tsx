@@ -38,9 +38,8 @@ export function Waitlist() {
         },
     });
 
-    function onSubmit(data: FormValues) {
-        // In a real implementation, this would send the data to a backend service
-        console.log(data);
+    function onSubmit(_data: FormValues) {
+        // TODO: In a real implementation, this would send the data to a backend service
         toast({
             title: 'Success!',
             description:

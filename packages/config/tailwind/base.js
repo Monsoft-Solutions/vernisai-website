@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import typography from '@tailwindcss/typography';
+
+export default {
     content: [],
     theme: {
         container: {
@@ -68,5 +70,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require('@tailwindcss/typography')],
+    plugins: [typography],
 };
