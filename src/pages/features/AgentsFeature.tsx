@@ -197,7 +197,7 @@ export function AgentsFeature() {
                     <div className="mb-8 flex justify-center md:mb-10">
                         <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
                     </div>
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                    <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                         {agentBenefits.map((benefit, index) => (
                             <motion.div
                                 key={index}
@@ -245,7 +245,7 @@ export function AgentsFeature() {
                         <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                    <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                         {agentCapabilities.map((capability, index) => (
                             <motion.div
                                 key={index}
@@ -270,7 +270,7 @@ export function AgentsFeature() {
 
                 {/* Agent Types */}
                 <motion.div
-                    className="no-overflow relative mb-20 md:mb-24"
+                    className="relative mb-20 md:mb-24"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
@@ -291,7 +291,7 @@ export function AgentsFeature() {
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
                             {agentTypes.map((type, index) => (
                                 <motion.div
                                     key={index}
@@ -321,7 +321,7 @@ export function AgentsFeature() {
 
                 {/* Advanced Features */}
                 <motion.div
-                    className="no-overflow relative mb-16"
+                    className="relative mb-16"
                     variants={fadeInUpVariant}
                     initial="hidden"
                     animate="visible"
@@ -340,7 +340,7 @@ export function AgentsFeature() {
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-20"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                        <div className="card-grid-container grid grid-cols-1 gap-8 md:grid-cols-3">
                             <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
                                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-900/50 p-3">
                                     <Brain className="h-6 w-6 text-blue-300" />

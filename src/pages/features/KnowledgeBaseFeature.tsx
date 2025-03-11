@@ -214,7 +214,7 @@ export function KnowledgeBaseFeature() {
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
                             {supportedFormats.map((format, index) => (
                                 <motion.div
                                     key={index}
@@ -265,7 +265,7 @@ export function KnowledgeBaseFeature() {
                             <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                             {enhancedFeatures.map((feature, index) => (
                                 <motion.div
                                     key={index}
