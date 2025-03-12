@@ -1,3 +1,12 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+    "buildCommand": "cd apps/website && npm run build:vercel",
+    "outputDirectory": "apps/website/dist",
+    "framework": "vite",
+    "github": {
+        "silent": true
+    },
+    "env": {
+        "TURBO_TELEMETRY_DISABLED": "1"
+    }
 }
