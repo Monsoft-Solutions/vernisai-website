@@ -6,9 +6,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "run-s typecheck build:only generate-sitemap",
+        "build": "npm run typecheck && npm run build:only && npm run generate-sitemap",
         "build:only": "vite build",
-        "build:verify": "run-s typecheck build:dev",
+        "build:verify": "npm run typecheck && npm run build:only && npm run generate-sitemap",
         "build:dev": "vite build --mode development",
         "generate-sitemap": "node scripts/generate-sitemap.js",
         "typecheck": "tsc -b --noEmit",
@@ -16,8 +16,8 @@
         "lint:fix": "eslint --fix .",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\" --ignore-path \"../../.prettierignore\" --ignore-pattern \"dist/**\"",
         "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\" --ignore-path \"../../.prettierignore\" --ignore-pattern \"dist/**\"",
-        "check": "run-p typecheck lint format:check",
-        "validate": "run-s typecheck lint:fix format",
+        "check": "npm run typecheck && npm run lint && npm run format:check",
+        "validate": "npm run typecheck && npm run lint:fix && npm run format",
         "preview": "vite preview",
         "clean": "rm -rf dist node_modules/.vite",
         "setup:env": "node scripts/setup-env.js"
