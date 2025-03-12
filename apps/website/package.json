@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "npm run typecheck && npm run build:only && npm run generate-sitemap",
+        "build": "npm run build:only && npm run generate-sitemap",
         "build:only": "vite build",
         "build:verify": "npm run typecheck && npm run build:only && npm run generate-sitemap",
         "build:dev": "vite build --mode development",
