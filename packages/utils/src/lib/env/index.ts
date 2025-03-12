@@ -6,9 +6,6 @@ import { z } from 'zod';
  * and must be prefixed with VITE_
  */
 export const clientEnvSchema = z.object({
-    // API URL for backend services
-    VITE_API_URL: z.string().url(),
-
     // Feature flags
     VITE_ENABLE_ANALYTICS: z
         .enum(['true', 'false'])

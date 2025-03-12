@@ -1,7 +1,8 @@
 {
-    "name": "vernisai-monorepo",
+    "name": "vernisai-website",
     "description": "VernisAI - AI-Powered No-Code Workflow Automation. Visit https://vernis.ai for more information.",
     "author": "Monsoft Solutions, LLC (https://monsoftsolutions.com)",
+    "owner": "monsoft-solutions",
     "private": true,
     "type": "module",
     "scripts": {
