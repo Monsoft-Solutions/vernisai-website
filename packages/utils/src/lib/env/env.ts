@@ -89,20 +89,7 @@ try {
         });
     }
 
-    // Fallback to default values in production to prevent crashes
-    if (processEnv.NODE_ENV === 'production') {
-        console.warn('Using fallback environment in production');
-        env = {
-            NODE_ENV: 'production',
-            VITE_API_URL: processEnv.VITE_API_URL || 'https://api.vernisai.com',
-            VITE_ENABLE_ANALYTICS: false,
-            VITE_ENABLE_FEATURE_X: false,
-            VITE_GOOGLE_ANALYTICS_ID: undefined,
-            VITE_MICROSOFT_CLARITY_ID: undefined,
-        };
-    } else {
-        throw error;
-    }
+    throw error;
 }
 
 export { env };
