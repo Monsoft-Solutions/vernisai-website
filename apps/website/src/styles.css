@@ -117,7 +117,7 @@
 
 /* Button styles */
 .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white shadow-md transition-all hover:bg-indigo-700 hover:shadow-lg;
+    @apply inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 font-medium text-white shadow-md transition-all hover:bg-indigo-700 hover:shadow-lg;
 }
 
 .btn-secondary {
