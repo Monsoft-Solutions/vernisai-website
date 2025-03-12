@@ -10,7 +10,7 @@ import { env } from '@/env';
 // Validate environment variables
 try {
     // This will throw an error if any required variables are missing
-    console.log('Validating environment variables...');
+    console.warn('Validating environment variables...');
 
     // Check for required API URL
     if (!env.VITE_API_URL) {
@@ -19,7 +19,7 @@ try {
         );
     }
 
-    console.log('Environment validation successful');
+    console.warn('Environment validation successful');
 } catch (error) {
     // Create a more user-friendly error message
     console.error('Environment validation failed:', error);

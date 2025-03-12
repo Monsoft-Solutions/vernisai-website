@@ -18,10 +18,12 @@ const websiteDir = path.resolve(__dirname, '..');
 // Check if we're running in Vercel
 const isVercel = process.env.VERCEL === '1';
 
-console.log(`Building project in ${isVercel ? 'Vercel' : 'local'} environment`);
+console.warn(
+    `Building project in ${isVercel ? 'Vercel' : 'local'} environment`,
+);
 
 // Log environment variables for debugging (only keys, not values for security)
-console.log(
+console.warn(
     'Available environment variables:',
     Object.keys(process.env)
         .filter((key) => key.startsWith('VITE_'))
@@ -45,18 +47,18 @@ if (isVercel) {
         .join('\n');
 
     fs.writeFileSync(envPath, envContent);
-    console.log('Created .env file for Vercel build');
+    console.warn('Created .env file for Vercel build');
 }
 
 // Run the build command
 try {
-    console.log('Building project...');
+    console.warn('Building project...');
     execSync('npm run build', {
         cwd: rootDir,
         stdio: 'inherit',
         env: process.env,
     });
-    console.log('Build completed successfully');
+    console.warn('Build completed successfully');
 } catch (error) {
     console.error('Build failed:', error);
     process.exit(1);

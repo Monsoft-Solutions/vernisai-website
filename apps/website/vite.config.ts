@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
 
     // Log available environment variables in development mode
     if (mode === 'development') {
-        console.log(
+        console.warn(
             'Available environment variables:',
             Object.keys(env)
                 .filter((key) => key.startsWith('VITE_'))
