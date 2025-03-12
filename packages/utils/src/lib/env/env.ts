@@ -54,7 +54,7 @@ else {
 }
 
 // Determine full development mode now that we have rawEnv
-const isDev = rawEnv.NODE_ENV === 'development';
+const isDev = rawEnv.VITE_DEV === 'true';
 
 // Log environment information in development
 if (isDev && !isServer) {
