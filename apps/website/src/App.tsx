@@ -9,6 +9,7 @@ import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { WaitlistPage } from './pages/WaitlistPage';
 import { Features } from './pages/Features';
+import { Pricing } from './pages/Pricing';
 import { FeatureDetail } from './pages/FeatureDetail';
 import { ActionsFeature } from './pages/features/ActionsFeature';
 import { ActionCategory } from './pages/features/ActionCategory';
@@ -46,6 +47,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="waitlist" element={<WaitlistPage />} />
                     <Route path="features" element={<Features />} />
+                    <Route path="pricing" element={<Pricing />} />
 
                     {/* Feature Detail Pages */}
                     <Route

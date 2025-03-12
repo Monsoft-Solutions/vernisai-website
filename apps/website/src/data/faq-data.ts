@@ -104,20 +104,36 @@ export const useCasesFAQItems: FAQItem[] = [
 export const pricingFAQItems: FAQItem[] = [
     {
         question: 'What pricing plans does VernisAI offer?',
-        answer: 'VernisAI offers flexible pricing plans including a free tier for small projects, professional plans for growing businesses, and enterprise solutions for larger organizations. Visit our pricing page for detailed information.',
+        answer: 'VernisAI offers three main plans: Starter ($19/month), Pro ($49/month), and Enterprise ($149/month). Each plan includes different features and usage limits tailored to different business needs.',
     },
     {
         question: 'Is there a free trial available?',
-        answer: 'Yes, we offer a 14-day free trial of our professional plan so you can experience the full capabilities of our platform before making a commitment.',
+        answer: 'Yes, all our plans come with a 14-day free trial, so you can experience the full capabilities of our platform before making a commitment. No credit card is required to start your trial.',
+    },
+    {
+        question: 'What happens if I exceed my plan limits?',
+        answer: `If you approach your monthly limits, we'll notify you so you can upgrade your plan or manage your usage. We'll never charge you extra without your consent.`,
     },
     {
         question: 'Can I upgrade or downgrade my plan?',
         answer: 'Absolutely! You can upgrade or downgrade your plan at any time. Changes to your subscription will be prorated based on the remaining time in your billing cycle.',
     },
     {
+        question: "What's the difference between monthly and annual billing?",
+        answer: "Annual billing offers a 20% discount compared to monthly billing. You'll be charged once per year instead of monthly, making it more economical for long-term use.",
+    },
+    {
         question:
             'Do you offer discounts for non-profits or educational institutions?',
-        answer: 'Yes, we offer special pricing for non-profit organizations, educational institutions, and startups. Please contact our sales team for more information.',
+        answer: 'Yes, we offer special pricing for non-profit organizations, educational institutions, and startups. Please contact our sales team for more information about our discount programs.',
+    },
+    {
+        question: 'Can I add team members to my plan?',
+        answer: 'Yes, our Pro plan supports up to 5 team members, while the Enterprise plan supports unlimited team members. The Starter plan is limited to a single user.',
+    },
+    {
+        question: 'How do AI operations work? What counts as an operation?',
+        answer: 'AI operations include any task performed by our AI, such as generating content, analyzing data, or automating workflows. Each discrete AI task counts as one operation toward your monthly limit.',
     },
 ];
 
