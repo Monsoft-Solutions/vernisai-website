@@ -19,6 +19,11 @@ const isVercel =
     (process.env?.VERCEL === '1' || process.env?.VERCEL_ENV !== undefined);
 const isVercelPreview = isVercel && process.env?.VERCEL_ENV === 'preview';
 
+// Pre-determine development mode before loading envs
+const isNodeDev = isServer
+    ? process.env.NODE_ENV === 'development' || isVercelPreview
+    : false;
+
 // Get environment variables from the appropriate source
 let rawEnv: Record<string, string | undefined> = {};
 
@@ -26,64 +31,52 @@ let rawEnv: Record<string, string | undefined> = {};
 if (isServer) {
     // Process.env is already the correct type (Record<string, string | undefined>)
     rawEnv = process.env;
+    if (isNodeDev) console.warn('Running in Node.js environment');
 }
 // In browser environment
 else {
     try {
-        // Try to access Vite's environment variables
-        // This is wrapped in try/catch to handle different environments
-        if (typeof window !== 'undefined') {
-            // For Vite in production (injected at build time)
-            const windowWithViteEnv = window as Window & {
-                __VITE_INJECT_ENV__?: Record<string, string | undefined>;
-                __vite_plugin_react_preamble_installed__?: boolean;
-            };
+        // Access Vite's injected environment variables
+        // We need to use the global window object for TypeScript compatibility in non-Vite environments
+        const viteEnv =
+            typeof import.meta !== 'undefined' && 'env' in import.meta
+                ? (import.meta as { env: Record<string, unknown> }).env
+                : {};
 
-            if (windowWithViteEnv.__VITE_INJECT_ENV__) {
-                rawEnv = windowWithViteEnv.__VITE_INJECT_ENV__;
-            }
-            // For Vite in development
-            else if (
-                windowWithViteEnv.__vite_plugin_react_preamble_installed__
-            ) {
-                // Safe way to access import.meta.env without TypeScript errors
-                try {
-                    const viteEnv = Function('return import.meta.env')();
-                    if (viteEnv) {
-                        // Convert any boolean values to strings to match expected type
-                        const stringifiedEnv: Record<
-                            string,
-                            string | undefined
-                        > = {};
-                        Object.entries(viteEnv).forEach(([key, value]) => {
-                            if (typeof value === 'boolean') {
-                                stringifiedEnv[key] = value.toString();
-                            } else if (value === null) {
-                                stringifiedEnv[key] = undefined;
-                            } else {
-                                stringifiedEnv[key] = value as
-                                    | string
-                                    | undefined;
-                            }
-                        });
-                        rawEnv = stringifiedEnv;
-                    }
-                } catch (e) {
-                    console.warn('Failed to access import.meta.env:', e);
+        if (viteEnv) {
+            // Convert any boolean values to strings to match expected type
+            const stringifiedEnv: Record<string, string | undefined> = {};
+            Object.entries(viteEnv).forEach(([key, value]) => {
+                if (typeof value === 'boolean') {
+                    stringifiedEnv[key] = value.toString();
+                } else if (value === null) {
+                    stringifiedEnv[key] = undefined;
+                } else {
+                    stringifiedEnv[key] = value as string | undefined;
                 }
-            }
+            });
+            rawEnv = stringifiedEnv;
         }
-    } catch (error) {
-        console.warn('Failed to access browser environment variables:', error);
+    } catch (e) {
+        console.warn('Failed to access import.meta.env:', e);
     }
 }
 
-// Determine development mode
+// Determine full development mode now that we have rawEnv
 const isDev = isServer
-    ? process.env.NODE_ENV === 'development' || isVercelPreview
+    ? isNodeDev
     : rawEnv.DEV === 'true' ||
       rawEnv.MODE === 'development' ||
       rawEnv.VERCEL_ENV === 'preview';
+
+// Log environment information in development
+if (isDev && !isServer) {
+    console.warn('Running in browser environment');
+
+    if (Object.keys(rawEnv).filter((k) => k.startsWith('VITE_')).length === 0) {
+        console.warn('No VITE_ environment variables found in browser context');
+    }
+}
 
 // Log environment variables in development for debugging
 if (isDev) {
@@ -95,7 +88,7 @@ if (isDev) {
         envKeys.reduce(
             (acc, key) => {
                 // Convert any value to string representation for logging
-                acc[key] = rawEnv[key] !== undefined ? '[SET]' : '[NOT SET]';
+                acc[key] = rawEnv[key];
                 return acc;
             },
             {} as Record<string, string>,

@@ -9,9 +9,16 @@ const __dirname = dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-    // Load env file based on `mode` in the current directory.
-    // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
-    const env = loadEnv(mode, process.cwd(), '');
+    // Load env files based on mode from multiple locations
+    // First try to load from project root
+    const rootEnv = loadEnv(mode, process.cwd(), '');
+
+    // Then try to load from the app directory (these will override duplicates)
+    // This ensures we load .env files in the apps/website directory
+    const appEnv = loadEnv(mode, __dirname, '');
+
+    // Merge both environments, with app env taking precedence
+    const env = { ...rootEnv, ...appEnv };
 
     // Ensure critical environment variables have fallbacks for Vercel preview
     const isVercelPreview = env.VERCEL_ENV === 'preview';
