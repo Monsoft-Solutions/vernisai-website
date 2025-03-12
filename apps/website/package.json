@@ -10,7 +10,6 @@
         "build:only": "vite build",
         "build:verify": "run-s typecheck build:dev",
         "build:dev": "vite build --mode development",
-        "build:vercel": "node scripts/vercel-build.js",
         "generate-sitemap": "node scripts/generate-sitemap.js",
         "typecheck": "tsc -b --noEmit",
         "lint": "eslint .",
