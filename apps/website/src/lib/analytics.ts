@@ -1,5 +1,5 @@
 import Clarity from '@microsoft/clarity';
-import { env, getClientEnv } from '@/env';
+import { env } from '@/env';
 
 /**
  * Initialize analytics services (Microsoft Clarity and Google Analytics)
@@ -9,7 +9,7 @@ export function initializeAnalytics(): void {
     const analyticsEnabled = env.NODE_ENV !== 'development';
 
     if (!analyticsEnabled) {
-        console.info('Analytics is disabled. Skipping initialization.');
+        console.warn('Analytics is disabled. Skipping initialization.');
         return;
     }
 
@@ -21,7 +21,7 @@ export function initializeAnalytics(): void {
 
     // Initialize Google Analytics if ID is provided
     const gaId = env.VITE_GOOGLE_ANALYTICS_ID;
-    console.log('gaId', gaId);
+    console.warn('gaId', gaId);
     if (gaId) {
         // Dynamically load Google Analytics
         loadGoogleAnalytics(gaId);

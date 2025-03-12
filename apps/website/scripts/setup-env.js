@@ -13,7 +13,7 @@ const envPath = path.join(rootDir, '.env');
 
 // Check if .env file already exists
 if (fs.existsSync(envPath)) {
-    console.log('ℹ️ .env file already exists. Skipping creation.');
+    console.warn('ℹ️ .env file already exists. Skipping creation.');
     process.exit(0);
 }
 
@@ -26,8 +26,8 @@ if (!fs.existsSync(envExamplePath)) {
 // Copy .env.example to .env
 try {
     fs.copyFileSync(envExamplePath, envPath);
-    console.log('✅ Created .env file from .env.example');
-    console.log('⚠️ Please update the .env file with your actual values.');
+    console.warn('✅ Created .env file from .env.example');
+    console.warn('⚠️ Please update the .env file with your actual values.');
 } catch (error) {
     console.error('❌ Failed to create .env file:', error.message);
     process.exit(1);

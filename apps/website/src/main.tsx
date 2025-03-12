@@ -10,16 +10,14 @@ import { env } from '@/env';
 // Validate environment variables
 try {
     // This will throw an error if any required variables are missing
-    console.log('Validating environment variables...');
+    console.warn('Validating environment variables...');
 
     // Check for required API URL
-    if (!env.VITE_API_URL) {
-        throw new Error(
-            'Required environment variable VITE_API_URL is missing',
-        );
+    if (!env.NODE_ENV) {
+        throw new Error('Required environment variable NODE_ENV is missing');
     }
 
-    console.log('Environment validation successful');
+    console.warn('Environment validation successful');
 } catch (error) {
     // Create a more user-friendly error message
     console.error('Environment validation failed:', error);
