@@ -1,6 +1,6 @@
 {
     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-    "buildCommand": "cd apps/website && npm run build:vercel",
+    "buildCommand": "npm run build:vercel",
     "outputDirectory": "apps/website/dist",
     "framework": "vite",
     "github": {
