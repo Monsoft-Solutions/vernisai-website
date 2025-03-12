@@ -5,12 +5,13 @@
         "baseUrl": ".",
         "jsx": "react-jsx",
         "esModuleInterop": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "target": "ES2020",
         "lib": ["ES2020", "DOM", "DOM.Iterable"],
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+        "module": "ES2020"
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules", "dist"]

@@ -6,9 +6,31 @@
  * throughout the application.
  */
 
-import { env, clientEnv, getEnv, getClientEnv } from '@vernisai/utils';
+import { env, clientEnv } from '@vernisai/utils';
 
-export { env, clientEnv, getEnv, getClientEnv };
+export { env, clientEnv };
+
+/**
+ * Get a client environment variable with a fallback value
+ * @param key The environment variable key
+ * @param fallback The fallback value if the environment variable is not set
+ * @returns The environment variable value or the fallback
+ */
+export function getClientEnv<T>(key: string, fallback: T): T {
+    const value = clientEnv[key as keyof typeof clientEnv];
+    return value !== undefined ? (value as unknown as T) : fallback;
+}
+
+/**
+ * Get a server environment variable with a fallback value
+ * @param key The environment variable key
+ * @param fallback The fallback value if the environment variable is not set
+ * @returns The environment variable value or the fallback
+ */
+export function getEnv<T>(key: string, fallback: T): T {
+    const value = env[key as keyof typeof env];
+    return value !== undefined ? (value as unknown as T) : fallback;
+}
 
 // Example of how to use environment variables:
 //
