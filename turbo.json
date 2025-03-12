@@ -6,7 +6,6 @@
         "NODE_ENV",
         "VITE_GOOGLE_ANALYTICS_ID",
         "VITE_MICROSOFT_CLARITY_ID",
-        "VITE_API_URL",
         "VITE_ENABLE_ANALYTICS",
         "VITE_ENABLE_FEATURE_X"
     ],
