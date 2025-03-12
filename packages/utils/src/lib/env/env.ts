@@ -40,22 +40,13 @@ else {
         // We need to use the global window object for TypeScript compatibility in non-Vite environments
         const viteEnv =
             typeof import.meta !== 'undefined' && 'env' in import.meta
-                ? (import.meta as { env: Record<string, unknown> }).env
-                : {};
+                ? import.meta.env
+                : ({} as ImportMetaEnv);
 
         if (viteEnv) {
             // Convert any boolean values to strings to match expected type
-            const stringifiedEnv: Record<string, string | undefined> = {};
-            Object.entries(viteEnv).forEach(([key, value]) => {
-                if (typeof value === 'boolean') {
-                    stringifiedEnv[key] = value.toString();
-                } else if (value === null) {
-                    stringifiedEnv[key] = undefined;
-                } else {
-                    stringifiedEnv[key] = value as string | undefined;
-                }
-            });
-            rawEnv = stringifiedEnv;
+            console.warn('viteEnv', viteEnv);
+            rawEnv = viteEnv;
         }
     } catch (e) {
         console.warn('Failed to access import.meta.env:', e);
@@ -88,7 +79,7 @@ if (isDev) {
         envKeys.reduce(
             (acc, key) => {
                 // Convert any value to string representation for logging
-                acc[key] = rawEnv[key];
+                acc[key] = rawEnv[key] !== undefined ? '[SET]' : '[NOT SET]';
                 return acc;
             },
             {} as Record<string, string>,
