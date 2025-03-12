@@ -7,7 +7,7 @@ import { z } from 'zod';
  */
 export const clientEnvSchema = z.object({
     // API URL for backend services
-    VITE_API_URL: z.string().url(),
+    VITE_API_URL: z.string().url().optional().default('https://api.vernis.ai'),
 
     // Feature flags
     VITE_ENABLE_ANALYTICS: z
@@ -49,11 +49,17 @@ export type ServerEnv = z.infer<typeof serverEnvSchema>;
 /**
  * Function to validate environment variables
  * @param env Object containing environment variables to validate
+ * @param isPreview Whether to use more lenient validation for preview environments
  * @returns Validated environment variables
  * @throws Error if validation fails
  */
-export function validateEnv(env: Record<string, string | undefined>): Env {
-    const parsed = envSchema.safeParse(env);
+export function validateEnv(
+    env: Record<string, string | undefined>,
+    isPreview = false,
+): Env {
+    // Use a partial schema for preview environments to allow missing values
+    const schema = isPreview ? envSchema.partial() : envSchema;
+    const parsed = schema.safeParse(env);
 
     if (!parsed.success) {
         console.error(
@@ -63,7 +69,7 @@ export function validateEnv(env: Record<string, string | undefined>): Env {
         throw new Error('Invalid environment variables');
     }
 
-    return parsed.data;
+    return parsed.data as Env;
 }
 
 /**

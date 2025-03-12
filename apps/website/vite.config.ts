@@ -13,6 +13,13 @@ export default defineConfig(({ mode }) => {
     // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
     const env = loadEnv(mode, process.cwd(), '');
 
+    // Ensure critical environment variables have fallbacks for Vercel preview
+    const isVercelPreview = env.VERCEL_ENV === 'preview';
+    if (isVercelPreview && !env.VITE_API_URL) {
+        console.warn('VITE_API_URL not set in Vercel preview, using fallback');
+        env.VITE_API_URL = 'https://api.vernis.ai';
+    }
+
     // Expose environment variables to the client
     const envWithProcessPrefix = Object.entries(env).reduce(
         (prev, [key, val]) => {

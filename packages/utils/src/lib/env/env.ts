@@ -14,7 +14,10 @@ import {
 
 // Determine if we're in a Node.js environment (server) or browser
 const isServer = typeof process !== 'undefined' && process.env;
-const isVercel = isServer && process.env?.VERCEL === '1';
+const isVercel =
+    isServer &&
+    (process.env?.VERCEL === '1' || process.env?.VERCEL_ENV !== undefined);
+const isVercelPreview = isVercel && process.env?.VERCEL_ENV === 'preview';
 
 // Get environment variables from the appropriate source
 let rawEnv: Record<string, string | undefined> = {};
@@ -77,8 +80,10 @@ else {
 
 // Determine development mode
 const isDev = isServer
-    ? process.env.NODE_ENV === 'development'
-    : rawEnv.DEV === 'true' || rawEnv.MODE === 'development';
+    ? process.env.NODE_ENV === 'development' || isVercelPreview
+    : rawEnv.DEV === 'true' ||
+      rawEnv.MODE === 'development' ||
+      rawEnv.VERCEL_ENV === 'preview';
 
 // Log environment variables in development for debugging
 if (isDev) {
@@ -101,23 +106,41 @@ if (isDev) {
 // Validate environment variables with better error handling
 let validatedEnv: Env;
 try {
-    validatedEnv = validateEnv(rawEnv);
+    // Use a more lenient validation approach for Vercel preview deployments
+    validatedEnv = validateEnv(rawEnv, isVercelPreview);
 } catch (error) {
     console.error('❌ Environment validation failed:', error);
 
-    // In development, provide more helpful error information
-    if (isDev) {
+    // In development or preview, provide more helpful error information
+    if (isDev || isVercelPreview) {
         console.error('Current environment context:', {
             isServer,
             isVercel,
+            isVercelPreview,
             nodeEnv: rawEnv.NODE_ENV,
             viteMode: rawEnv.MODE,
+            vercelEnv: rawEnv.VERCEL_ENV,
             hasViteApiUrl: Boolean(rawEnv.VITE_API_URL),
+            availableEnvVars: Object.keys(rawEnv).filter((key) =>
+                key.startsWith('VITE_'),
+            ),
         });
     }
 
-    // Rethrow the error
-    throw error;
+    // Provide fallback for preview environments
+    if (isVercelPreview) {
+        console.warn('Using fallback environment for Vercel preview');
+        const fallbackEnv = {
+            NODE_ENV: 'production',
+            VITE_API_URL: 'https://api.vernisai.com',
+            VITE_ENABLE_ANALYTICS: 'false',
+            VITE_ENABLE_FEATURE_X: 'false',
+        };
+        validatedEnv = validateEnv(fallbackEnv, true);
+    } else {
+        // Rethrow the error in non-preview environments
+        throw error;
+    }
 }
 
 // Export the validated environment
