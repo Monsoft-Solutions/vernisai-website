@@ -54,11 +54,7 @@ else {
 }
 
 // Determine full development mode now that we have rawEnv
-const isDev = isServer
-    ? isNodeDev
-    : rawEnv.DEV === 'true' ||
-      rawEnv.MODE === 'development' ||
-      rawEnv.VERCEL_ENV === 'preview';
+const isDev = rawEnv.NODE_ENV === 'development';
 
 // Log environment information in development
 if (isDev && !isServer) {
