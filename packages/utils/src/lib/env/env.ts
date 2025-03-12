@@ -41,12 +41,12 @@ else {
         const viteEnv =
             typeof import.meta !== 'undefined' && 'env' in import.meta
                 ? import.meta.env
-                : ({} as ImportMetaEnv);
+                : ({} as ImportMeta);
 
         if (viteEnv) {
             // Convert any boolean values to strings to match expected type
             console.warn('viteEnv', viteEnv);
-            rawEnv = viteEnv;
+            rawEnv = viteEnv.env;
         }
     } catch (e) {
         console.warn('Failed to access import.meta.env:', e);
