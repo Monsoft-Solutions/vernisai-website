@@ -17,6 +17,10 @@
         },
         "skipLibCheck": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "../utils/src/lib/env/vite.d.ts"
+    ],
     "exclude": ["node_modules", "dist"]
 }
