@@ -10,16 +10,18 @@
         "build:only": "vite build",
         "build:verify": "run-s typecheck build:dev",
         "build:dev": "vite build --mode development",
+        "build:vercel": "node scripts/vercel-build.js",
         "generate-sitemap": "node scripts/generate-sitemap.js",
         "typecheck": "tsc -b --noEmit",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
-        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
-        "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\" --ignore-path \"../../.prettierignore\" --ignore-pattern \"dist/**\"",
+        "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\" --ignore-path \"../../.prettierignore\" --ignore-pattern \"dist/**\"",
         "check": "run-p typecheck lint format:check",
         "validate": "run-s typecheck lint:fix format",
         "preview": "vite preview",
-        "clean": "rm -rf dist node_modules/.vite"
+        "clean": "rm -rf dist node_modules/.vite",
+        "setup:env": "node scripts/setup-env.js"
     },
     "dependencies": {
         "@hookform/resolvers": "^4.1.3",
