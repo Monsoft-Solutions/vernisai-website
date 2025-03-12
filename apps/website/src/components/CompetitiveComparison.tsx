@@ -14,10 +14,6 @@ const Table = ({
     <table className={`w-full border-collapse ${className}`}>{children}</table>
 );
 
-const TableCaption = ({ children }: { children: React.ReactNode }) => (
-    <caption className="mt-4 text-sm text-gray-500">{children}</caption>
-);
-
 const TableHeader = ({ children }: { children: React.ReactNode }) => (
     <thead>{children}</thead>
 );
@@ -41,7 +37,7 @@ const TableHead = ({
     children: React.ReactNode;
     className?: string;
 }) => (
-    <th className={`px-4 py-3 text-left text-sm font-semibold ${className}`}>
+    <th className={`px-4 py-3 text-sm font-semibold ${className}`}>
         {children}
     </th>
 );
@@ -127,11 +123,6 @@ export function CompetitiveComparison({
                 >
                     <div className="overflow-x-auto">
                         <Table>
-                            <TableCaption>
-                                Comparison based on publicly available
-                                information as of{' '}
-                                {new Date().toLocaleDateString()}
-                            </TableCaption>
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="w-1/3">

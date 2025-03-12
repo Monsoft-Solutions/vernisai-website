@@ -170,49 +170,70 @@ export function Pricing() {
             description: 'Create workflows without coding knowledge',
             vernisAI: true,
             competitor1: true,
-            competitor2: true,
+            competitor2: false,
         },
         {
             name: 'AI-powered automation',
             description: 'Use AI to automate complex tasks',
             vernisAI: true,
             competitor1: 'Limited',
-            competitor2: false,
+            competitor2: true,
         },
         {
             name: 'Natural language workflow creation',
             description: 'Create workflows by describing them in plain English',
             vernisAI: true,
             competitor1: false,
-            competitor2: false,
+            competitor2: 'Limited',
         },
         {
             name: 'Custom integrations',
             description: 'Connect with any service using custom APIs',
             vernisAI: true,
-            competitor1: 'Limited',
-            competitor2: 'Limited',
+            competitor1: true,
+            competitor2: false,
         },
         {
             name: 'Enterprise-grade security',
             description: 'SOC 2 compliance, encryption, and more',
             vernisAI: true,
             competitor1: true,
-            competitor2: false,
+            competitor2: 'Limited',
         },
         {
             name: 'Workflow templates',
             description: 'Pre-built workflows for common use cases',
             vernisAI: true,
             competitor1: true,
-            competitor2: true,
+            competitor2: false,
         },
         {
-            name: 'Unlimited users',
-            description: 'Add as many team members as you need',
-            vernisAI: 'Enterprise plan',
-            competitor1: 'Enterprise only',
-            competitor2: 'Paid per user',
+            name: 'User management',
+            description: 'Add and manage team members',
+            vernisAI: 'Team plan',
+            competitor1: 'Team plans',
+            competitor2: 'Enterprise only',
+        },
+        {
+            name: 'Dedicated AI credits',
+            description: 'Allocated AI processing capacity',
+            vernisAI: true,
+            competitor1: false,
+            competitor2: 'Subscription based',
+        },
+        {
+            name: 'Specialized for workflows',
+            description: 'Platform built specifically for workflow automation',
+            vernisAI: true,
+            competitor1: true,
+            competitor2: false,
+        },
+        {
+            name: 'Content generation',
+            description: 'Generate text, images, and other content',
+            vernisAI: true,
+            competitor1: 'Via integrations',
+            competitor2: true,
         },
     ];
 
@@ -300,19 +321,19 @@ export function Pricing() {
             />
 
             {/* Product Demo */}
-            <ProductDemo
+            {/* <ProductDemo
                 title="See VernisAI in Action"
                 description="Explore our intuitive interface and powerful features"
                 screens={demoScreens}
-            />
+            /> */}
 
             {/* Competitive Comparison */}
             <CompetitiveComparison
                 title="How We Compare"
                 description="See how VernisAI stacks up against the competition"
                 features={comparisonFeatures}
-                competitor1Name="Competitor A"
-                competitor2Name="Competitor B"
+                competitor1Name="Zapier"
+                competitor2Name="ChatGPT"
             />
 
             {/* Trust Signals */}
@@ -326,7 +347,21 @@ export function Pricing() {
             />
 
             {/* CTA Section */}
-            <CTAWorkflowAutomation />
+            <CTAWorkflowAutomation
+                variant="gradient"
+                title="Ready to experience the VernisAI difference?"
+                description="Start your 14-day free trial today. No credit card required. Upgrade, downgrade, or cancel anytime."
+                buttonText="Start Your Free Trial"
+                buttonLink="/waitlist"
+                showBadge={true}
+                badgeText="Risk-Free Trial"
+                showFooterText={true}
+                footerText="Join thousands of teams already saving time with VernisAI"
+                secondaryButton={{
+                    text: 'Schedule a Demo',
+                    link: '/contact',
+                }}
+            />
         </div>
     );
 }

@@ -10,7 +10,7 @@ interface PricingFeature {
     tiers: {
         starter: boolean | string;
         pro: boolean | string;
-        enterprise: boolean | string;
+        team: boolean | string;
     };
 }
 
@@ -277,7 +277,7 @@ export function EnhancedPricingTiers({
                                             </td>
                                             <td className="px-6 py-4 text-center">
                                                 {renderFeatureValue(
-                                                    feature.tiers.enterprise,
+                                                    feature.tiers.team,
                                                 )}
                                             </td>
                                         </tr>
@@ -305,7 +305,7 @@ export const pricingTiers: PricingTier[] = [
             'Up to 5 workflows',
             'Basic integrations',
             'Community support',
-            'Up to 3 users',
+            '1 user',
             '1,000 AI credits/month',
         ],
         cta: {
@@ -320,10 +320,10 @@ export const pricingTiers: PricingTier[] = [
         annualPrice: 64,
         currency: 'USD',
         features: [
-            'Unlimited workflows',
+            '10 workflows',
             'Advanced integrations',
             'Email support',
-            'Up to 10 users',
+            '1 user',
             '5,000 AI credits/month',
             'Workflow templates',
             'Advanced analytics',
@@ -335,7 +335,7 @@ export const pricingTiers: PricingTier[] = [
         popular: true,
     },
     {
-        name: 'Enterprise',
+        name: 'Team',
         description:
             'For organizations that need advanced security and control',
         monthlyPrice: 299,
@@ -345,9 +345,9 @@ export const pricingTiers: PricingTier[] = [
             'Unlimited workflows',
             'Custom integrations',
             'Dedicated support',
-            'Unlimited users',
+            '5 users',
             '20,000 AI credits/month',
-            'SSO & SAML',
+            'SSO & SAML (Coming soon)',
             'Audit logs',
             'Custom training',
         ],
@@ -365,16 +365,16 @@ export const featureComparison: PricingFeature[] = [
         description: 'Create automated sequences of actions',
         tiers: {
             starter: 'Up to 5',
-            pro: 'Unlimited',
-            enterprise: 'Unlimited',
+            pro: '10',
+            team: 'Unlimited',
         },
     },
     {
         name: 'Users',
         tiers: {
-            starter: 'Up to 3',
-            pro: 'Up to 10',
-            enterprise: 'Unlimited',
+            starter: '1',
+            pro: '1',
+            team: '5',
         },
     },
     {
@@ -383,7 +383,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: '1,000/month',
             pro: '5,000/month',
-            enterprise: '20,000/month',
+            team: '20,000/month',
         },
     },
     {
@@ -391,7 +391,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: 'Basic',
             pro: 'Advanced',
-            enterprise: 'Custom',
+            team: 'Custom',
         },
     },
     {
@@ -399,7 +399,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: 'Community',
             pro: 'Email',
-            enterprise: 'Dedicated',
+            team: 'Dedicated',
         },
     },
     {
@@ -407,7 +407,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: false,
             pro: false,
-            enterprise: true,
+            team: 'Coming soon',
         },
     },
     {
@@ -415,7 +415,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: false,
             pro: false,
-            enterprise: true,
+            team: true,
         },
     },
     {
@@ -423,7 +423,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: false,
             pro: false,
-            enterprise: true,
+            team: true,
         },
     },
     {
@@ -431,7 +431,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: false,
             pro: true,
-            enterprise: true,
+            team: true,
         },
     },
     {
@@ -439,7 +439,7 @@ export const featureComparison: PricingFeature[] = [
         tiers: {
             starter: false,
             pro: true,
-            enterprise: true,
+            team: true,
         },
     },
 ];
