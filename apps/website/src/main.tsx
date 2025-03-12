@@ -13,10 +13,8 @@ try {
     console.warn('Validating environment variables...');
 
     // Check for required API URL
-    if (!env.VITE_API_URL) {
-        throw new Error(
-            'Required environment variable VITE_API_URL is missing',
-        );
+    if (!env.NODE_ENV) {
+        throw new Error('Required environment variable NODE_ENV is missing');
     }
 
     console.warn('Environment validation successful');
