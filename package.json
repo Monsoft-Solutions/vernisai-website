@@ -5,9 +5,10 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "check": "turbo run check",
         "dev": "turbo run dev",
         "build": "turbo run build",
+        "build:with-index": "turbo run build:with-index",
+        "update-google-index": "turbo run update-google-index",
         "lint": "turbo run lint",
         "lint:fix": "turbo run lint:fix",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
@@ -16,7 +17,7 @@
         "validate": "npm run format && turbo run validate && npm run format:check",
         "clean": "turbo run clean",
         "prepare": "husky",
-        "pre-commit": "git stash -q --keep-index && (npm run check || (git stash pop -q && exit 1)) && git stash pop -q"
+        "pre-commit": "npm run format && lint-staged && npm run format:check"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3.0.2",
@@ -31,6 +32,15 @@
         "turbo": "^2.4.4",
         "typescript": "~5.7.2",
         "typescript-eslint": "^8.24.1"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,css,md}": [
+            "prettier --write"
+        ]
     },
     "workspaces": [
         "apps/*",

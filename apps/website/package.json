@@ -16,6 +16,8 @@
         "pre-render:standalone": "node scripts/prerender-standalone.js",
         "sitemap-prerender": "node scripts/sitemap-prerender.js",
         "build:with-prerender": "run-s build pre-render",
+        "update-google-index": "env-cmd -f .env node scripts/update-google-index.js",
+        "build:with-index": "run-s build update-google-index",
         "typecheck": "tsc -b --noEmit",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
@@ -29,6 +31,7 @@
     "dependencies": {
         "@hookform/resolvers": "^4.1.3",
         "@microsoft/clarity": "^1.0.0",
+        "@monsoft/google-indexing": "^0.2.0",
         "@radix-ui/react-accordion": "^1.2.3",
         "@radix-ui/react-dialog": "^1.1.6",
         "@radix-ui/react-form": "^0.1.2",
@@ -52,7 +55,8 @@
         "react-intersection-observer": "^9.16.0",
         "react-router-dom": "^7.3.0",
         "tailwind-merge": "^3.0.2",
-        "zod": "^3.24.2"
+        "zod": "^3.24.2",
+        "env-cmd": "^10.1.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.21.0",
@@ -61,6 +65,7 @@
         "@types/node": "^22.13.10",
         "@types/react": "^19.0.10",
         "@types/react-dom": "^19.0.4",
+        "@vercel/node": "^3.0.22",
         "@vernisai/config": "*",
         "@vitejs/plugin-react": "^4.3.4",
         "@vitejs/plugin-react-swc": "^3.8.0",
