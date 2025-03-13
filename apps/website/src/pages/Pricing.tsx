@@ -12,179 +12,13 @@ import { CompetitiveComparison } from '../components/CompetitiveComparison';
 import { useCaseMetrics, useCaseLabels } from '@/data/metrics';
 import { pricingFAQs } from '@/data/faq-data';
 import { useState } from 'react';
-
+import { useCasesForSection } from '@/data/use-cases';
+import { comparisonFeatures } from '@/data/comparison-features';
 export function Pricing() {
     // State to track which metrics to display
     const [activeUseCase, setActiveUseCase] = useState<string>(
         Object.keys(useCaseMetrics)[0],
     );
-
-    // Example use cases for different audience segments
-    const useCases = [
-        {
-            id: 'marketing-teams',
-            title: 'Marketing Teams',
-            description: 'Streamline content creation and campaign management',
-            features: [
-                {
-                    title: 'Automate social media',
-                    description:
-                        'Schedule and post content across platforms automatically',
-                },
-                {
-                    title: 'AI content generation',
-                    description: 'Create marketing copy with AI assistance',
-                },
-                {
-                    title: 'Campaign tracking',
-                    description:
-                        'Monitor and analyze campaign performance in real-time',
-                },
-                {
-                    title: 'Marketing integrations',
-                    description:
-                        'Connect with your existing marketing tools seamlessly',
-                },
-            ],
-            image: '/images/use-cases/marketing.png',
-            ctaText: 'Learn more',
-            ctaLink: '/use-cases/marketing',
-        },
-        {
-            id: 'customer-support',
-            title: 'Customer Support',
-            description:
-                'Enhance customer experience with intelligent automation',
-            features: [
-                {
-                    title: 'Ticket automation',
-                    description:
-                        'Route and prioritize support tickets automatically',
-                },
-                {
-                    title: 'AI response suggestions',
-                    description:
-                        'Get intelligent response recommendations for common issues',
-                },
-                {
-                    title: 'Knowledge base creation',
-                    description:
-                        'Build and maintain self-service resources efficiently',
-                },
-                {
-                    title: 'Support integrations',
-                    description: 'Connect with your CRM and support platforms',
-                },
-            ],
-            image: '/images/use-cases/customer-support.png',
-            ctaText: 'Learn more',
-            ctaLink: '/use-cases/customer-support',
-        },
-        {
-            id: 'sales-teams',
-            title: 'Sales Teams',
-            description: 'Close more deals with automated sales workflows',
-            features: [
-                {
-                    title: 'Lead qualification',
-                    description:
-                        'Automatically score and prioritize promising leads',
-                },
-                {
-                    title: 'Follow-up automation',
-                    description:
-                        'Send personalized follow-up emails at the right time',
-                },
-                {
-                    title: 'Meeting scheduling',
-                    description:
-                        'Automate the booking of demos and sales calls',
-                },
-                {
-                    title: 'CRM synchronization',
-                    description:
-                        'Keep your data consistent across all your tools',
-                },
-            ],
-            image: '/images/use-cases/sales.png',
-            ctaText: 'Learn more',
-            ctaLink: '/use-cases/sales',
-        },
-    ];
-
-    // Example comparison features
-    const comparisonFeatures = [
-        {
-            name: 'No-code workflow builder',
-            description: 'Create workflows without coding knowledge',
-            vernisAI: true,
-            competitor1: true,
-            competitor2: false,
-        },
-        {
-            name: 'AI-powered automation',
-            description: 'Use AI to automate complex tasks',
-            vernisAI: true,
-            competitor1: 'Limited',
-            competitor2: true,
-        },
-        {
-            name: 'Natural language workflow creation',
-            description: 'Create workflows by describing them in plain English',
-            vernisAI: true,
-            competitor1: false,
-            competitor2: 'Limited',
-        },
-        {
-            name: 'Custom integrations',
-            description: 'Connect with any service using custom APIs',
-            vernisAI: true,
-            competitor1: true,
-            competitor2: false,
-        },
-        {
-            name: 'Enterprise-grade security',
-            description: 'SOC 2 compliance, encryption, and more',
-            vernisAI: true,
-            competitor1: true,
-            competitor2: 'Limited',
-        },
-        {
-            name: 'Workflow templates',
-            description: 'Pre-built workflows for common use cases',
-            vernisAI: true,
-            competitor1: true,
-            competitor2: false,
-        },
-        {
-            name: 'User management',
-            description: 'Add and manage team members',
-            vernisAI: 'Team plan',
-            competitor1: 'Team plans',
-            competitor2: 'Enterprise only',
-        },
-        {
-            name: 'Dedicated AI credits',
-            description: 'Allocated AI processing capacity',
-            vernisAI: true,
-            competitor1: false,
-            competitor2: 'Subscription based',
-        },
-        {
-            name: 'Specialized for workflows',
-            description: 'Platform built specifically for workflow automation',
-            vernisAI: true,
-            competitor1: true,
-            competitor2: false,
-        },
-        {
-            name: 'Content generation',
-            description: 'Generate text, images, and other content',
-            vernisAI: true,
-            competitor1: 'Via integrations',
-            competitor2: true,
-        },
-    ];
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -266,7 +100,7 @@ export function Pricing() {
 
             {/* Use Cases Section */}
             <UseCaseSection
-                useCases={useCases}
+                useCases={useCasesForSection}
                 title="Solutions for Every Team"
                 description="See how VernisAI can help different departments in your organization"
             />
