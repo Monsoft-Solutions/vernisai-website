@@ -16,7 +16,7 @@
         "validate": "npm run format && turbo run validate && npm run format:check",
         "clean": "turbo run clean",
         "prepare": "husky",
-        "pre-commit": "git stash -q --keep-index && npm run check && git stash pop -q"
+        "pre-commit": "git stash -q --keep-index && (npm run check || (git stash pop -q && exit 1)) && git stash pop -q"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3.0.2",
