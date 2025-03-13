@@ -1,0 +1,44 @@
+{
+    "name": "@monsoft/google-indexing",
+    "description": "A CLI tool to notify Google about URL updates and deletions",
+    "author": "Monsoft Solutions, LLC (https://monsoftsolutions.com",
+    "version": "0.2.0",
+    "private": true,
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "bin": {
+        "google-indexing": "./bin/cli.js"
+    },
+    "files": [
+        "dist/**",
+        "bin/**"
+    ],
+    "scripts": {
+        "build": "tsup && npm run build:cli",
+        "build:cli": "mkdir -p bin && echo '#!/usr/bin/env node\nrequire(\"../dist/lib/cli.js\").runCli();' > bin/cli.js && chmod +x bin/cli.js",
+        "dev": "tsup --watch",
+        "lint": "eslint .",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "fast-xml-parser": "^4.3.4",
+        "googleapis": "^131.0.0",
+        "google-auth-library": "^9.7.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.5",
+        "@vercel/node": "^3.0.22",
+        "eslint": "^8.56.0",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3"
+    },
+    "peerDependencies": {
+        "@vercel/node": "^3.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@vercel/node": {
+            "optional": true
+        }
+    }
+}

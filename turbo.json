@@ -3,11 +3,20 @@
     "ui": "tui",
     "globalDependencies": ["**/.env*", "tsconfig.json"],
     "tasks": {
-        "check": {},
         "build": {
             "dependsOn": ["^build", "typecheck"],
             "outputs": ["dist/**", ".next/**", "public/dist/**"],
             "cache": true
+        },
+        "update-google-index": {
+            "dependsOn": ["build"],
+            "outputs": [],
+            "cache": false
+        },
+        "build:with-index": {
+            "dependsOn": ["build", "update-google-index"],
+            "outputs": [],
+            "cache": false
         },
         "lint": {
             "dependsOn": ["^lint"],
