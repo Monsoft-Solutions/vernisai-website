@@ -61,6 +61,27 @@ export const UseCaseTemplate: React.FC<UseCaseTemplateProps> = ({
             <SEO
                 title={`${useCase.name} | VernisAI`}
                 description={useCase.shortDescription}
+                canonicalUrl={`https://vernis.ai/use-cases/${useCase.id}`}
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Product',
+                    name: `VernisAI for ${useCase.name}`,
+                    description: useCase.shortDescription,
+                    url: `https://vernis.ai/use-cases/${useCase.id}`,
+                    category: 'Software',
+                    brand: {
+                        '@type': 'Brand',
+                        name: 'VernisAI',
+                        logo: 'https://vernis.ai/images/vernisai-logo.png',
+                    },
+                    offers: {
+                        '@type': 'Offer',
+                        availability: 'https://schema.org/ComingSoon',
+                        price: '29',
+                        priceCurrency: 'USD',
+                        priceValidUntil: '2025-12-31',
+                    },
+                }}
             />
 
             {/* Hero Background with enhanced decorative elements */}
