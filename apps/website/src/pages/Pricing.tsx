@@ -1,10 +1,8 @@
 import { SEO } from '../components';
 import { CTAWorkflowAutomation } from '../components/CTA';
-import {
-    EnhancedPricingTiers,
-    pricingTiers,
-    featureComparison,
-} from '../components/EnhancedPricingTiers';
+import { EnhancedPricingTiers } from '../components/EnhancedPricingTiers';
+import { pricingTiers } from '../data/pricing/pricing-tiers';
+import { featureComparison } from '../data/pricing/feature-comparison';
 import { EnhancedFAQ } from '../components/EnhancedFAQ';
 import { UseCaseSection } from '../components/UseCaseSection';
 import { ValueMetrics } from '../components/ValueMetrics';
