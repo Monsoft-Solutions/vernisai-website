@@ -75,7 +75,7 @@ export function WorkflowsFeature() {
                 canonicalUrl="https://vernis.ai/features/workflows"
                 structuredData={{
                     '@context': 'https://schema.org',
-                    '@type': 'Product',
+                    '@type': 'Brand',
                     name: 'VernisAI Workflow Automation',
                     description:
                         'Build powerful, flexible workflows that connect your tools and automate repetitive tasks. No coding required.',
@@ -85,13 +85,6 @@ export function WorkflowsFeature() {
                         '@type': 'Brand',
                         name: 'VernisAI',
                         logo: 'https://vernis.ai/images/vernisai-logo.png',
-                    },
-                    offers: {
-                        '@type': 'Offer',
-                        availability: 'https://schema.org/ComingSoon',
-                        price: '29',
-                        priceCurrency: 'USD',
-                        priceValidUntil: '2025-12-31',
                     },
                 }}
             />

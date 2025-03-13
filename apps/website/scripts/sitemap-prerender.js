@@ -160,7 +160,7 @@ function generateHtml(route) {
     if (route.includes('/features/') || route.includes('/use-cases/')) {
         structuredData = {
             '@context': 'https://schema.org',
-            '@type': 'Product',
+            '@type': 'Brand',
             name: metadata.title,
             description: metadata.description,
             url: `${SITE_URL}${route}`,

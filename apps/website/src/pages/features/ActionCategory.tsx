@@ -121,7 +121,7 @@ export function ActionCategory() {
                 canonicalUrl={`https://vernis.ai/features/actions/${categoryId}`}
                 structuredData={{
                     '@context': 'https://schema.org',
-                    '@type': 'Product',
+                    '@type': 'Brand',
                     name: `VernisAI ${category.name} Actions`,
                     description: `${category.name} actions and integrations for VernisAI's workflow automation platform.`,
                     url: `https://vernis.ai/features/actions/${categoryId}`,

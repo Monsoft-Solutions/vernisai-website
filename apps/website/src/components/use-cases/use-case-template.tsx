@@ -64,7 +64,7 @@ export const UseCaseTemplate: React.FC<UseCaseTemplateProps> = ({
                 canonicalUrl={`https://vernis.ai/use-cases/${useCase.id}`}
                 structuredData={{
                     '@context': 'https://schema.org',
-                    '@type': 'Product',
+                    '@type': 'Brand',
                     name: `VernisAI for ${useCase.name}`,
                     description: useCase.shortDescription,
                     url: `https://vernis.ai/use-cases/${useCase.id}`,
