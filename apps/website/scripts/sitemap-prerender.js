@@ -281,6 +281,7 @@ function generateHtml(route) {
                 logo: `${SITE_URL}/images/vernisai-logo.png`,
             },
             screenshot: fullImageUrl,
+            image: fullImageUrl,
         };
     }
 
