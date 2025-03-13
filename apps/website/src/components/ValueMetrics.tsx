@@ -8,6 +8,11 @@ interface ValueMetricsProps {
     description?: string;
     metrics: ValueMetric[];
     className?: string;
+    useCaseMetrics?: Record<string, ValueMetric[]>;
+    useCaseLabels?: Record<string, string>;
+    activeUseCase?: string;
+    onUseCaseChange?: (useCase: string) => void;
+    showUseCaseSelector?: boolean;
 }
 
 export function ValueMetrics({
@@ -15,6 +20,11 @@ export function ValueMetrics({
     description = 'See how VernisAI delivers measurable ROI for businesses like yours',
     metrics,
     className = '',
+    useCaseMetrics,
+    useCaseLabels,
+    activeUseCase,
+    onUseCaseChange,
+    showUseCaseSelector = false,
 }: ValueMetricsProps) {
     const shouldReduceMotion = useReducedMotion();
 
@@ -89,18 +99,36 @@ export function ValueMetrics({
     return (
         <section className={`w-full py-16 md:py-24 ${className}`}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    className="mx-auto mb-12 max-w-3xl text-center"
-                    initial={initialFadeInAnimation}
-                    whileInView={fadeInAnimation}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        {title}
-                    </h2>
-                    <p className="text-lg text-gray-600">{description}</p>
-                </motion.div>
+                {showUseCaseSelector &&
+                    useCaseMetrics &&
+                    useCaseLabels &&
+                    activeUseCase &&
+                    onUseCaseChange && (
+                        <div className="mx-auto mb-12 flex max-w-4xl flex-col items-center justify-center">
+                            <h2 className="mb-6 text-center text-4xl font-bold text-gray-900">
+                                Explore Value Metrics By Use Case
+                            </h2>
+                            <div className="flex flex-wrap justify-center gap-2">
+                                {Object.keys(useCaseMetrics).map(
+                                    (useCaseKey) => (
+                                        <button
+                                            key={useCaseKey}
+                                            onClick={() =>
+                                                onUseCaseChange(useCaseKey)
+                                            }
+                                            className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                                                activeUseCase === useCaseKey
+                                                    ? 'bg-blue-600 text-white'
+                                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                            }`}
+                                        >
+                                            {useCaseLabels[useCaseKey]}
+                                        </button>
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    )}
 
                 <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {metrics.map((metric, index) => {

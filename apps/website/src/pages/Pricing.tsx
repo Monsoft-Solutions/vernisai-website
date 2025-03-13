@@ -9,7 +9,6 @@ import { EnhancedFAQ } from '../components/EnhancedFAQ';
 import { UseCaseSection } from '../components/UseCaseSection';
 import { ValueMetrics } from '../components/ValueMetrics';
 import { CompetitiveComparison } from '../components/CompetitiveComparison';
-import { PlanSelector } from '../components/PlanSelector';
 import { useCaseMetrics, useCaseLabels } from '@/data/metrics';
 import { pricingFAQs } from '@/data/faq-data';
 import { useState } from 'react';
@@ -253,37 +252,17 @@ export function Pricing() {
                 features={featureComparison}
             />
 
-            {/* Metrics Button Group */}
-            <div className="mx-auto mt-16 mb-8 flex max-w-4xl flex-col items-center justify-center">
-                <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">
-                    Explore Value Metrics By Use Case
-                </h2>
-                <div className="flex flex-wrap justify-center gap-2">
-                    {Object.keys(useCaseMetrics).map((useCaseKey) => (
-                        <button
-                            key={useCaseKey}
-                            onClick={() => setActiveUseCase(useCaseKey)}
-                            className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                                activeUseCase === useCaseKey
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
-                        >
-                            {useCaseLabels[useCaseKey]}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Value Metrics Section */}
+            {/* Value Metrics Section with Use Case Selector */}
             <ValueMetrics
                 metrics={useCaseMetrics[activeUseCase]}
                 title={`${useCaseLabels[activeUseCase]} Metrics`}
                 description="See how VernisAI delivers measurable results for your specific use case"
+                useCaseMetrics={useCaseMetrics}
+                useCaseLabels={useCaseLabels}
+                activeUseCase={activeUseCase}
+                onUseCaseChange={setActiveUseCase}
+                showUseCaseSelector={true}
             />
-
-            {/* Plan Selector */}
-            <PlanSelector />
 
             {/* Use Cases Section */}
             <UseCaseSection
