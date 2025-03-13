@@ -72,7 +72,7 @@ export const generateMetaTags = (path: string) => {
             },
             {
                 property: 'og:url',
-                content: `https://vernisai.com${path}`,
+                content: `https://vernis.ai${path}`,
             },
             {
                 name: 'twitter:card',

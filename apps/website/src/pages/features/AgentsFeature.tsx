@@ -155,13 +155,6 @@ export function AgentsFeature() {
                         name: 'VernisAI',
                         logo: 'https://vernis.ai/images/vernisai-logo.png',
                     },
-                    offers: {
-                        '@type': 'Offer',
-                        availability: 'https://schema.org/ComingSoon',
-                        price: '29',
-                        priceCurrency: 'USD',
-                        priceValidUntil: '2025-12-31',
-                    },
                 }}
             />
 

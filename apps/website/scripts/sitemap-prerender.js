@@ -170,13 +170,6 @@ function generateHtml(route) {
                 name: 'VernisAI',
                 logo: `${SITE_URL}/images/vernisai-logo.png`,
             },
-            offers: {
-                '@type': 'Offer',
-                availability: 'https://schema.org/ComingSoon',
-                price: '29',
-                priceCurrency: 'USD',
-                priceValidUntil: '2025-12-31',
-            },
         };
     }
 
