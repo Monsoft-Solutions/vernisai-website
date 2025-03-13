@@ -10,7 +10,7 @@ export function initializeAnalytics(): void {
 
     // Only initialize analytics in production or if explicitly enabled in debug mode
     if (!isProduction() && env.VITE_DEBUG_MODE !== 'true') {
-        console.log('Analytics disabled in non-production environment');
+        console.warn('Analytics disabled in non-production environment');
         return;
     }
 

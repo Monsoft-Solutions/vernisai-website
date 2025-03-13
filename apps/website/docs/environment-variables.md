@@ -35,7 +35,7 @@ import { getEnv, isProduction, isDevelopment } from '@/lib/env';
 
 // Get all environment variables
 const env = getEnv();
-console.log(env.VITE_API_URL);
+console.warn(env.VITE_API_URL);
 
 // Environment helpers
 if (isProduction()) {

@@ -125,7 +125,7 @@ function writeSitemap() {
     }
 
     fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap);
-    console.log(
+    console.warn(
         `Sitemap generated with ${allRoutes.length} URLs (${staticRoutes.length} static, ${allRoutes.length - staticRoutes.length} dynamic)`,
     );
 }
