@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "run-s typecheck build:only generate-sitemap sitemap-prerender",
+        "build": "run-s typecheck build:only generate-sitemap pre-render:manual",
         "build:only": "vite build",
         "build:verify": "run-s typecheck build:dev",
         "build:dev": "vite build --mode development",
