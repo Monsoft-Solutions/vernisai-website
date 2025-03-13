@@ -101,7 +101,7 @@ export function KnowledgeBaseFeature() {
                 canonicalUrl="https://vernis.ai/features/knowledge-base"
                 structuredData={{
                     '@context': 'https://schema.org',
-                    '@type': 'Product',
+                    '@type': 'Brand',
                     name: 'VernisAI Knowledge Base',
                     description:
                         'An intelligent knowledge base that transforms your information into vector embeddings for semantic search and contextual retrieval.',
@@ -111,13 +111,6 @@ export function KnowledgeBaseFeature() {
                         '@type': 'Brand',
                         name: 'VernisAI',
                         logo: 'https://vernis.ai/images/vernisai-logo.png',
-                    },
-                    offers: {
-                        '@type': 'Offer',
-                        availability: 'https://schema.org/ComingSoon',
-                        price: '29',
-                        priceCurrency: 'USD',
-                        priceValidUntil: '2025-12-31',
                     },
                 }}
             />

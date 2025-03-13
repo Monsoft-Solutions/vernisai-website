@@ -24,7 +24,7 @@ export function Features() {
                 canonicalUrl="https://vernis.ai/features"
                 structuredData={{
                     '@context': 'https://schema.org',
-                    '@type': 'Product',
+                    '@type': 'Brand',
                     name: 'VernisAI Platform',
                     description:
                         'AI-Powered No-Code Workflow Automation Platform',

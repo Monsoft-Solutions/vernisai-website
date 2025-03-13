@@ -144,7 +144,7 @@ export function AgentsFeature() {
                 canonicalUrl="https://vernis.ai/features/agents"
                 structuredData={{
                     '@context': 'https://schema.org',
-                    '@type': 'Product',
+                    '@type': 'Brand',
                     name: 'VernisAI Autonomous Agents',
                     description:
                         'Deploy AI agents that work autonomously on complex tasks with human-like reasoning and problem-solving abilities.',
