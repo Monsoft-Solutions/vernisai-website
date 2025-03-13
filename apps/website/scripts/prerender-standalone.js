@@ -169,9 +169,9 @@ function generatePrerenderedHtml(route) {
  * Creates pre-rendered HTML files for all routes
  */
 function preRenderRoutes() {
-    console.log('Starting standalone pre-rendering process...');
+    console.warn('Starting standalone pre-rendering process...');
 
-    console.log(
+    console.warn(
         `Pre-rendering ${allRoutes.length} routes (${staticRoutes.length} static, ${allRoutes.length - staticRoutes.length} dynamic)`,
     );
 
@@ -193,13 +193,13 @@ function preRenderRoutes() {
             const htmlFilePath = path.join(dirPath, 'index.html');
             fs.writeFileSync(htmlFilePath, htmlContent);
 
-            console.log(`Pre-rendered: ${route} -> ${htmlFilePath}`);
+            console.warn(`Pre-rendered: ${route} -> ${htmlFilePath}`);
         } catch (error) {
             console.error(`Error pre-rendering route ${route}:`, error);
         }
     }
 
-    console.log('Pre-rendering completed successfully!');
+    console.warn('Pre-rendering completed successfully!');
 }
 
 // Run the pre-rendering process

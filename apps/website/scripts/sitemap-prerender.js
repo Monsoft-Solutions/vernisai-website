@@ -240,18 +240,18 @@ function generateSitemap() {
 
 // Generate sitemap and write to file
 function writeSitemap() {
-    console.log('Generating sitemap...');
+    console.warn('Generating sitemap...');
     const sitemap = generateSitemap();
 
     fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemap);
-    console.log(
+    console.warn(
         `Sitemap generated with ${allRoutes.length} URLs (${staticRoutes.length} static, ${allRoutes.length - staticRoutes.length} dynamic)`,
     );
 }
 
 // Pre-render all routes
 function preRenderRoutes() {
-    console.log('Pre-rendering all routes...');
+    console.warn('Pre-rendering all routes...');
 
     // Create HTML files for each route
     for (const route of allRoutes) {
@@ -271,19 +271,19 @@ function preRenderRoutes() {
             const htmlFilePath = path.join(dirPath, 'index.html');
             fs.writeFileSync(htmlFilePath, htmlContent);
 
-            console.log(`Pre-rendered: ${route} -> ${htmlFilePath}`);
+            console.warn(`Pre-rendered: ${route} -> ${htmlFilePath}`);
         } catch (error) {
             console.error(`Error pre-rendering route ${route}:`, error);
         }
     }
 
-    console.log('Pre-rendering completed successfully!');
+    console.warn('Pre-rendering completed successfully!');
 }
 
 // ============ EXECUTION ============
 
 // Run the sitemap generation and pre-rendering process
-console.log('Starting sitemap generation and pre-rendering process...');
+console.warn('Starting sitemap generation and pre-rendering process...');
 writeSitemap();
 preRenderRoutes();
-console.log('All done!');
+console.warn('All done!');

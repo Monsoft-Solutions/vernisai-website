@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet-async';
 import { lazy, Suspense, useEffect } from 'react';
 import { Layout } from './components/Layout';
 import { generateMetaTags } from './lib/ssg';
+import { getEnv, isDevelopment } from './lib/env';
 
 // Loading component for Suspense
 const PageLoader = () => (
@@ -91,6 +92,19 @@ const CookiePolicy = lazy(() =>
 function RouteMetadata() {
     const { pathname } = useLocation();
     const metaTags = generateMetaTags(pathname);
+    const env = getEnv();
+
+    // Log environment info in development mode
+    useEffect(() => {
+        if (isDevelopment()) {
+            console.warn('Environment:', env.VITE_APP_ENV);
+            console.warn(
+                'Debug mode:',
+                env.VITE_DEBUG_MODE === 'true' ? 'Enabled' : 'Disabled',
+            );
+            console.warn('API URL:', env.VITE_API_URL);
+        }
+    }, []);
 
     return (
         <Helmet>
