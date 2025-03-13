@@ -24,7 +24,7 @@ const parseEnv = (): Env => {
     const rawEnv = {
         VITE_API_URL: import.meta.env.VITE_API_URL,
         VITE_DEBUG_MODE: import.meta.env.VITE_DEBUG_MODE,
-        VITE_APP_ENV: import.meta.env.VITE_APP_ENV,
+        VITE_APP_ENV: import.meta.env.MODE,
         VITE_GOOGLE_ANALYTICS_ID: import.meta.env.VITE_GOOGLE_ANALYTICS_ID,
         VITE_MICROSOFT_CLARITY_ID: import.meta.env.VITE_MICROSOFT_CLARITY_ID,
     };
