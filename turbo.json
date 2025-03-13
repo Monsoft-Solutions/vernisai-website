@@ -3,6 +3,7 @@
     "ui": "tui",
     "globalDependencies": ["**/.env*", "tsconfig.json"],
     "tasks": {
+        "check": {},
         "build": {
             "dependsOn": ["^build", "typecheck"],
             "outputs": ["dist/**", ".next/**", "public/dist/**"],
