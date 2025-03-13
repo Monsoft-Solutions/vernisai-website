@@ -119,6 +119,26 @@ export function ActionCategory() {
                 description={`Explore ${category.name} actions and integrations to automate your workflows with VernisAI's powerful automation platform.`}
                 keywords={`${category.name.toLowerCase()}, actions, workflow automation, AI integration, no-code workflow`}
                 canonicalUrl={`https://vernis.ai/features/actions/${categoryId}`}
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Product',
+                    name: `VernisAI ${category.name} Actions`,
+                    description: `${category.name} actions and integrations for VernisAI's workflow automation platform.`,
+                    url: `https://vernis.ai/features/actions/${categoryId}`,
+                    category: 'Software',
+                    brand: {
+                        '@type': 'Brand',
+                        name: 'VernisAI',
+                        logo: 'https://vernis.ai/images/vernisai-logo.png',
+                    },
+                    offers: {
+                        '@type': 'Offer',
+                        availability: 'https://schema.org/ComingSoon',
+                        price: '29',
+                        priceCurrency: 'USD',
+                        priceValidUntil: '2025-12-31',
+                    },
+                }}
             />
 
             <div className="container mx-auto px-4 py-16">

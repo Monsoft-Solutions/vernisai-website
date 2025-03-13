@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { CallToAction } from '@/components/CallToAction';
 import '@/styles/fix-overflow.css';
+import { SEO } from '@/components';
 
 export function WorkflowsFeature() {
     const creationMethods = [
@@ -58,229 +59,291 @@ export function WorkflowsFeature() {
     ];
 
     // Ensure animations respect user's reduced motion preferences
-    const prefersReducedMotion =
-        typeof window !== 'undefined'
-            ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            : false;
-
-    const animationSettings = prefersReducedMotion
-        ? { duration: 0 }
-        : { type: 'spring', stiffness: 300, damping: 20 };
-
-    const fadeInUpVariant = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
+    const motionProps = {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.5 },
     };
 
     return (
-        <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="mx-auto max-w-5xl">
-                {/* Hero Section */}
-                <div className="relative mb-16 text-center md:mb-24">
-                    {/* Background gradient blob */}
-                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-full max-w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
+        <>
+            <SEO
+                title="Workflows - Automate Complex Business Processes"
+                description="Build powerful, flexible workflows that connect your tools and automate repetitive tasks. No coding required."
+                keywords="workflows, automation, no-code, business processes, task automation"
+                canonicalUrl="https://vernis.ai/features/workflows"
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Product',
+                    name: 'VernisAI Workflow Automation',
+                    description:
+                        'Build powerful, flexible workflows that connect your tools and automate repetitive tasks. No coding required.',
+                    url: 'https://vernis.ai/features/workflows',
+                    category: 'Software',
+                    brand: {
+                        '@type': 'Brand',
+                        name: 'VernisAI',
+                        logo: 'https://vernis.ai/images/vernisai-logo.png',
+                    },
+                    offers: {
+                        '@type': 'Offer',
+                        availability: 'https://schema.org/ComingSoon',
+                        price: '29',
+                        priceCurrency: 'USD',
+                        priceValidUntil: '2025-12-31',
+                    },
+                }}
+            />
 
-                    <motion.div
-                        className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-purple-500/30 md:mb-8 md:h-24 md:w-24"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                            ...animationSettings,
-                            delay: 0.1,
-                        }}
-                    >
-                        <GitBranch className="h-10 w-10 text-white md:h-12 md:w-12" />
-                    </motion.div>
-                    <motion.h1
-                        className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold tracking-tight text-transparent md:mb-6 md:text-6xl"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ ...animationSettings, delay: 0.2 }}
-                    >
-                        Powerful AI Workflows
-                    </motion.h1>
-                    <motion.p
-                        className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 md:text-2xl"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ ...animationSettings, delay: 0.3 }}
-                    >
-                        Connect multiple actions to create end-to-end automation
-                        without writing a single line of code
-                    </motion.p>
+            <div className="no-overflow pb-16">
+                {/* Hero Section */}
+                <div className="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-white py-16 md:py-24">
+                    {/* Decorative background elements */}
+                    <div className="absolute inset-0 z-0">
+                        <div className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-blue-50 opacity-80 blur-3xl"></div>
+                        <div className="absolute bottom-20 -left-20 h-80 w-80 rounded-full bg-purple-50 opacity-80 blur-3xl"></div>
+                    </div>
+
+                    <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <div className="flex flex-col items-center text-center">
+                            <motion.div
+                                className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 shadow-lg"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 260,
+                                    damping: 20,
+                                }}
+                            >
+                                <GitBranch className="h-10 w-10 text-white" />
+                            </motion.div>
+
+                            <motion.h1
+                                className="mb-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                            >
+                                <span className="block">
+                                    Powerful{' '}
+                                    <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                                        Workflow
+                                    </span>{' '}
+                                    Automation
+                                </span>
+                            </motion.h1>
+
+                            <motion.p
+                                className="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-gray-600"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                            >
+                                Build, deploy, and manage complex workflows that
+                                connect your tools and automate repetitive
+                                tasks. All without writing a single line of
+                                code.
+                            </motion.p>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Main explanation */}
-                <motion.div
-                    className="prose prose-lg mb-16 max-w-none md:mb-24"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ ...animationSettings, delay: 0.4 }}
-                >
-                    <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-md md:p-10">
-                        <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">
-                            What Are Workflows?
-                        </h2>
-                        <div className="mb-8 flex justify-start">
-                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
-                        </div>
-                        <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                            A <strong>workflow</strong> defines the sequence of
-                            actions an AI assistant follows, structured as a
-                            Directed Acyclic Graph (DAG). Workflows let you
-                            connect multiple actions together to create powerful
-                            automations without writing any code.
-                        </p>
-
-                        <h3 className="mb-4 text-2xl font-semibold text-gray-800">
-                            Key Characteristics
-                        </h3>
-                        <ul className="space-y-3 text-gray-700">
-                            <li className="flex items-start">
-                                <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
-                                <span>
-                                    <strong>Nodes</strong> = Actions (Send
-                                    email, Process data, Generate content)
-                                </span>
-                            </li>
-                            <li className="flex items-start">
-                                <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
-                                <span>
-                                    <strong>Edges</strong> = Context and data
-                                    passed between actions
-                                </span>
-                            </li>
-                            <li className="flex items-start">
-                                <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
-                                <span>
-                                    Supports <strong>conditional logic</strong>{' '}
-                                    (if/then branches) and parallel execution
-                                </span>
-                            </li>
-                            <li className="flex items-start">
-                                <CheckCircle2 className="mt-0.5 mr-2 h-6 w-6 flex-shrink-0 text-blue-500" />
-                                <span>
-                                    Run workflows on schedule, trigger them
-                                    manually, or connect to external events
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </motion.div>
-
-                {/* Creation Methods */}
-                <motion.div
-                    className="no-overflow relative mb-20 overflow-hidden rounded-2xl md:mb-24"
-                    variants={fadeInUpVariant}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ ...animationSettings, delay: 0.5 }}
-                >
-                    {/* Background decoration */}
-                    <div className="decorative-element absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
-
-                    <div className="p-8 md:p-12">
-                        <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
-                            Three Ways to Create Workflows
-                        </h2>
-                        <div className="mb-8 flex justify-center md:mb-10">
-                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
+                {/* Main Content */}
+                <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                    {/* Ways to Create Workflows */}
+                    <motion.div
+                        className="mb-20"
+                        {...motionProps}
+                        transition={{ delay: 0.1 }}
+                    >
+                        <div className="mb-12 max-w-3xl">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                Three Ways to Create Workflows
+                            </h2>
+                            <p className="text-lg text-gray-600">
+                                VernisAI offers multiple ways to create and
+                                automate workflows, giving you flexibility based
+                                on your team's needs and technical experience.
+                            </p>
                         </div>
 
-                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                             {creationMethods.map((method, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={method.title}
                                     className={cn(
-                                        'rounded-xl border p-6 shadow-md md:p-8',
-                                        'transition-all duration-300 hover:-translate-y-2 hover:shadow-lg',
-                                        method.color,
+                                        'group relative rounded-xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md',
                                         method.borderColor,
                                     )}
-                                    whileHover={{ scale: 1.03 }}
                                     initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
                                     transition={{
-                                        ...animationSettings,
-                                        delay: 0.5 + index * 0.1,
+                                        delay: 0.1 + index * 0.1,
                                     }}
                                 >
-                                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-white p-3 shadow-sm">
+                                    <div
+                                        className={cn(
+                                            'mb-4 flex h-12 w-12 items-center justify-center rounded-lg',
+                                            method.color,
+                                        )}
+                                    >
                                         {method.icon}
                                     </div>
-                                    <h3 className="mb-3 text-xl font-bold text-gray-900">
+                                    <h3 className="mb-3 text-xl font-semibold text-gray-900">
                                         {method.title}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-600">
                                         {method.description}
                                     </p>
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
 
-                {/* Examples Section */}
-                <motion.div
-                    className="relative mb-20 md:mb-24"
-                    variants={fadeInUpVariant}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ ...animationSettings, delay: 0.6 }}
-                >
-                    <div className="absolute inset-0 -z-10 rotate-1 transform rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
-                    <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
-
-                    <div className="relative rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
-                        {/* Decorative elements */}
-                        <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/20 opacity-30 blur-3xl filter"></div>
-                        <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/2 rounded-full bg-purple-600/20 opacity-30 blur-3xl filter"></div>
-
-                        <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
-                            Popular Workflow Examples
-                        </h2>
-                        <div className="mb-10 flex justify-center">
-                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
+                    {/* Workflow Examples Section */}
+                    <motion.div
+                        className="mb-20"
+                        {...motionProps}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <div className="mb-12 max-w-3xl">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                Examples of What You Can Build
+                            </h2>
+                            <p className="text-lg text-gray-600">
+                                From simple automations to complex multi-step
+                                processes, VernisAI workflows help you save time
+                                and eliminate human error.
+                            </p>
                         </div>
 
-                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {workflowExamples.map((example, index) => (
                                 <motion.div
-                                    key={index}
-                                    className="flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-xl md:p-8"
+                                    key={example.title}
+                                    className="relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md"
                                     initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
                                     transition={{
-                                        ...animationSettings,
-                                        delay: 0.6 + index * 0.1,
+                                        delay: 0.2 + index * 0.1,
                                     }}
                                 >
-                                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 p-3">
-                                        <ArrowRight className="h-5 w-5 text-blue-300" />
+                                    <div className="absolute -top-4 -right-4 h-20 w-20 rounded-full bg-indigo-50 opacity-50"></div>
+                                    <div className="relative">
+                                        <h3 className="mb-3 text-xl font-semibold text-gray-900">
+                                            {example.title}
+                                        </h3>
+                                        <p className="mb-4 text-gray-600">
+                                            {example.description}
+                                        </p>
+                                        <div className="flex items-center text-indigo-600">
+                                            <span className="mr-2 font-medium">
+                                                Learn more
+                                            </span>
+                                            <ArrowRight className="h-4 w-4" />
+                                        </div>
                                     </div>
-                                    <h3 className="mb-3 text-xl font-semibold text-white">
-                                        {example.title}
-                                    </h3>
-                                    <p className="mt-auto text-gray-200">
-                                        {example.description}
-                                    </p>
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
 
-                {/* Call to Action */}
-                <CallToAction
-                    title="Ready to Automate Your Work?"
-                    description="Join our waitlist to be among the first to create powerful AI workflows that save you hours every day."
-                    buttonText="Join Waitlist"
-                    buttonLink="/waitlist"
-                    height="tall"
-                    alignment="center"
-                    gradient="from-blue-600 to-purple-700"
-                />
+                    {/* Key Features Section */}
+                    <motion.div
+                        className="mb-20"
+                        {...motionProps}
+                        transition={{ delay: 0.3 }}
+                    >
+                        <div className="mb-12 max-w-3xl">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                Key Features
+                            </h2>
+                            <p className="text-lg text-gray-600">
+                                VernisAI workflows are designed to be powerful,
+                                flexible, and easy to use, regardless of your
+                                technical background.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {[
+                                {
+                                    title: 'Conditional Logic',
+                                    description:
+                                        'Create intelligent workflows with if/then conditions, loops, and dynamic routing based on data.',
+                                },
+                                {
+                                    title: 'Error Handling',
+                                    description:
+                                        'Define what happens when things go wrong with automatic retries and fallback paths.',
+                                },
+                                {
+                                    title: 'Schedule & Triggers',
+                                    description:
+                                        'Start workflows on a schedule or in response to events from integrated systems.',
+                                },
+                                {
+                                    title: 'Data Mapping',
+                                    description:
+                                        'Easily transform data between steps with a visual mapping interface.',
+                                },
+                                {
+                                    title: 'Built-in Testing',
+                                    description:
+                                        'Test your workflows with sample data before deploying them to production.',
+                                },
+                                {
+                                    title: 'Version Control',
+                                    description:
+                                        'Track changes with full version history and the ability to roll back when needed.',
+                                },
+                            ].map((feature, index) => (
+                                <motion.div
+                                    key={feature.title}
+                                    className="flex items-start"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        delay: 0.3 + index * 0.1,
+                                    }}
+                                >
+                                    <div className="mt-1 mr-4 flex-shrink-0">
+                                        <CheckCircle2 className="h-6 w-6 text-indigo-500" />
+                                    </div>
+                                    <div>
+                                        <h3 className="mb-2 text-lg font-medium text-gray-900">
+                                            {feature.title}
+                                        </h3>
+                                        <p className="text-gray-600">
+                                            {feature.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Call to Action */}
+                    <motion.div
+                        className="mx-auto max-w-4xl"
+                        {...motionProps}
+                        transition={{ delay: 0.4 }}
+                    >
+                        <CallToAction
+                            title="Ready to streamline your workflows?"
+                            description="Start building powerful automation workflows with VernisAI. No coding required."
+                            buttonText="Join the Waitlist"
+                            buttonLink="/waitlist"
+                            gradient="from-indigo-500 to-purple-600"
+                        />
+                    </motion.div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

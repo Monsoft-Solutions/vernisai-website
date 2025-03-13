@@ -13,6 +13,7 @@ import {
 import { motion } from 'framer-motion';
 import { FeatureCard } from '@/components/ui/feature-card';
 import { CallToAction } from '@/components/CallToAction';
+import { SEO } from '@/components';
 import '@/styles/fix-overflow.css';
 
 export function AgentsFeature() {
@@ -21,387 +22,406 @@ export function AgentsFeature() {
             icon: <Clock className="h-6 w-6 text-blue-500" />,
             title: 'Reclaim Your Time',
             description:
-                'Stop wasting 2-3 hours daily on mundane tasks. Your AI team handles the routine work while you focus on what matters.',
+                'Delegate repetitive tasks to agents and focus on creative, high-value work that requires human judgment.',
         },
         {
             icon: <Sparkles className="h-6 w-6 text-purple-500" />,
-            title: 'Works Day One',
+            title: 'Superhuman Capabilities',
             description:
-                'No training needed. Your agents are ready to help immediately, or customize them in minutes to match your exact needs.',
+                'Leverage agents with specialized knowledge, perfect memory, and the ability to work 24/7 without breaks.',
         },
         {
-            icon: <Zap className="h-6 w-6 text-yellow-500" />,
-            title: 'Lightning-Fast Results',
+            icon: <Zap className="h-6 w-6 text-amber-500" />,
+            title: 'Maximum Productivity',
             description:
-                'Your hour-long tasks completed in seconds. No more waiting or context-switching that kills your productivity.',
-        },
-        {
-            icon: <Brain className="h-6 w-6 text-green-500" />,
-            title: 'Gets Smarter Every Day',
-            description:
-                'Your agents learn your preferences, writing style, and decision patterns, becoming more valuable over time.',
+                'Transform your workday by automating entire workflows end-to-end with intelligent agents that adapt to your needs.',
         },
     ];
 
     const agentCapabilities = [
         {
-            icon: <CheckCircle2 className="h-5 w-5 text-blue-500" />,
-            title: 'Tame Your Inbox',
+            title: 'Research & Analysis',
             description:
-                'Never face an overwhelming inbox again. Your agents sort, summarize, and draft responses to emails in your writing style.',
-            color: 'bg-blue-50',
-            borderColor: 'border-blue-100',
-            shadowColor: 'shadow-blue-100',
+                'Collect and analyze information from multiple sources, generate insights, and prepare comprehensive reports.',
+            icon: <Brain className="h-10 w-10" />,
+            color: 'blue',
         },
         {
-            icon: <CheckCircle2 className="h-5 w-5 text-purple-500" />,
-            title: 'Research While You Sleep',
+            title: 'Content Creation',
             description:
-                'Wake up to comprehensive research reports that would have taken you hours to compile, analyze, and format.',
-            color: 'bg-purple-50',
-            borderColor: 'border-purple-100',
-            shadowColor: 'shadow-purple-100',
+                'Draft, edit, and optimize various types of content from emails to blog posts, social media, and technical documentation.',
+            icon: <LayoutPanelTop className="h-10 w-10" />,
+            color: 'indigo',
         },
         {
-            icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
-            title: 'Create Content That Converts',
+            title: 'Data Processing',
             description:
-                'Generate website copy, social posts, newsletters, and presentations that sound like you wrote them—because you guided the process.',
-            color: 'bg-green-50',
-            borderColor: 'border-green-100',
-            shadowColor: 'shadow-green-100',
+                'Extract, transform, and analyze data from various formats, identify patterns, and generate visual reports.',
+            icon: <Repeat className="h-10 w-10" />,
+            color: 'green',
         },
         {
-            icon: <CheckCircle2 className="h-5 w-5 text-amber-500" />,
-            title: 'Never Miss Another Meeting',
+            title: 'Customer Support',
             description:
-                'Let your agents handle scheduling, reminders, and calendar management across all your platforms. Say goodbye to double-bookings.',
-            color: 'bg-amber-50',
-            borderColor: 'border-amber-100',
-            shadowColor: 'shadow-amber-100',
+                'Respond to customer inquiries, troubleshoot common issues, and escalate complex problems when necessary.',
+            icon: <Users className="h-10 w-10" />,
+            color: 'amber',
         },
     ];
 
     const agentTypes = [
         {
-            icon: <LayoutPanelTop className="h-6 w-6 text-blue-500" />,
-            title: 'Instant Experts',
+            title: 'Single Task Agents',
             description:
-                'Need a marketing assistant now? Social media manager? Email wizard? Choose from dozens of pre-built agents ready to work immediately.',
+                'Specialized agents that excel at performing one specific task repeatedly with high accuracy and efficiency.',
+            capabilities: [
+                'Monitoring data sources',
+                'Processing information',
+                'Generating reports',
+                'Performing routine checks',
+            ],
+            colorClass: 'blue',
         },
         {
-            icon: <Settings className="h-6 w-6 text-purple-500" />,
-            title: 'Build Your Dream Assistant',
+            title: 'Multi-step Workflow Agents',
             description:
-                'Create the perfect AI helper by defining exactly what you need. Your custom agent will execute tasks precisely how you want them done.',
+                'Agents that manage complex processes involving multiple steps, decisions, and potential paths.',
+            capabilities: [
+                'Customer onboarding',
+                'Content publication workflows',
+                'Data cleaning pipelines',
+                'Approval processes',
+            ],
+            colorClass: 'green',
         },
         {
-            icon: <Users className="h-6 w-6 text-green-500" />,
-            title: 'Supercharge Your Team',
+            title: 'Collaborative Agent Teams',
             description:
-                'Share powerful agents across your organization to ensure everyone follows the same processes with consistent, high-quality outputs.',
+                'Multiple specialized agents working together to accomplish complex objectives, coordinating their efforts.',
+            capabilities: [
+                'Research projects',
+                'Content marketing campaigns',
+                'Product development',
+                'Customer journey management',
+            ],
+            colorClass: 'purple',
         },
     ];
 
-    const fadeInUpVariant = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
-    };
-
-    // Ensure animations respect user's reduced motion preferences
-    const prefersReducedMotion =
-        typeof window !== 'undefined'
-            ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            : false;
-
-    const animationSettings = prefersReducedMotion
-        ? { duration: 0 }
-        : { type: 'spring', stiffness: 300, damping: 20 };
+    const advancedFeatures = [
+        {
+            title: 'Memory & Context Awareness',
+            description:
+                'Agents maintain memory of past interactions and understand the broader context of your business needs.',
+            icon: <Bot className="h-6 w-6" />,
+        },
+        {
+            title: 'Tool Use & Integration',
+            description:
+                'Agents can utilize your existing tools and platforms to perform tasks as if a human were using them.',
+            icon: <Settings className="h-6 w-6" />,
+        },
+        {
+            title: 'Natural Language Configuration',
+            description:
+                'Configure and customize your agents using plain English instructions - no coding or programming required.',
+            icon: <Sparkles className="h-6 w-6" />,
+        },
+        {
+            title: 'Supervision & Feedback Loop',
+            description:
+                'Keep humans in the loop with options for approval, review, and continuous improvement through feedback.',
+            icon: <Users className="h-6 w-6" />,
+        },
+    ];
 
     return (
-        <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="mx-auto max-w-5xl">
-                {/* Hero Section */}
-                <div className="relative mb-16 text-center md:mb-24">
-                    {/* Background gradient blob */}
-                    <div className="absolute -top-24 left-1/2 -z-10 h-[400px] w-full max-w-[800px] -translate-x-1/2 transform rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"></div>
+        <>
+            <SEO
+                title="AI Agents - Intelligent Automation Assistants"
+                description="Deploy AI agents that work autonomously on complex tasks with human-like reasoning. Boost productivity with intelligent AI assistants."
+                keywords="AI agents, intelligent automation, AI assistants, autonomous agents, natural language AI"
+                canonicalUrl="https://vernis.ai/features/agents"
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Product',
+                    name: 'VernisAI Autonomous Agents',
+                    description:
+                        'Deploy AI agents that work autonomously on complex tasks with human-like reasoning and problem-solving abilities.',
+                    url: 'https://vernis.ai/features/agents',
+                    category: 'Software',
+                    brand: {
+                        '@type': 'Brand',
+                        name: 'VernisAI',
+                        logo: 'https://vernis.ai/images/vernisai-logo.png',
+                    },
+                    offers: {
+                        '@type': 'Offer',
+                        availability: 'https://schema.org/ComingSoon',
+                        price: '29',
+                        priceCurrency: 'USD',
+                        priceValidUntil: '2025-12-31',
+                    },
+                }}
+            />
 
+            <div className="container mx-auto px-4 py-16 md:py-24">
+                <div className="mx-auto max-w-5xl">
+                    {/* Hero Section */}
+                    <div className="relative mb-16 text-center md:mb-24">
+                        <motion.div
+                            className="mb-6 flex justify-center"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 260,
+                                damping: 20,
+                            }}
+                        >
+                            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 shadow-lg">
+                                <Bot className="h-10 w-10 text-white" />
+                            </div>
+                        </motion.div>
+
+                        <motion.h1
+                            className="mb-6 text-4xl leading-tight font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                        >
+                            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                Intelligent AI Agents
+                            </span>{' '}
+                            <br className="hidden md:inline" />
+                            For Your Business
+                        </motion.h1>
+
+                        <motion.p
+                            className="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-gray-600"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            Deploy AI agents that work autonomously on complex
+                            tasks with human-like reasoning and problem-solving
+                            abilities. Your new AI team members are ready to
+                            work.
+                        </motion.p>
+
+                        {/* Background decorative elements */}
+                        <div className="absolute -top-10 -right-10 -z-10 h-64 w-64 rounded-full bg-blue-50 opacity-70 blur-3xl"></div>
+                        <div className="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-purple-50 opacity-70 blur-3xl"></div>
+                    </div>
+
+                    {/* Value Proposition */}
                     <motion.div
-                        className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-purple-500/30 md:mb-8 md:h-24 md:w-24"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                            ...animationSettings,
-                            delay: 0.1,
-                        }}
-                    >
-                        <Bot className="h-10 w-10 text-white md:h-12 md:w-12" />
-                    </motion.div>
-                    <motion.h1
-                        className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold tracking-tight text-transparent md:mb-6 md:text-6xl"
+                        className="mb-20"
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ ...animationSettings, delay: 0.2 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
                     >
-                        Your Personal AI Team
-                    </motion.h1>
-                    <motion.p
-                        className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 md:text-2xl"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ ...animationSettings, delay: 0.3 }}
-                    >
-                        Stop doing everything yourself. Delegate tasks to AI
-                        agents that learn your preferences and handle your
-                        workload exactly how you would.
-                    </motion.p>
-                </div>
-
-                {/* Value Proposition */}
-                <motion.div
-                    className="prose prose-lg mb-16 max-w-none text-center md:mb-24"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ ...animationSettings, delay: 0.4 }}
-                >
-                    <h2 className="mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-3xl font-bold text-transparent md:mb-8 md:text-4xl">
-                        What Would You Do With Extra Hours Every Day?
-                    </h2>
-                    <div className="mb-6 flex justify-center">
-                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
-                    </div>
-                    <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-700 md:text-xl">
-                        While your AI team handles your email, research,
-                        scheduling, and content creation, you're free to focus
-                        on what truly matters - creative thinking, meaningful
-                        connections, and the work only you can do. No more late
-                        nights handling routine tasks.
-                    </p>
-                </motion.div>
-
-                {/* Benefits Grid */}
-                <motion.div
-                    className="relative mb-20 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-xl md:mb-24 md:p-12"
-                    variants={fadeInUpVariant}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ ...animationSettings, delay: 0.5 }}
-                >
-                    {/* Decorative elements */}
-                    <div className="decorative-element absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-200/30 blur-2xl"></div>
-                    <div className="decorative-element absolute bottom-0 left-0 h-24 w-24 -translate-x-1/2 translate-y-1/2 rounded-full bg-purple-200/30 blur-2xl"></div>
-
-                    <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
-                        Life-Changing Benefits
-                    </h2>
-                    <div className="mb-8 flex justify-center md:mb-10">
-                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
-                    </div>
-                    <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-                        {agentBenefits.map((benefit, index) => (
-                            <motion.div
-                                key={index}
-                                className="flex rounded-xl border border-gray-100 bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{
-                                    ...animationSettings,
-                                    delay: 0.5 + index * 0.1,
-                                }}
-                            >
-                                <div className="mt-1 mr-5">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100">
-                                        {benefit.icon}
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="mb-2 text-xl font-semibold text-gray-900">
-                                        {benefit.title}
-                                    </h3>
-                                    <p className="leading-relaxed text-gray-700">
-                                        {benefit.description}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* What Agents Can Do */}
-                <motion.div
-                    className="relative mb-20 px-2 md:mb-24 md:px-4"
-                    variants={fadeInUpVariant}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ ...animationSettings, delay: 0.6 }}
-                >
-                    {/* Background decoration */}
-                    <div className="absolute -z-10 h-full w-full rotate-3 transform rounded-3xl bg-gradient-to-r from-purple-50 to-blue-50 opacity-70 blur-xl"></div>
-
-                    <h2 className="mb-6 text-center text-3xl font-bold text-gray-900 md:mb-8 md:text-4xl">
-                        Your Digital Workforce In Action
-                    </h2>
-                    <div className="mb-8 flex justify-center md:mb-10">
-                        <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 md:w-20"></div>
-                    </div>
-
-                    <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-                        {agentCapabilities.map((capability, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{
-                                    y: -8,
-                                    transition: { duration: 0.3 },
-                                }}
-                            >
-                                <FeatureCard
-                                    icon={capability.icon}
-                                    title={capability.title}
-                                    description={capability.description}
-                                    color={capability.color}
-                                    borderColor={capability.borderColor}
-                                    shadowColor={capability.shadowColor}
-                                    className="h-full shadow-md hover:shadow-lg"
-                                />
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* Agent Types */}
-                <motion.div
-                    className="relative mb-20 md:mb-24"
-                    variants={fadeInUpVariant}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ ...animationSettings, delay: 0.7 }}
-                >
-                    <div className="absolute inset-0 -z-10 rotate-1 transform rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
-                    <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
-
-                    <div className="relative overflow-hidden rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
-                        {/* Decorative elements */}
-                        <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/20 opacity-30 blur-3xl filter"></div>
-                        <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/2 rounded-full bg-purple-600/20 opacity-30 blur-3xl filter"></div>
-
-                        <h2 className="mb-6 text-center text-3xl font-bold text-white md:mb-8 md:text-4xl">
-                            Start With The Help You Need Most
-                        </h2>
-                        <div className="mb-10 flex justify-center">
-                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-24"></div>
+                        <div className="mb-12 md:text-center">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                Virtual Team Members That Really Work
+                            </h2>
+                            <p className="mx-auto max-w-3xl text-lg text-gray-600">
+                                VernisAI agents combine the latest advances in
+                                AI with your business knowledge to create
+                                intelligent assistants that can handle entire
+                                workflows autonomously.
+                            </p>
                         </div>
 
-                        <div className="card-grid-container grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-                            {agentTypes.map((type, index) => (
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                            {agentBenefits.map((benefit, index) => (
                                 <motion.div
-                                    key={index}
-                                    className="flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-xl md:p-8"
-                                    whileHover={{ scale: 1.03 }}
+                                    key={benefit.title}
+                                    className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
                                     initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
                                     transition={{
-                                        ...animationSettings,
-                                        delay: 0.7 + index * 0.1,
+                                        delay: 0.1 * index,
+                                        duration: 0.5,
                                     }}
                                 >
-                                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-white/10 shadow-inner">
-                                        {type.icon}
+                                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-50">
+                                        {benefit.icon}
                                     </div>
-                                    <h3 className="mb-3 text-xl font-semibold text-white md:mb-4">
-                                        {type.title}
+                                    <h3 className="mb-3 text-xl font-semibold text-gray-900">
+                                        {benefit.title}
                                     </h3>
-                                    <p className="text-gray-200">
-                                        {type.description}
+                                    <p className="text-gray-600">
+                                        {benefit.description}
                                     </p>
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
 
-                {/* Advanced Features */}
-                <motion.div
-                    className="relative mb-16"
-                    variants={fadeInUpVariant}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ ...animationSettings, delay: 0.8 }}
-                >
-                    <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 opacity-95"></div>
-                    <div className="absolute inset-0 -z-10 rounded-2xl bg-[url('/images/grid-pattern.svg')] opacity-10 mix-blend-soft-light"></div>
-
-                    <div className="relative rounded-2xl px-8 py-12 text-white md:px-12 md:py-14">
-                        <div className="absolute top-0 left-0 h-80 w-80 -translate-x-1/4 -translate-y-1/2 rounded-full bg-blue-600/10 opacity-30 blur-3xl filter"></div>
-
-                        <h2 className="mb-8 text-center text-2xl font-bold md:text-3xl">
-                            The Technology That Makes It Possible
-                        </h2>
-                        <div className="mb-10 flex justify-center">
-                            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 md:w-20"></div>
+                    {/* What Agents Can Do */}
+                    <motion.div
+                        className="mb-20"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <div className="mb-12 md:text-center">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                What Agents Can Do For You
+                            </h2>
+                            <p className="mx-auto max-w-3xl text-lg text-gray-600">
+                                VernisAI agents can handle a wide range of tasks
+                                across different domains, from simple data
+                                processing to complex research and content
+                                creation.
+                            </p>
                         </div>
 
-                        <div className="card-grid-container grid grid-cols-1 gap-8 md:grid-cols-3">
-                            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
-                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-900/50 p-3">
-                                    <Brain className="h-6 w-6 text-blue-300" />
-                                </div>
-                                <h3 className="mb-3 text-lg font-semibold md:text-xl">
-                                    Memory That Builds Over Time
-                                </h3>
-                                <p className="text-gray-200">
-                                    Unlike basic chatbots, your agents remember
-                                    every interaction you've had, learning your
-                                    preferences and communication style with
-                                    each task they complete.
-                                </p>
-                            </div>
-
-                            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
-                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-900/50 p-3">
-                                    <Settings className="h-6 w-6 text-purple-300" />
-                                </div>
-                                <h3 className="mb-3 text-lg font-semibold md:text-xl">
-                                    Your Process, Automated
-                                </h3>
-                                <p className="text-gray-200">
-                                    Map your exact workflow into an agent that
-                                    follows your precise instructions. From
-                                    research format to email tone to content
-                                    structure—your agents do it exactly how you
-                                    would.
-                                </p>
-                            </div>
-
-                            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
-                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-900/50 p-3">
-                                    <Repeat className="h-6 w-6 text-indigo-300" />
-                                </div>
-                                <h3 className="mb-3 text-lg font-semibold md:text-xl">
-                                    Agents That Work Together
-                                </h3>
-                                <p className="text-gray-200">
-                                    Complex tasks? No problem. Multiple agents
-                                    can collaborate—one researches, another
-                                    drafts content, and a third polishes the
-                                    final output—all while you're focused
-                                    elsewhere.
-                                </p>
-                            </div>
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                            {agentCapabilities.map((capability, index) => (
+                                <motion.div
+                                    key={capability.title}
+                                    className={`rounded-xl border border-${capability.color}-100 bg-${capability.color}-50/30 p-6`}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        delay: 0.1 * index,
+                                        duration: 0.5,
+                                    }}
+                                >
+                                    <div
+                                        className={`mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-${capability.color}-100 text-${capability.color}-600`}
+                                    >
+                                        {capability.icon}
+                                    </div>
+                                    <h3 className="mb-3 text-xl font-semibold text-gray-900">
+                                        {capability.title}
+                                    </h3>
+                                    <p className="text-gray-600">
+                                        {capability.description}
+                                    </p>
+                                </motion.div>
+                            ))}
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
 
-                {/* Call to Action */}
-                <CallToAction
-                    title="Ready for Your AI Team to Start Working?"
-                    description="Join thousands of professionals who now finish a day's work by lunch. Your AI agents are waiting to help."
-                    buttonText="Get Early Access Today"
-                    buttonLink="/waitlist"
-                    height="tall"
-                    alignment="center"
-                    gradient="from-blue-600 to-purple-700"
-                />
+                    {/* Agent Types */}
+                    <motion.div
+                        className="mb-20"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <div className="mb-12 md:text-center">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                Types of Agents
+                            </h2>
+                            <p className="mx-auto max-w-3xl text-lg text-gray-600">
+                                Choose from different types of agents based on
+                                the complexity of your needs and the tasks you
+                                want to automate.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                            {agentTypes.map((type, index) => (
+                                <motion.div
+                                    key={type.title}
+                                    className={`rounded-xl border border-${type.colorClass}-100 bg-gradient-to-br from-white to-${type.colorClass}-50/20 p-6 shadow-sm`}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        delay: 0.1 * index,
+                                        duration: 0.5,
+                                    }}
+                                >
+                                    <h3 className="mb-3 text-xl font-semibold text-gray-900">
+                                        {type.title}
+                                    </h3>
+                                    <p className="mb-6 text-gray-600">
+                                        {type.description}
+                                    </p>
+
+                                    <h4 className="mb-3 font-medium text-gray-900">
+                                        Example Use Cases:
+                                    </h4>
+                                    <ul className="space-y-2">
+                                        {type.capabilities.map(
+                                            (capability, idx) => (
+                                                <li
+                                                    key={idx}
+                                                    className="flex items-start"
+                                                >
+                                                    <CheckCircle2 className="mt-1 mr-2 h-4 w-4 flex-shrink-0 text-green-500" />
+                                                    <span className="text-gray-600">
+                                                        {capability}
+                                                    </span>
+                                                </li>
+                                            ),
+                                        )}
+                                    </ul>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Advanced Features */}
+                    <motion.div
+                        className="mb-20"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <div className="mb-12 md:text-center">
+                            <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
+                                Advanced Agent Features
+                            </h2>
+                            <p className="mx-auto max-w-3xl text-lg text-gray-600">
+                                VernisAI agents come with powerful capabilities
+                                that make them more effective than basic
+                                automation tools.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+                            {advancedFeatures.map((feature, index) => (
+                                <motion.div
+                                    key={feature.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <FeatureCard
+                                        title={feature.title}
+                                        description={feature.description}
+                                        icon={feature.icon}
+                                    />
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Call to Action */}
+                    <CallToAction
+                        title="Ready for Your AI Team to Start Working?"
+                        description="Join thousands of professionals who now finish a day's work by lunch. Your AI agents are waiting to help."
+                        buttonText="Get Early Access Today"
+                        buttonLink="/waitlist"
+                        height="tall"
+                        alignment="center"
+                        gradient="from-blue-600 to-purple-700"
+                    />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
