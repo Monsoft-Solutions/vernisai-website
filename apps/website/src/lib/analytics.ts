@@ -16,11 +16,24 @@ export function initializeAnalytics(): void {
 
     // Initialize Microsoft Clarity if ID is available
     if (env.VITE_MICROSOFT_CLARITY_ID) {
-        Clarity.init(env.VITE_MICROSOFT_CLARITY_ID);
+        try {
+            Clarity.init(env.VITE_MICROSOFT_CLARITY_ID);
+            console.warn('Microsoft Clarity initialized');
+        } catch (error) {
+            console.error('Error initializing Microsoft Clarity:', error);
+        }
+    } else {
+        console.warn(
+            'Microsoft Clarity ID not found in environment variables. Clarity not initialized.',
+        );
     }
 
-    // Google Analytics is initialized via the script tag, but we can add custom configuration here
-    // This function can be extended if we need to add custom GA events
+    // Log Google Analytics status - initialization is handled in index.html
+    if (env.VITE_GOOGLE_ANALYTICS_ID) {
+        console.warn('Google Analytics configuration available');
+    } else {
+        console.warn('Google Analytics ID not found in environment variables');
+    }
 }
 
 /**

@@ -11,18 +11,29 @@
         <title>VernisAI - AI-Powered No-Code Workflow Automation</title>
 
         <!-- Google tag (gtag.js) -->
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-87KHDLQY3X"
-        ></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
+        <script type="module">
+            // Only load Google Analytics if the ID is provided in environment variables
+            const analyticsId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+            
+            if (analyticsId) {
+                // Create and load the gtag script
+                const gtagScript = document.createElement('script');
+                gtagScript.async = true;
+                gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+                document.head.appendChild(gtagScript);
+                
+                // Initialize gtag
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag('js', new Date());
+                gtag('config', analyticsId);
+                
+                console.log('Google Analytics initialized with ID:', analyticsId);
+            } else if (import.meta.env.DEV) {
+                console.log('Google Analytics ID not found in environment variables. Analytics not loaded.');
             }
-            gtag('js', new Date());
-
-            gtag('config', 'G-87KHDLQY3X');
         </script>
     </head>
     <body>
