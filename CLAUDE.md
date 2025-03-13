@@ -48,7 +48,7 @@
 - Add descriptive and concise comments to functions, types and data. For complicated functions, comment parts of the code.
 - Use the best practices, the code should be extensible and clean
 
-## Closing Up
+## Make sure the code is clean
 
 - Run `npm run validate`, and fix possible issues
 - Run `npm run build` and fix possible issues
