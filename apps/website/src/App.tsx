@@ -104,7 +104,7 @@ function RouteMetadata() {
             );
             console.warn('API URL:', env.VITE_API_URL);
         }
-    }, []);
+    }, [env.VITE_APP_ENV, env.VITE_DEBUG_MODE, env.VITE_API_URL]);
 
     return (
         <Helmet>
