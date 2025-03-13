@@ -125,7 +125,7 @@ export const useCasesFAQItems: FAQItem[] = [
 export const pricingFAQItems: FAQItem[] = [
     {
         question: 'What pricing plans does VernisAI offer?',
-        answer: 'VernisAI offers three main plans: Starter ($19/month), Pro ($49/month), and Enterprise ($149/month). Each plan includes different features and usage limits tailored to different business needs.',
+        answer: 'VernisAI offers three main plans: Starter, Pro, and Team. Each plan includes different features and usage limits tailored to different business needs.',
         category: 'Pricing',
     },
     {
@@ -156,7 +156,7 @@ export const pricingFAQItems: FAQItem[] = [
     },
     {
         question: 'Can I add team members to my plan?',
-        answer: 'Yes, our Pro plan supports up to 5 team members, while the Enterprise plan supports unlimited team members. The Starter plan is limited to a single user.',
+        answer: 'Yes, our Pro plan supports up to 5 team members, while the Team plan supports unlimited team members. The Starter plan is limited to a single user.',
         category: 'Pricing',
     },
     {
@@ -239,12 +239,12 @@ export const pricingFAQs: FAQItem[] = [
     },
     {
         question: 'What payment methods do you accept?',
-        answer: 'We accept all major credit cards (Visa, Mastercard, American Express) and PayPal. For Enterprise plans, we also offer invoicing with net-30 terms.',
+        answer: 'We accept all major credit cards (Visa, Mastercard, American Express) and PayPal. For Team plans, we also offer invoicing with net-30 terms.',
         category: 'Billing',
     },
     {
         question: 'Is there a limit to how many workflows I can create?',
-        answer: 'The Starter plan includes up to 5 workflows. The Pro plan includes unlimited workflows. The Enterprise plan includes unlimited workflows with additional governance features.',
+        answer: 'The Starter plan includes up to 5 workflows. The Pro plan includes 10 workflows. The Team plan includes unlimited workflows with additional governance features.',
         category: 'Features',
     },
     {
@@ -259,12 +259,12 @@ export const pricingFAQs: FAQItem[] = [
     },
     {
         question: 'What kind of support is included with each plan?',
-        answer: 'The Starter plan includes community support. The Pro plan includes email support with a 24-hour response time. The Enterprise plan includes priority support with a dedicated account manager and 4-hour response time during business hours.',
+        answer: 'The Starter plan includes community support. The Pro plan includes email support with a 24-hour response time. The Team plan includes dedicated support with a 4-hour response time during business hours.',
         category: 'Support',
     },
     {
         question: 'Can I use VernisAI for my entire team?',
-        answer: 'Yes, all plans support team usage. The Starter plan includes up to 3 users, the Pro plan includes up to 10 users, and the Enterprise plan includes unlimited users with advanced user management features.',
+        answer: 'Yes, our Team plan supports up to 5 users. The Starter and Pro plans are both limited to a single user each.',
         category: 'Features',
     },
     {

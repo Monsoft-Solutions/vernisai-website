@@ -16,8 +16,6 @@ interface ValueMetricsProps {
 }
 
 export function ValueMetrics({
-    title = 'Real Results, Real Value',
-    description = 'See how VernisAI delivers measurable ROI for businesses like yours',
     metrics,
     className = '',
     useCaseMetrics,
