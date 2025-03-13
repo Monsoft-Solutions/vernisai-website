@@ -108,45 +108,146 @@ function formatTitle(kebabCase) {
         .join(' ');
 }
 
-// Get metadata for a route
-function getRouteMetadata(route) {
-    const metadata = {
+// Route metadata configurations for SEO
+const routeMetadata = {
+    '/': {
         title: 'VernisAI - AI-Powered No-Code Workflow Automation',
         description:
             'Build, automate, and deploy AI workflows without code. Connect your tools and data to create powerful automations with VernisAI.',
-    };
+        image: '/images/vernisai-logo.png',
+    },
+    '/features': {
+        title: 'VernisAI Features - AI-Powered Workflow Automation',
+        description:
+            "Explore the powerful features of VernisAI's no-code AI workflow automation platform.",
+        image: '/images/vernisai-logo.png',
+    },
+    '/features/actions': {
+        title: 'VernisAI Actions - Connect Your Tools and Services',
+        description:
+            'Explore integrations and actions to connect your tools and services with VernisAI.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/features/workflows': {
+        title: 'VernisAI Workflows - Create Powerful AI Automations',
+        description:
+            'Build automated workflows that combine your tools, data, and AI capabilities.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/features/agents': {
+        title: 'VernisAI Agents - Intelligent Automation Assistants',
+        description:
+            'Deploy AI agents that autonomously execute tasks and workflows for your business.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/features/knowledge-base': {
+        title: 'VernisAI Knowledge Base - Train AI on Your Data',
+        description:
+            'Create custom knowledge bases to train AI on your business data and documents.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/use-cases': {
+        title: 'VernisAI Use Cases - Business AI Solutions',
+        description:
+            'Discover how businesses use VernisAI to automate workflows and improve productivity.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/pricing': {
+        title: 'VernisAI Pricing - AI Workflow Automation Plans',
+        description:
+            "View pricing plans for VernisAI's no-code AI workflow automation platform.",
+        image: '/images/vernisai-logo.png',
+    },
+    '/waitlist': {
+        title: 'Join the VernisAI Waitlist',
+        description:
+            "Sign up for early access to VernisAI's no-code AI workflow automation platform.",
+        image: '/images/vernisai-logo.png',
+    },
+    '/privacy': {
+        title: 'Privacy Policy - VernisAI',
+        description:
+            'Read the VernisAI privacy policy to understand how we handle your data.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/terms': {
+        title: 'Terms of Service - VernisAI',
+        description:
+            'View the terms of service for using the VernisAI platform.',
+        image: '/images/vernisai-logo.png',
+    },
+    '/cookies': {
+        title: 'Cookie Policy - VernisAI',
+        description:
+            'Learn about how VernisAI uses cookies and similar technologies.',
+        image: '/images/vernisai-logo.png',
+    },
+};
 
-    // Set route-specific titles and descriptions
-    if (route.includes('/features/actions/')) {
-        const category = route.split('/').pop();
-        const formattedCategory = formatTitle(category);
-        metadata.title = `${formattedCategory} - VernisAI Actions`;
-        metadata.description = `Explore ${formattedCategory} actions and integrations for your AI workflows.`;
-    } else if (route.includes('/use-cases/')) {
-        const useCase = route.split('/').pop();
-        const formattedUseCase = formatTitle(useCase);
-        metadata.title = `${formattedUseCase} - VernisAI Use Cases`;
-        metadata.description = `Learn how VernisAI can help with ${formattedUseCase} in your business.`;
-    } else if (route === '/features') {
-        metadata.title = 'VernisAI Features - AI-Powered Workflow Automation';
-        metadata.description =
-            "Explore the powerful features of VernisAI's no-code AI workflow automation platform.";
-    } else if (route === '/pricing') {
-        metadata.title = 'VernisAI Pricing - AI Workflow Automation Plans';
-        metadata.description =
-            "View pricing plans for VernisAI's no-code AI workflow automation platform.";
-    } else if (route === '/waitlist') {
-        metadata.title = 'Join the VernisAI Waitlist';
-        metadata.description =
-            "Sign up for early access to VernisAI's no-code AI workflow automation platform.";
-    }
+// Generate dynamic route metadata
+function generateDynamicRouteMetadata() {
+    const dynamicMetadata = {};
 
-    return metadata;
+    // Action category metadata
+    actionCategoryIds.forEach((categoryId) => {
+        const route = `/features/actions/${categoryId}`;
+        const formattedCategory = formatTitle(categoryId);
+
+        dynamicMetadata[route] = {
+            title: `${formattedCategory} - VernisAI Actions`,
+            description: `Explore ${formattedCategory} actions and integrations for your AI workflows.`,
+            image: '/images/vernisai-logo.png',
+        };
+    });
+
+    // Use case metadata
+    useCaseIds.forEach((useCaseId) => {
+        const route = `/use-cases/${useCaseId}`;
+        const formattedUseCase = formatTitle(useCaseId);
+
+        // Custom images for use cases (when available)
+        const useSpecificImage = `/images/use-cases/${useCaseId}.png`;
+
+        dynamicMetadata[route] = {
+            title: `${formattedUseCase} - VernisAI Use Case`,
+            description: `Learn how VernisAI can help with ${formattedUseCase} in your business.`,
+            image: useSpecificImage,
+        };
+    });
+
+    return dynamicMetadata;
+}
+
+// Combine static and dynamic metadata
+const allMetadata = {
+    ...routeMetadata,
+    ...generateDynamicRouteMetadata(),
+};
+
+// Get metadata for a route
+function getRouteMetadata(route) {
+    return (
+        allMetadata[route] || {
+            title: 'VernisAI - AI-Powered No-Code Workflow Automation',
+            description:
+                'Build, automate, and deploy AI workflows without code. Connect your tools and data to create powerful automations with VernisAI.',
+            image: '/images/vernisai-logo.png',
+        }
+    );
 }
 
 // Generate HTML for a route
 function generateHtml(route) {
     const metadata = getRouteMetadata(route);
+    const { title, description, image } = metadata;
+
+    const fullTitle = title.includes('VernisAI')
+        ? title
+        : `${title} | VernisAI`;
+    const fullImageUrl = image.startsWith('http')
+        ? image
+        : `${SITE_URL}${image}`;
+    const canonicalUrl = `${SITE_URL}${route}`;
 
     // Create structured data based on route
     let structuredData = {
@@ -154,59 +255,86 @@ function generateHtml(route) {
         '@type': 'WebSite',
         name: 'VernisAI',
         url: SITE_URL,
+        description: description,
+        image: fullImageUrl,
     };
 
     // Add specific structured data for products
     if (route.includes('/features/') || route.includes('/use-cases/')) {
         structuredData = {
             '@context': 'https://schema.org',
-            '@type': 'Brand',
-            name: metadata.title,
-            description: metadata.description,
-            url: `${SITE_URL}${route}`,
-            category: 'Software',
+            '@type': 'SoftwareApplication',
+            name: title.replace(' - VernisAI', '').replace(' | VernisAI', ''),
+            description: description,
+            url: canonicalUrl,
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'Web',
+            offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+                availability: 'https://schema.org/ComingSoon',
+            },
             brand: {
                 '@type': 'Brand',
                 name: 'VernisAI',
                 logo: `${SITE_URL}/images/vernisai-logo.png`,
             },
+            screenshot: fullImageUrl,
         };
     }
 
-    // Create HTML template
+    // Create HTML template with comprehensive meta tags
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="${metadata.description}">
-    <title>${metadata.title}</title>
+    <meta name="description" content="${description}">
+    <title>${fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="${canonicalUrl}">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="${SITE_URL}${route}">
-    <meta property="og:title" content="${metadata.title}">
-    <meta property="og:description" content="${metadata.description}">
-    <meta property="og:image" content="${SITE_URL}/images/vernisai-logo.png">
+    <meta property="og:url" content="${canonicalUrl}">
+    <meta property="og:title" content="${fullTitle}">
+    <meta property="og:description" content="${description}">
+    <meta property="og:image" content="${fullImageUrl}">
+    <meta property="og:site_name" content="VernisAI">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="${SITE_URL}${route}">
-    <meta name="twitter:title" content="${metadata.title}">
-    <meta name="twitter:description" content="${metadata.description}">
-    <meta name="twitter:image" content="${SITE_URL}/images/vernisai-logo.png">
+    <meta name="twitter:url" content="${canonicalUrl}">
+    <meta name="twitter:title" content="${fullTitle}">
+    <meta name="twitter:description" content="${description}">
+    <meta name="twitter:image" content="${fullImageUrl}">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
 ${JSON.stringify(structuredData, null, 2)}
     </script>
+    
+    <!-- For client-side routing -->
+    <script>
+        // This script will run after loading the page
+        // It will redirect to the client-side route if JavaScript is enabled
+        window.addEventListener('DOMContentLoaded', function() {
+            window.location.href = '/#${route}';
+        });
+    </script>
 </head>
 <body>
-    <div id="root"></div>
-    <script>
-        window.location.href = '/#${route}';
-    </script>
+    <div id="root">
+        <!-- Fallback content for search engines and when JS is disabled -->
+        <h1>${fullTitle}</h1>
+        <p>${description}</p>
+        <p>Loading VernisAI...</p>
+        <noscript>
+            <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
+            <p>You can also visit our <a href="/">homepage</a>.</p>
+        </noscript>
+    </div>
 </body>
 </html>`;
 }
