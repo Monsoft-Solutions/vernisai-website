@@ -187,6 +187,8 @@ const routeMetadata = {
 // Generate dynamic route metadata
 function generateDynamicRouteMetadata() {
     const dynamicMetadata = {};
+    const fs = require('fs');
+    const path = require('path');
 
     // Action category metadata
     actionCategoryIds.forEach((categoryId) => {
@@ -207,11 +209,22 @@ function generateDynamicRouteMetadata() {
 
         // Custom images for use cases (when available)
         const useSpecificImage = `/images/use-cases/${useCaseId}.png`;
+        const specificImagePath = path.join(
+            __dirname,
+            '../public',
+            useSpecificImage,
+        );
+
+        // Check if the specific image exists, otherwise use default
+        const imageExists = fs.existsSync(specificImagePath);
+        const finalImage = imageExists
+            ? useSpecificImage
+            : '/images/use-cases/default.png';
 
         dynamicMetadata[route] = {
             title: `${formattedUseCase} - VernisAI Use Case`,
             description: `Learn how VernisAI can help with ${formattedUseCase} in your business.`,
-            image: useSpecificImage,
+            image: finalImage,
         };
     });
 
