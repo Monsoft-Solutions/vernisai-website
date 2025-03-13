@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ChevronDown, Search } from 'lucide-react';
 
-interface FAQItem {
+export interface FAQItem {
     question: string;
     answer: string;
     category: string;
@@ -217,57 +217,3 @@ export function EnhancedFAQ({
         </section>
     );
 }
-
-// Example FAQ items
-export const pricingFAQs: FAQItem[] = [
-    {
-        question: 'What is included in the free trial?',
-        answer: 'Our 14-day free trial includes full access to all features of the Pro plan, including unlimited workflows, all integrations, and premium support. No credit card required to start.',
-        category: 'Pricing',
-    },
-    {
-        question: 'Can I change plans at any time?',
-        answer: 'Yes, you can upgrade, downgrade, or cancel your plan at any time. If you upgrade, the new pricing will be prorated for the remainder of your billing cycle. If you downgrade, the new pricing will take effect at the start of your next billing cycle.',
-        category: 'Pricing',
-    },
-    {
-        question: 'Do you offer discounts for annual billing?',
-        answer: 'Yes, we offer a 20% discount when you choose annual billing instead of monthly billing.',
-        category: 'Pricing',
-    },
-    {
-        question: 'What payment methods do you accept?',
-        answer: 'We accept all major credit cards (Visa, Mastercard, American Express) and PayPal. For Enterprise plans, we also offer invoicing with net-30 terms.',
-        category: 'Billing',
-    },
-    {
-        question: 'Is there a limit to how many workflows I can create?',
-        answer: 'The Starter plan includes up to 5 workflows. The Pro plan includes unlimited workflows. The Enterprise plan includes unlimited workflows with additional governance features.',
-        category: 'Features',
-    },
-    {
-        question: 'What happens when my free trial ends?',
-        answer: "When your free trial ends, you can choose to subscribe to one of our paid plans to continue using VernisAI. If you don't subscribe, your account will be downgraded to a limited version with basic features.",
-        category: 'Billing',
-    },
-    {
-        question: "Do you offer a refund if I'm not satisfied?",
-        answer: "Yes, we offer a 30-day money-back guarantee. If you're not completely satisfied with VernisAI within the first 30 days of your paid subscription, contact our support team for a full refund.",
-        category: 'Billing',
-    },
-    {
-        question: 'What kind of support is included with each plan?',
-        answer: 'The Starter plan includes community support. The Pro plan includes email support with a 24-hour response time. The Enterprise plan includes priority support with a dedicated account manager and 4-hour response time during business hours.',
-        category: 'Support',
-    },
-    {
-        question: 'Can I use VernisAI for my entire team?',
-        answer: 'Yes, all plans support team usage. The Starter plan includes up to 3 users, the Pro plan includes up to 10 users, and the Enterprise plan includes unlimited users with advanced user management features.',
-        category: 'Features',
-    },
-    {
-        question: 'Do you offer custom pricing for larger teams?',
-        answer: 'Yes, for teams larger than 20 users, please contact our sales team for custom pricing options tailored to your specific needs.',
-        category: 'Pricing',
-    },
-];

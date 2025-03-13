@@ -1,5 +1,4 @@
 import { SEO } from '../components';
-import { pricingFAQs } from '../components/EnhancedFAQ';
 import { CTAWorkflowAutomation } from '../components/CTA';
 import {
     EnhancedPricingTiers,
@@ -7,12 +6,12 @@ import {
     featureComparison,
 } from '../components/EnhancedPricingTiers';
 import { EnhancedFAQ } from '../components/EnhancedFAQ';
-import { TrustSignals, securityTrustSignals } from '../components/TrustSignals';
 import { UseCaseSection } from '../components/UseCaseSection';
 import { ValueMetrics } from '../components/ValueMetrics';
 import { CompetitiveComparison } from '../components/CompetitiveComparison';
 import { PlanSelector } from '../components/PlanSelector';
 import { useCaseMetrics, useCaseLabels } from '@/data/metrics';
+import { pricingFAQs } from '@/data/faq-data';
 import { useState } from 'react';
 
 export function Pricing() {
@@ -301,9 +300,6 @@ export function Pricing() {
                 competitor1Name="Zapier"
                 competitor2Name="ChatGPT"
             />
-
-            {/* Trust Signals */}
-            <TrustSignals signals={securityTrustSignals} />
 
             {/* Enhanced FAQ Section */}
             <EnhancedFAQ
