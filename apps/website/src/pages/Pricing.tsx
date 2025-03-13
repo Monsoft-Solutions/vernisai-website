@@ -12,9 +12,15 @@ import { UseCaseSection } from '../components/UseCaseSection';
 import { ValueMetrics } from '../components/ValueMetrics';
 import { CompetitiveComparison } from '../components/CompetitiveComparison';
 import { PlanSelector } from '../components/PlanSelector';
-import { ProductDemo } from '../components/ProductDemo';
+import { useCaseMetrics, useCaseLabels } from '@/data/metrics';
+import { useState } from 'react';
 
 export function Pricing() {
+    // State to track which metrics to display
+    const [activeUseCase, setActiveUseCase] = useState<string>(
+        Object.keys(useCaseMetrics)[0],
+    );
+
     // Example use cases for different audience segments
     const useCases = [
         {
@@ -105,61 +111,6 @@ export function Pricing() {
             image: 'https://via.placeholder.com/800x600?text=Sales+Teams',
             ctaText: 'Learn more',
             ctaLink: '/use-cases/sales',
-        },
-    ];
-
-    // Example value metrics to highlight ROI
-    const valueMetrics = [
-        {
-            label: 'Time Saved',
-            value: '15+ hours',
-            description:
-                'Average time saved by teams using VernisAI automation',
-            icon: 'time' as const,
-        },
-        {
-            label: 'ROI',
-            value: '300%',
-            description: 'Return on investment reported by our customers',
-            icon: 'money' as const,
-        },
-        {
-            label: 'Productivity',
-            value: '40%',
-            description:
-                'Boost in team productivity after implementing VernisAI',
-            icon: 'performance' as const,
-        },
-        {
-            label: 'Error Reduction',
-            value: '90%',
-            description: 'Reduction in manual errors through automation',
-            icon: 'performance' as const,
-        },
-    ];
-
-    // Example demo screens
-    const demoScreens = [
-        {
-            id: 'workflow-builder',
-            title: 'Intuitive Workflow Builder',
-            description:
-                'Create powerful workflows with our drag-and-drop interface',
-            image: 'https://via.placeholder.com/800x500?text=Workflow+Builder',
-            videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        },
-        {
-            id: 'ai-assistant',
-            title: 'AI Workflow Assistant',
-            description:
-                'Get intelligent suggestions to optimize your workflows',
-            image: 'https://via.placeholder.com/800x500?text=AI+Assistant',
-        },
-        {
-            id: 'integration-marketplace',
-            title: 'Integration Marketplace',
-            description: 'Connect with 100+ apps and services',
-            image: 'https://via.placeholder.com/800x500?text=Integration+Marketplace',
         },
     ];
 
@@ -303,11 +254,33 @@ export function Pricing() {
                 features={featureComparison}
             />
 
+            {/* Metrics Button Group */}
+            <div className="mx-auto mt-16 mb-8 flex max-w-4xl flex-col items-center justify-center">
+                <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">
+                    Explore Value Metrics By Use Case
+                </h2>
+                <div className="flex flex-wrap justify-center gap-2">
+                    {Object.keys(useCaseMetrics).map((useCaseKey) => (
+                        <button
+                            key={useCaseKey}
+                            onClick={() => setActiveUseCase(useCaseKey)}
+                            className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                                activeUseCase === useCaseKey
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            }`}
+                        >
+                            {useCaseLabels[useCaseKey]}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             {/* Value Metrics Section */}
             <ValueMetrics
-                metrics={valueMetrics}
-                title="The Value VernisAI Delivers"
-                description="Our customers see significant improvements in productivity and ROI"
+                metrics={useCaseMetrics[activeUseCase]}
+                title={`${useCaseLabels[activeUseCase]} Metrics`}
+                description="See how VernisAI delivers measurable results for your specific use case"
             />
 
             {/* Plan Selector */}
@@ -319,13 +292,6 @@ export function Pricing() {
                 title="Solutions for Every Team"
                 description="See how VernisAI can help different departments in your organization"
             />
-
-            {/* Product Demo */}
-            {/* <ProductDemo
-                title="See VernisAI in Action"
-                description="Explore our intuitive interface and powerful features"
-                screens={demoScreens}
-            /> */}
 
             {/* Competitive Comparison */}
             <CompetitiveComparison
