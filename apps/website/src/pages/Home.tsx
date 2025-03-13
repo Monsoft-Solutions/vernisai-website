@@ -3,7 +3,6 @@ import {
     Benefits,
     UseCaseHighlights,
     Waitlist,
-    Testimonials,
     EarlyAccessCTA,
     FAQ,
     SEO,
@@ -38,7 +37,6 @@ export function Home() {
                     <EarlyAccessCTA />
                 </div>
                 <UseCaseHighlights />
-                <Testimonials />
                 <FAQ
                     title="Frequently Asked Questions"
                     summary="Find answers to common questions about VernisAI and how it can help your business."

@@ -4,7 +4,7 @@
 
 - **Build**: `npm run build` (tsc -b && vite build)
 - **Development server**: `npm run dev` (vite)
-- **Lint**: `npm run lint` (eslint .)
+- **Validate Lint and Prettier**: `npm run validate`
 - **Preview build**: `npm run preview` (vite preview)
 
 ## Tech Stack
@@ -24,6 +24,7 @@
 - **Components**: Use TypeScript for props, extract common patterns, focus on reusability
 - **Styling**: Utility-first Tailwind approach, consistent class ordering (layout → typography → visual)
 - **Accessibility**: Use semantic HTML, keyboard navigation, ARIA attributes when needed
+- **Style Guidelines**: RE-used components, implement elements as components so we can re-used them, follow the styles of other pages and components
 
 ## React Patterns
 
@@ -39,6 +40,13 @@
 - Implement form validation with Zod and react-hook-form
 - Provide helpful error messages to users
 - Log errors appropriately in development
+
+## TypeScript
+
+- Avoid the use of interface, prefer type
+- DOn't declare a multiple types, functions, classes in the same file
+- Add descriptive and concise comments to functions, types and data. For complicated functions, comment parts of the code.
+- Use the best practices, the code should be extensible and clean
 
 ## Closing Up
 
