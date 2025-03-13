@@ -34,10 +34,6 @@ export function Features() {
                         name: 'VernisAI',
                         logo: 'https://vernis.ai/images/vernisai-logo.png',
                     },
-                    offers: {
-                        '@type': 'Offer',
-                        availability: 'https://schema.org/ComingSoon',
-                    },
                 }}
             />
             {/* Hero Section with gradient background and animation */}
