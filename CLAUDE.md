@@ -2,10 +2,13 @@
 
 ## Commands
 
-- **Build**: `npm run build` (tsc -b && vite build)
+- **Build**: `npm run build` (runs typecheck, build:only, and generate-sitemap)
 - **Development server**: `npm run dev` (vite)
 - **Validate Lint and Prettier**: `npm run validate`
 - **Preview build**: `npm run preview` (vite preview)
+- **Build with Pre-rendering**: `npm run build:with-prerender` (runs build followed by pre-render)
+- **Standalone Pre-render**: `npm run pre-render:standalone` (pre-renders without requiring a build)
+- **Sitemap + Pre-render**: `npm run sitemap-prerender` (generates sitemap and pre-renders in one step)
 
 ## Tech Stack
 
@@ -44,11 +47,24 @@
 ## TypeScript
 
 - Avoid the use of interface, prefer type
-- DOn't declare a multiple types, functions, classes in the same file
+- Don't declare multiple types, functions, classes in the same file
 - Add descriptive and concise comments to functions, types and data. For complicated functions, comment parts of the code.
 - Use the best practices, the code should be extensible and clean
+
+## SEO and Pre-rendering
+
+- All pages have proper schema.org structured data
+- Use SEO component to add metadata and structured data
+- Products must include price information in schema
+- Run `npm run sitemap-prerender` to generate pre-rendered HTML for all routes
+- Pre-rendered pages help search engines index content properly
 
 ## Make sure the code is clean
 
 - Run `npm run validate`, and fix possible issues
 - Run `npm run build` and fix possible issues
+- Run `npm run sitemap-prerender` after building to generate pre-rendered pages for SEO
+
+## FInal Action
+
+- After each run of the agent, modify the right file in the /changes folder. Each has a name format: yyyy-mm-dd.md. You will add using a concise title that decribe the changes (##) and bullet point with the changes

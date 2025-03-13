@@ -36,33 +36,20 @@ export default defineConfig(({ mode }) => {
                         src: 'public/_redirects',
                         dest: '',
                     },
-                    {
-                        src: 'src/routes.ts',
-                        dest: 'assets',
-                        rename: 'routes.js',
-                        transform: (contents) => {
-                            // Simple transformation to make the file compatible with ESM in the browser
-                            return contents
-                                .toString()
-                                .replace(
-                                    /import\s+{[^}]+}\s+from\s+['"]\.\/types\/routes['"];?/g,
-                                    '',
-                                )
-                                .replace(/export\s+type\s+[^{]+{[^}]+}/g, '')
-                                .replace(/:\s*RouteConfig\[\]/g, '')
-                                .replace(/:\s*string\[\]/g, '');
-                        },
-                    },
+                    // Removing routes.ts copy to avoid build issues
                 ],
             }),
         ],
         resolve: {
             alias: {
                 '@': resolve(__dirname, './src'),
-                '@vernisai/ui': resolve(__dirname, '../../packages/ui/src'),
+                '@vernisai/ui': resolve(
+                    __dirname,
+                    '../../packages/ui/src/index.ts',
+                ),
                 '@vernisai/utils': resolve(
                     __dirname,
-                    '../../packages/utils/src',
+                    '../../packages/utils/src/index.ts',
                 ),
             },
         },
@@ -84,8 +71,7 @@ export default defineConfig(({ mode }) => {
                     // Chunk files by type
                     manualChunks: {
                         vendor: ['react', 'react-dom', 'react-router-dom'],
-                        ui: ['@vernisai/ui'],
-                        utils: ['@vernisai/utils'],
+                        // Remove UI and utils chunks to avoid directory loading issues
                     },
                 },
             },

@@ -1,8 +1,11 @@
 import { RouteConfig, RouteMetadata } from './types/routes';
+import { actionCategories } from './data';
+import { useCases } from './data/use-cases';
 
 // Re-export types for other modules to use
 export type { RouteConfig, RouteMetadata };
 
+// Static routes with metadata
 export const routes: RouteConfig[] = [
     {
         path: '/',
@@ -113,12 +116,53 @@ export const routes: RouteConfig[] = [
     },
 ];
 
+// Removed unused function
+
+// Generate dynamic routes for action categories
+export const getActionCategoryRoutes = (): RouteConfig[] => {
+    if (!actionCategories) return [];
+
+    return actionCategories.map((category) => ({
+        path: `/features/actions/${category.id}`,
+        metadata: {
+            title: `${category.name} - VernisAI Actions`,
+            description: `Explore ${category.name} actions and integrations for your AI workflows.`,
+            prerender: true,
+        },
+    }));
+};
+
+// Generate dynamic routes for use cases
+export const getUseCaseRoutes = (): RouteConfig[] => {
+    if (!useCases) return [];
+
+    return useCases.map((useCase) => ({
+        path: `/use-cases/${useCase.id}`,
+        metadata: {
+            title: `${useCase.name} - VernisAI Use Cases`,
+            description: `Learn how VernisAI can help with ${useCase.name} in your business.`,
+            prerender: true,
+        },
+    }));
+};
+
+// Get all dynamic routes
+export const getDynamicRoutes = (): RouteConfig[] => {
+    return [...getActionCategoryRoutes(), ...getUseCaseRoutes()];
+};
+
+// Get all routes (static + dynamic)
+export const getAllRoutes = (): RouteConfig[] => {
+    return [...routes, ...getDynamicRoutes()];
+};
+
 /**
  * Get all routes that should be prerendered
  * @returns Array of route paths to prerender
  */
 export const getPrerenderRoutes = (): string[] => {
     const prerenderRoutes: string[] = [];
+    const allRoutes = getAllRoutes();
 
     const extractRoutes = (
         routeConfigs: RouteConfig[],
@@ -137,6 +181,6 @@ export const getPrerenderRoutes = (): string[] => {
         }
     };
 
-    extractRoutes(routes);
+    extractRoutes(allRoutes);
     return prerenderRoutes;
 };

@@ -5,6 +5,8 @@ import {
     Navigate,
     useLocation,
 } from 'react-router-dom';
+// The routes are defined in ./routes.ts
+// They are used by the pre-rendering script during build
 import { Helmet } from 'react-helmet-async';
 import { lazy, Suspense, useEffect } from 'react';
 import { Layout } from './components/Layout';
