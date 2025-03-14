@@ -102,73 +102,73 @@ const routeMetadata = {
         title: 'VernisAI - AI-Powered No-Code Workflow Automation',
         description:
             'Build, automate, and deploy AI workflows without code. Connect your tools and data to create powerful automations with VernisAI.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/features': {
         title: 'VernisAI Features - AI-Powered Workflow Automation',
         description:
             "Explore the powerful features of VernisAI's no-code AI workflow automation platform.",
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/features/actions': {
         title: 'VernisAI Actions - Connect Your Tools and Services',
         description:
             'Explore integrations and actions to connect your tools and services with VernisAI.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/features/workflows': {
         title: 'VernisAI Workflows - Create Powerful AI Automations',
         description:
             'Build automated workflows that combine your tools, data, and AI capabilities.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/features/agents': {
         title: 'VernisAI Agents - Intelligent Automation Assistants',
         description:
             'Deploy AI agents that autonomously execute tasks and workflows for your business.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/features/knowledge-base': {
         title: 'VernisAI Knowledge Base - Train AI on Your Data',
         description:
             'Create custom knowledge bases to train AI on your business data and documents.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/use-cases': {
         title: 'VernisAI Use Cases - Business AI Solutions',
         description:
             'Discover how businesses use VernisAI to automate workflows and improve productivity.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/pricing': {
         title: 'VernisAI Pricing - AI Workflow Automation Plans',
         description:
             "View pricing plans for VernisAI's no-code AI workflow automation platform.",
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/waitlist': {
         title: 'Join the VernisAI Waitlist',
         description:
             "Sign up for early access to VernisAI's no-code AI workflow automation platform.",
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/privacy': {
         title: 'Privacy Policy - VernisAI',
         description:
             'Read the VernisAI privacy policy to understand how we handle your data.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/terms': {
         title: 'Terms of Service - VernisAI',
         description:
             'View the terms of service for using the VernisAI platform.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
     '/cookies': {
         title: 'Cookie Policy - VernisAI',
         description:
             'Learn about how VernisAI uses cookies and similar technologies.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     },
 };
 
@@ -187,7 +187,7 @@ function generateDynamicRouteMetadata() {
         dynamicMetadata[route] = {
             title: `${formattedCategory} - VernisAI Actions`,
             description: `Explore ${formattedCategory} actions and integrations for your AI workflows.`,
-            image: '/images/vernisai-logo.png',
+            image: '/images/vernis-ai-your-ai-assistant.jpg',
         };
     });
 
@@ -201,11 +201,22 @@ function generateDynamicRouteMetadata() {
 
         // Custom images for use cases (when available)
         const useSpecificImage = `/images/use-cases/${useCaseId}.png`;
+        const specificImagePath = path.join(
+            __dirname,
+            '../public',
+            useSpecificImage,
+        );
+
+        // Check if the specific image exists, otherwise use default
+        const imageExists = fs.existsSync(specificImagePath);
+        const finalImage = imageExists
+            ? useSpecificImage
+            : '/images/use-cases/default.png';
 
         dynamicMetadata[route] = {
             title: `${formattedUseCase} - VernisAI Use Case`,
             description: `Learn how VernisAI can help with ${formattedUseCase} in your business.`,
-            image: useSpecificImage,
+            image: finalImage,
         };
     });
 
@@ -225,7 +236,7 @@ function generatePrerenderedHtml(route, jsFiles = [], cssFiles = []) {
         title: 'VernisAI - AI-Powered No-Code Workflow Automation',
         description:
             'Build, automate, and deploy AI workflows without code. Connect your tools and data to create powerful automations with VernisAI.',
-        image: '/images/vernisai-logo.png',
+        image: '/images/vernis-ai-your-ai-assistant.jpg',
     };
 
     const { title, description, image } = metadata;
