@@ -2,14 +2,28 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { z } from 'zod';
 
-// Configuration schema with strong typing
+// Database configuration schema with strong typing
 export const pgConfigSchema = z.object({
     connectionString: z.string().url('Invalid database connection string'),
     ssl: z.boolean().optional().default(true),
     max: z.number().optional().default(10),
 });
 
+// Auth configuration schema (for admin endpoints)
+export const authConfigSchema = z.object({
+    username: z.string().min(1, 'Username is required'),
+    password: z.string().min(1, 'Password is required'),
+});
+
+// Combined configuration schema
+export const fullConfigSchema = z.object({
+    database: pgConfigSchema,
+    auth: authConfigSchema.optional(),
+});
+
 export type PgConfig = z.infer<typeof pgConfigSchema>;
+export type AuthConfig = z.infer<typeof authConfigSchema>;
+export type FullConfig = z.infer<typeof fullConfigSchema>;
 
 // Class to manage PostgreSQL connection
 export class PostgresProvider {

@@ -17,7 +17,11 @@
         "validate": "npm run format && turbo run validate && npm run format:check",
         "clean": "turbo run clean",
         "prepare": "husky",
-        "pre-commit": "npm run format && lint-staged && npm run format:check"
+        "pre-commit": "npm run format && lint-staged && npm run format:check",
+        "db:sync": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:sync'",
+        "db:generate": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:generate'",
+        "db:push": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:push'",
+        "db:studio": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:studio'"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3.0.2",
@@ -48,6 +52,7 @@
     ],
     "packageManager": "npm@10.9.2",
     "dependencies": {
-        "drizzle-zod": "0.7.0"
+        "drizzle-zod": "0.7.0",
+        "env-cmd": "^10.1.0"
     }
 }

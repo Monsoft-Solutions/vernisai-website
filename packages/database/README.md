@@ -22,8 +22,7 @@ npm install
 Create a `.env` file with your Supabase credentials:
 
 ```
-SUPABASE_URL=your-supabase-url
-SUPABASE_ANON_KEY=your-supabase-anon-key
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres
 ```
 
 ### Usage
@@ -59,6 +58,27 @@ For development with auto-rebuild:
 ```bash
 npm run dev
 ```
+
+## Database Management
+
+### Synchronizing the Database
+
+To sync your database schema with the Drizzle ORM definitions:
+
+```bash
+npm run db:sync
+```
+
+This command will:
+
+1. Generate SQL migration files based on your schema definitions
+2. Apply those changes to your database
+
+### Other Database Commands
+
+- `npm run db:generate` - Generate SQL migration files without applying them
+- `npm run db:push` - Apply pending migrations to the database
+- `npm run db:studio` - Open Drizzle Studio to visually manage your database
 
 ## Database Schema Setup
 

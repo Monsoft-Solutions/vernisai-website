@@ -29,13 +29,24 @@ API_PASSWORD=your-secure-password  # For protected API endpoints
     - API endpoints pass configuration to the database provider
     - Connection pooling is managed properly for serverless environments
 
-2. API endpoints are responsible for:
+2. API endpoints:
+
+    - `/api/waitlist`: Public endpoint for website visitors to join the waitlist
+    - `/api/waitlist-entries`: Protected admin endpoint with basic authentication
+
+3. Authentication:
+
+    - Only the admin endpoint requires authentication
+    - The waitlist submission endpoint is public for website visitors
+    - Admin credentials are stored in environment variables
+
+4. Each API endpoint is responsible for:
 
     - Reading environment variables
     - Initializing the database connection
     - Properly closing connections after use (important in serverless)
 
-3. This architecture provides:
+5. This architecture provides:
     - Type safety throughout the database layer
     - Clear separation of concerns
     - Better testability
@@ -81,19 +92,28 @@ export const waitlistTable = pgTable('waitlist', {
     ALTER TABLE waitlist ENABLE ROW LEVEL SECURITY;
     ```
 
-    Create a policy that only allows authenticated API requests to insert:
+    Create a policy that allows public access for insertions (for the waitlist form):
 
     ```sql
-    CREATE POLICY "Allow authenticated service to insert waitlist entries"
-    ON waitlist FOR INSERT TO authenticated
+    CREATE POLICY "Allow public to insert waitlist entries"
+    ON waitlist FOR INSERT
+    USING (true);
+    ```
+
+    Create a policy that restricts read access to authenticated users only (for the admin endpoint):
+
+    ```sql
+    CREATE POLICY "Allow authenticated service to read waitlist entries"
+    ON waitlist FOR SELECT TO authenticated
     USING (true);
     ```
 
 2. **API Protection**
 
     - The admin endpoint `/api/waitlist-entries` is protected with basic authentication
+    - The public endpoint `/api/waitlist` is open by design for website visitors
     - Use strong, unique passwords for API_USERNAME and API_PASSWORD
-    - Consider implementing rate limiting to prevent abuse
+    - Consider implementing rate limiting to prevent abuse on both endpoints
 
 ## Local Development
 
