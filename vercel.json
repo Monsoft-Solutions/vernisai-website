@@ -4,5 +4,5 @@
         { "source": "/([^.]*)", "destination": "/$1/index.html" },
         { "source": "/(.*)", "destination": "/index.html" }
     ],
-    "buildCommand": "npm run build"
+    "buildCommand": "cd apps/website && npm run build"
 }
