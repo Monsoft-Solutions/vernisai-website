@@ -5,7 +5,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "turbo run dev",
+        "dev": "env-cmd -f .env/.env turbo run dev",
         "build": "turbo run build",
         "build:with-index": "turbo run build:with-index",
         "update-google-index": "turbo run update-google-index",

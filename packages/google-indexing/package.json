@@ -18,7 +18,6 @@
     "scripts": {
         "build": "tsup && npm run build:cli",
         "build:cli": "mkdir -p bin && echo '#!/usr/bin/env node\nrequire(\"../dist/lib/cli.js\").runCli();' > bin/cli.js && chmod +x bin/cli.js",
-        "dev": "tsup --watch",
         "lint": "eslint .",
         "typecheck": "tsc --noEmit"
     },
