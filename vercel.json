@@ -1,8 +1,20 @@
 {
     "rewrites": [
+        { "source": "/api/(.*)", "destination": "/api/$1" },
         { "source": "/(.*)/", "destination": "/$1/index.html" },
         { "source": "/([^.]*)", "destination": "/$1/index.html" },
         { "source": "/(.*)", "destination": "/index.html" }
     ],
-    "buildCommand": "cd apps/website && npm run build"
+    "buildCommand": "cd apps/website && npm run build",
+    "functions": {
+        "api/**": {
+            "memory": 1024,
+            "maxDuration": 10
+        }
+    },
+    "env": {
+        "DATABASE_URL": "@database_url",
+        "API_USERNAME": "@api_username",
+        "API_PASSWORD": "@api_password"
+    }
 }

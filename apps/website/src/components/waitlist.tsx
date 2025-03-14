@@ -38,14 +38,46 @@ export function Waitlist() {
         },
     });
 
-    function onSubmit(_data: FormValues) {
-        // TODO: In a real implementation, this would send the data to a backend service
-        toast({
-            title: 'Success!',
-            description:
-                "You've been added to our waitlist. We'll be in touch soon!",
-        });
-        form.reset();
+    async function onSubmit(data: FormValues) {
+        try {
+            const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                if (response.status === 409) {
+                    toast({
+                        title: 'Already registered',
+                        description: 'This email is already on our waitlist.',
+                        variant: 'destructive',
+                    });
+                    return;
+                }
+
+                throw new Error(result.error || 'Something went wrong');
+            }
+
+            toast({
+                title: 'Success!',
+                description:
+                    "You've been added to our waitlist. We'll be in touch soon!",
+            });
+            form.reset();
+        } catch (error) {
+            console.error('Waitlist submission error:', error);
+            toast({
+                title: 'Submission failed',
+                description:
+                    'There was a problem adding you to the waitlist. Please try again.',
+                variant: 'destructive',
+            });
+        }
     }
 
     const benefits = [

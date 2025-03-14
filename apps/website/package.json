@@ -41,6 +41,7 @@
         "@radix-ui/react-slot": "^1.1.2",
         "@radix-ui/react-toast": "^1.2.6",
         "@tailwindcss/typography": "^0.5.16",
+        "@vernisai/database": "*",
         "@vernisai/ui": "*",
         "@vernisai/utils": "*",
         "class-variance-authority": "^0.7.1",
