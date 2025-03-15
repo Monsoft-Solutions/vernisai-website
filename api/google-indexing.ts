@@ -8,11 +8,6 @@ import crypto from 'crypto';
  * in your Vercel project settings.
  */
 
-// Add the config export to specify the runtime
-export const config = {
-    runtime: 'nodejs',
-};
-
 // Helper to get the site's sitemap URL
 const getSiteUrl = () => {
     // Get the site URL from environment variables or use a default
