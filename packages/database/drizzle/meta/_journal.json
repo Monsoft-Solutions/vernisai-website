@@ -1,12 +1,19 @@
 {
-    "version": "7",
-    "dialect": "postgresql",
+    "version": "5",
+    "dialect": "pg",
     "entries": [
         {
             "idx": 0,
-            "version": "7",
-            "when": 1741952932690,
+            "version": "5",
+            "when": 1709123456789,
             "tag": "0000_stormy_magdalene",
+            "breakpoints": true
+        },
+        {
+            "idx": 1,
+            "version": "5",
+            "when": 1710543612345,
+            "tag": "0001_audience_tracking",
             "breakpoints": true
         }
     ]
