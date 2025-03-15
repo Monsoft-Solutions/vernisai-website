@@ -74,7 +74,7 @@ export function Hero() {
                         >
                             <Button
                                 asChild
-                                variant="black"
+                                variant="primary"
                                 size="lg"
                                 className="px-8"
                             >

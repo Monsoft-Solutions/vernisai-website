@@ -57,6 +57,10 @@ const variants = {
     primary: 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md',
     gradient:
         'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-md hover:from-blue-700 hover:to-purple-700',
+    'gradient-blue':
+        'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white hover:shadow-md hover:from-blue-700 hover:via-blue-600 hover:to-indigo-700',
+    'gradient-shine':
+        'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-md relative after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent after:opacity-0 hover:after:opacity-100 hover:from-blue-700 hover:to-indigo-700 overflow-hidden after:-translate-x-full hover:after:translate-x-full after:transition-all after:duration-1000 after:ease-in-out',
     white: 'bg-white text-blue-600 hover:bg-blue-50 hover:text-blue-700',
 };
 
