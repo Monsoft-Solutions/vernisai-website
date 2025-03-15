@@ -138,7 +138,7 @@ export function UseCaseHighlights() {
     ];
 
     return (
-        <section className="relative w-full overflow-hidden py-20 md:py-28">
+        <section className="relative flex w-full justify-center overflow-hidden py-20 md:py-28">
             {/* Background pattern */}
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-gray-50 to-white">
                 <div className="absolute inset-0 bg-[url('/src/styles/patterns.css')] opacity-5"></div>
