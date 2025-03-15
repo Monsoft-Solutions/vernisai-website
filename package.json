@@ -15,7 +15,7 @@
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
         "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
         "typecheck": "turbo run typecheck",
-        "validate": "npm run format && turbo run validate && npm run format:check",
+        "validate": "npm run format && turbo run typecheck lint:fix && npm run format:check",
         "clean": "turbo run clean",
         "prepare": "husky",
         "pre-commit": "npm run format && lint-staged && npm run format:check",
