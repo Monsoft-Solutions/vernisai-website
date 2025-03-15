@@ -3,7 +3,7 @@
         { "source": "/api/(.*)", "destination": "/api/$1" },
         { "source": "/(.*)", "destination": "/index.html" }
     ],
-    "buildCommand": "npm run build && cd packages/database && npm run build",
+    "buildCommand": "cd packages/database && npm run build && cd ../.. && cd apps/website && npm run build",
     "outputDirectory": "apps/website/dist",
     "functions": {
         "api/**": {
@@ -11,5 +11,6 @@
             "maxDuration": 10
         }
     },
-    "installCommand": "npm install"
+    "installCommand": "npm install",
+    "ignoreCommand": "if [ -n \"$VERCEL_GIT_COMMIT_REF\" ]; then echo \"Skipping build on Vercel deployment\"; else exit 1; fi"
 }
