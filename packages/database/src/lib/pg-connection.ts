@@ -38,8 +38,6 @@ export class PostgresProvider {
     // Initialize with configuration
     static initialize(config: PgConfig): ReturnType<typeof drizzle> {
         try {
-            console.log('Initializing PostgreSQL connection');
-            console.log('Config:', config);
             // Validate config
             const validatedConfig = pgConfigSchema.parse(config);
 
@@ -48,17 +46,10 @@ export class PostgresProvider {
 
             // Create SQL connection if not exists
             if (!this.instance) {
-                // Parse and encode the connection string
-
                 // Create the SQL connection
-                // this.instance = postgres(validatedConfig.connectionString, {
-                //     ssl: validatedConfig.ssl,
-                //     max: validatedConfig.max,
-                // });
                 this.instance = postgres(validatedConfig.connectionString, {
                     prepare: false,
                 });
-                console.log('Instance:', this.instance);
 
                 // Create Drizzle ORM instance
                 this.db = drizzle(this.instance, {
@@ -70,8 +61,9 @@ export class PostgresProvider {
                 return this.db;
             }
         } catch (error) {
-            console.error('Failed to initialize PostgreSQL connection:', error);
-            throw new Error('Database connection initialization failed');
+            throw new Error(
+                `Database connection initialization failed: ${error instanceof Error ? error.message : String(error)}`,
+            );
         }
     }
 
@@ -94,7 +86,9 @@ export class PostgresProvider {
                 this.db = null;
             }
         } catch (error) {
-            console.error('Error closing database connection:', error);
+            throw new Error(
+                `Error closing database connection: ${error instanceof Error ? error.message : String(error)}`,
+            );
         }
     }
 }

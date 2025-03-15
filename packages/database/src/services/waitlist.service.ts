@@ -3,7 +3,6 @@ import { PostgresProvider } from '../lib/pg-connection';
 import {
     waitlistTable,
     WaitlistFormData,
-    WaitlistSelect,
     WaitlistResult,
     WaitlistEntriesResult,
 } from '../schema/waitlist.schema';
