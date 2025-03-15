@@ -10,10 +10,5 @@
             "memory": 1024,
             "maxDuration": 10
         }
-    },
-    "env": {
-        "DATABASE_URL": "@database_url",
-        "API_USERNAME": "@api_username",
-        "API_PASSWORD": "@api_password"
     }
 }
