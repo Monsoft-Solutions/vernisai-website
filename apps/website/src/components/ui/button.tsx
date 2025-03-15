@@ -13,6 +13,7 @@ export interface ButtonProps
     showArrow?: boolean;
     iconRight?: React.ReactNode;
     iconLeft?: React.ReactNode;
+    loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -23,31 +24,63 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             size,
             animation,
             glow,
+            rounded,
             asChild = false,
             showArrow = false,
             iconRight,
             iconLeft,
+            loading = false,
             children,
+            disabled,
             ...props
         },
         ref,
     ) => {
         const Comp = asChild ? Slot : 'button';
+        const isDisabled = disabled || loading;
 
         // If showArrow is true and no custom iconRight is provided, use the default arrow
         const rightIcon =
-            showArrow && !iconRight ? (
+            showArrow && !iconRight && !loading ? (
                 <ArrowRight
                     className={`ml-2 h-4 w-4 transition-transform duration-300 ${getArrowAnimation()}`}
+                    aria-hidden="true"
                 />
-            ) : iconRight ? (
-                <span className="ml-2">{iconRight}</span>
+            ) : iconRight && !loading ? (
+                <span className="ml-2" aria-hidden="true">
+                    {iconRight}
+                </span>
             ) : null;
 
         // Add the left icon if provided
-        const leftIcon = iconLeft ? (
-            <span className="mr-2">{iconLeft}</span>
-        ) : null;
+        const leftIcon =
+            iconLeft && !loading ? (
+                <span className="mr-2" aria-hidden="true">
+                    {iconLeft}
+                </span>
+            ) : loading ? (
+                <svg
+                    className="mr-2 h-4 w-4 animate-spin"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                    ></circle>
+                    <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                </svg>
+            ) : null;
 
         // For asChild=true, we need to pass the children as is
         if (asChild) {
@@ -60,10 +93,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                             size,
                             animation,
                             glow,
+                            rounded,
                             className,
                         }),
                     )}
                     ref={ref}
+                    disabled={isDisabled}
                     {...props}
                 >
                     {children}
@@ -81,14 +116,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                         size,
                         animation,
                         glow,
+                        rounded,
                         className,
                     }),
                 )}
                 ref={ref}
+                disabled={isDisabled}
                 {...props}
             >
                 {leftIcon}
-                {children}
+                <span>{children}</span>
                 {rightIcon}
             </Comp>
         );
@@ -96,4 +133,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = 'Button';
 
-export { Button };
+export { Button, buttonVariants };
