@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { Separator } from './ui/separator';
+import { Button } from './ui/button';
 
 interface CTAWorkflowAutomationProps {
     showSeparator?: boolean;
@@ -64,23 +65,28 @@ export function CTAWorkflowAutomation({
                                     {description}
                                 </p>
                                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                                    <Link
-                                        to={buttonLink}
-                                        className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 text-base font-bold text-blue-600 shadow-lg transition-all duration-300 hover:bg-blue-50 hover:shadow-xl focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 focus:outline-none"
+                                    <Button
+                                        asChild
+                                        variant="white"
+                                        size="xl"
+                                        showArrow
+                                        glow
                                     >
-                                        <span className="relative">
+                                        <Link to={buttonLink}>
                                             {buttonText}
-                                            <span className="absolute bottom-0 left-0 h-1 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                        </span>
-                                        <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                                    </Link>
-                                    {secondaryButton && (
-                                        <Link
-                                            to={secondaryButton.link}
-                                            className="inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-3 text-base font-medium text-white transition-all hover:bg-white/10 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 focus:outline-none"
-                                        >
-                                            {secondaryButton.text}
                                         </Link>
+                                    </Button>
+                                    {secondaryButton && (
+                                        <Button
+                                            asChild
+                                            variant="outline"
+                                            size="xl"
+                                            className="border-2 border-white bg-transparent text-white hover:bg-white/10"
+                                        >
+                                            <Link to={secondaryButton.link}>
+                                                {secondaryButton.text}
+                                            </Link>
+                                        </Button>
                                     )}
                                 </div>
                                 {showFooterText && (
@@ -118,13 +124,9 @@ export function CTAWorkflowAutomation({
                         {description}
                     </p>
                     <div className="mt-8 flex justify-center">
-                        <Link
-                            to={buttonLink}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-                        >
-                            <span className="relative">{buttonText}</span>
-                            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
+                        <Button asChild variant="primary" size="lg" showArrow>
+                            <Link to={buttonLink}>{buttonText}</Link>
+                        </Button>
                     </div>
                 </motion.div>
             </div>

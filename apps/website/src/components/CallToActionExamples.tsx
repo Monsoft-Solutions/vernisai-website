@@ -53,7 +53,7 @@ export const NewsletterCTA = () => (
         icon={<Mail className="h-4 w-4" />}
         gradient="from-gray-700 to-gray-900"
         buttonVariant="outline"
-        buttonColor="bg-transparent text-white border-white hover:bg-white/10"
+        buttonAnimation="none"
     />
 );
 
@@ -79,7 +79,7 @@ export const DownloadCTA = () => (
         buttonLink="/download"
         icon={<Download className="h-4 w-4" />}
         gradient="from-orange-500 to-red-600"
-        buttonColor="bg-white text-orange-600 hover:bg-orange-50"
+        buttonVariant="white"
     />
 );
 
@@ -93,7 +93,7 @@ export const PremiumCTA = () => (
         icon={<Star className="h-4 w-4" />}
         gradient="from-amber-500 to-orange-600"
         height="tall"
-        buttonColor="bg-white text-amber-600 hover:bg-amber-50"
+        buttonVariant="white"
     />
 );
 
@@ -108,6 +108,6 @@ export const EarlyAccessCTA = () => (
         gradient="from-indigo-500 to-purple-600"
         height="extra-tall"
         alignment="center"
-        buttonColor="bg-white text-indigo-600 hover:bg-indigo-50"
+        buttonVariant="white"
     />
 );

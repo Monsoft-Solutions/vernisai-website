@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { ArrowRight, CheckCircle, Loader2, Sparkles } from 'lucide-react';
+import { CheckCircle, Loader2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -224,18 +224,16 @@ export function Waitlist() {
                                 size="lg"
                                 className="mt-6 w-full"
                                 disabled={isSubmitting}
+                                showArrow={!isSubmitting}
+                                iconLeft={
+                                    isSubmitting ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : undefined
+                                }
                             >
-                                {isSubmitting ? (
-                                    <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        <span>Submitting...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <span>Join Waitlist</span>
-                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                                    </>
-                                )}
+                                {isSubmitting
+                                    ? 'Submitting...'
+                                    : 'Join Waitlist'}
                             </Button>
                         </form>
                     </Form>
