@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle, Loader2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -28,6 +29,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export function Waitlist() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const { toast } = useToast();
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -39,6 +41,9 @@ export function Waitlist() {
     });
 
     async function onSubmit(data: FormValues) {
+        if (isSubmitting) return;
+
+        setIsSubmitting(true);
         try {
             const response = await fetch('/api/waitlist', {
                 method: 'POST',
@@ -57,6 +62,7 @@ export function Waitlist() {
                         description: 'This email is already on our waitlist.',
                         variant: 'destructive',
                     });
+                    setIsSubmitting(false);
                     return;
                 }
 
@@ -67,8 +73,10 @@ export function Waitlist() {
                 title: 'Success!',
                 description:
                     "You've been added to our waitlist. We'll be in touch soon!",
+                variant: 'success',
             });
             form.reset();
+            setIsSubmitting(false);
         } catch (error) {
             console.error('Waitlist submission error:', error);
             toast({
@@ -77,6 +85,7 @@ export function Waitlist() {
                     'There was a problem adding you to the waitlist. Please try again.',
                 variant: 'destructive',
             });
+            setIsSubmitting(false);
         }
     }
 
@@ -211,12 +220,22 @@ export function Waitlist() {
                             />
                             <Button
                                 type="submit"
-                                variant="black"
+                                variant="primary"
                                 size="lg"
-                                className="mt-6 w-full rounded-lg"
+                                className="mt-6 w-full"
+                                disabled={isSubmitting}
                             >
-                                <span>Join Waitlist</span>
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        <span>Submitting...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span>Join Waitlist</span>
+                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                    </>
+                                )}
                             </Button>
                         </form>
                     </Form>

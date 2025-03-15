@@ -14,7 +14,7 @@ const ToastViewport = React.forwardRef<
     <ToastPrimitives.Viewport
         ref={ref}
         className={cn(
-            'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:top-auto sm:right-0 sm:bottom-0 sm:flex-col md:max-w-[420px]',
+            'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse gap-2 p-5 sm:top-auto sm:right-0 sm:bottom-0 sm:flex-col md:max-w-[420px]',
             className,
         )}
         {...props}
@@ -27,9 +27,12 @@ const toastVariants = cva(
     {
         variants: {
             variant: {
-                default: 'border bg-background text-foreground',
+                default:
+                    'border border-zinc-200 bg-white text-zinc-950 shadow-md',
                 destructive:
-                    'destructive group border-destructive bg-destructive text-destructive-foreground',
+                    'destructive group border-none bg-rose-500 text-white shadow-md',
+                success:
+                    'success group border-none bg-emerald-500 text-white shadow-md',
             },
         },
         defaultVariants: {
@@ -60,7 +63,10 @@ const ToastAction = React.forwardRef<
     <ToastPrimitives.Action
         ref={ref}
         className={cn(
-            'ring-offset-background hover:bg-secondary focus:ring-ring group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+            'inline-flex h-8 shrink-0 items-center justify-center rounded-md px-3 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+            'border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-100',
+            'group-[.destructive]:border-rose-100 group-[.destructive]:bg-rose-100/30 group-[.destructive]:text-rose-600 group-[.destructive]:hover:bg-rose-100',
+            'group-[.success]:border-emerald-100 group-[.success]:bg-emerald-100/30 group-[.success]:text-emerald-600 group-[.success]:hover:bg-emerald-100',
             className,
         )}
         {...props}
@@ -75,7 +81,10 @@ const ToastClose = React.forwardRef<
     <ToastPrimitives.Close
         ref={ref}
         className={cn(
-            'text-foreground/50 hover:text-foreground absolute top-2 right-2 rounded-md p-1 opacity-0 transition-opacity group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 focus:opacity-100 focus:ring-2 focus:outline-none group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600',
+            'absolute top-2 right-2 rounded-md p-1 opacity-70 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none',
+            'text-zinc-500 hover:text-zinc-900',
+            'group-[.destructive]:text-white/80 group-[.destructive]:hover:text-white',
+            'group-[.success]:text-white/80 group-[.success]:hover:text-white',
             className,
         )}
         toast-close=""
@@ -92,7 +101,10 @@ const ToastTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <ToastPrimitives.Title
         ref={ref}
-        className={cn('text-sm font-semibold', className)}
+        className={cn(
+            'text-base font-medium group-[.destructive]:text-white group-[.success]:text-white',
+            className,
+        )}
         {...props}
     />
 ));
@@ -104,7 +116,10 @@ const ToastDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <ToastPrimitives.Description
         ref={ref}
-        className={cn('text-sm opacity-90', className)}
+        className={cn(
+            'text-sm font-normal opacity-90 group-[.destructive]:text-white/90 group-[.success]:text-white/90',
+            className,
+        )}
         {...props}
     />
 ));

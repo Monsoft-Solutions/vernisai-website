@@ -30,7 +30,7 @@ export function Toaster() {
             } & ToastProps) {
                 return (
                     <Toast key={id} {...props}>
-                        <div className="grid gap-1">
+                        <div className="flex flex-col gap-1.5">
                             {title && <ToastTitle>{title}</ToastTitle>}
                             {description && (
                                 <ToastDescription>

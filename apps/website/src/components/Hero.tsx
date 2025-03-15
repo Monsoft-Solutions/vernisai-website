@@ -74,16 +74,17 @@ export function Hero() {
                         >
                             <Button
                                 asChild
+                                variant="black"
                                 size="lg"
-                                className="transform bg-black px-8 text-white transition-all duration-300 hover:scale-105 hover:bg-gray-800"
+                                className="px-8"
                             >
                                 <Link to="/waitlist">Get Early Access</Link>
                             </Button>
                             <Button
-                                variant="outline"
+                                variant="default"
                                 size="lg"
                                 asChild
-                                className="transform border-gray-300 px-8 transition-all duration-300 hover:scale-105 hover:bg-gray-100"
+                                className="px-8"
                             >
                                 <Link to="/use-cases">See Use Cases</Link>
                             </Button>
