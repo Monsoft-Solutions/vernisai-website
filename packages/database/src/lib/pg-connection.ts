@@ -1,11 +1,15 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import { waitlistTable } from 'src/schema/waitlist.schema';
 import { z } from 'zod';
 
 // Database configuration schema with strong typing
 export const pgConfigSchema = z.object({
-    connectionString: z.string().url('Invalid database connection string'),
-    ssl: z.boolean().optional().default(true),
+    connectionString: z.string(),
+    ssl: z
+        .union([z.boolean(), z.object({}).passthrough()])
+        .optional()
+        .default(false),
     max: z.number().optional().default(10),
 });
 
@@ -32,8 +36,10 @@ export class PostgresProvider {
     private static config: PgConfig | null = null;
 
     // Initialize with configuration
-    static initialize(config: PgConfig): void {
+    static initialize(config: PgConfig): ReturnType<typeof drizzle> {
         try {
+            console.log('Initializing PostgreSQL connection');
+            console.log('Config:', config);
             // Validate config
             const validatedConfig = pgConfigSchema.parse(config);
 
@@ -42,13 +48,26 @@ export class PostgresProvider {
 
             // Create SQL connection if not exists
             if (!this.instance) {
+                // Parse and encode the connection string
+
+                // Create the SQL connection
+                // this.instance = postgres(validatedConfig.connectionString, {
+                //     ssl: validatedConfig.ssl,
+                //     max: validatedConfig.max,
+                // });
                 this.instance = postgres(validatedConfig.connectionString, {
-                    ssl: validatedConfig.ssl,
-                    max: validatedConfig.max,
+                    prepare: false,
                 });
+                console.log('Instance:', this.instance);
 
                 // Create Drizzle ORM instance
-                this.db = drizzle(this.instance);
+                this.db = drizzle(this.instance, {
+                    schema: {
+                        waitlist: waitlistTable,
+                    },
+                });
+
+                return this.db;
             }
         } catch (error) {
             console.error('Failed to initialize PostgreSQL connection:', error);

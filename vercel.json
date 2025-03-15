@@ -1,11 +1,10 @@
 {
     "rewrites": [
         { "source": "/api/(.*)", "destination": "/api/$1" },
-        { "source": "/(.*)/", "destination": "/$1/index.html" },
-        { "source": "/([^.]*)", "destination": "/$1/index.html" },
         { "source": "/(.*)", "destination": "/index.html" }
     ],
     "buildCommand": "cd apps/website && npm run build",
+    "outputDirectory": "apps/website/dist",
     "functions": {
         "api/**": {
             "memory": 1024,

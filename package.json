@@ -6,6 +6,7 @@
     "type": "module",
     "scripts": {
         "dev": "env-cmd -f .env/.env turbo run dev",
+        "dev:vercel": "env-cmd -f .env/.env vercel dev --debug",
         "build": "turbo run build",
         "build:with-index": "turbo run build:with-index",
         "update-google-index": "turbo run update-google-index",

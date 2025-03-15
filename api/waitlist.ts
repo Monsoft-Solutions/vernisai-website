@@ -13,10 +13,9 @@ const getPgConfig = (): PgConfig => {
         throw new Error('DATABASE_URL environment variable is required');
     }
 
-    // Use SSL configuration with rejectUnauthorized: false to handle self-signed certificates
     return {
         connectionString: process.env.DATABASE_URL,
-        ssl: process.env.NODE_ENV === 'development' ? false : true,
+        ssl: process.env.NODE_ENV === 'production',
     };
 };
 
@@ -27,10 +26,6 @@ const initializeDatabase = () => {
         PostgresProvider.initialize(config);
     } catch (error) {
         console.error('Failed to initialize database:', error);
-        if (error instanceof Error) {
-            console.error('Error message:', error.message);
-            console.error('Error stack:', error.stack);
-        }
         throw new Error('Database initialization failed');
     }
 };
@@ -55,7 +50,6 @@ export default async function handler(
         const result = insertWaitlistSchema.safeParse(request.body);
 
         if (!result.success) {
-            console.error('Validation error:', result.error.format());
             return response.status(400).json({
                 success: false,
                 error: 'Invalid form data',
@@ -84,7 +78,6 @@ export default async function handler(
             result.data.email,
         );
         if (emailExists) {
-            console.warn('Email already exists');
             return response.status(409).json({
                 success: false,
                 error: 'Email already registered',
@@ -99,7 +92,6 @@ export default async function handler(
         });
 
         if (!success) {
-            console.error('Failed to add to waitlist:', error);
             return response.status(500).json({ success, error });
         }
 
@@ -110,10 +102,6 @@ export default async function handler(
         });
     } catch (error) {
         console.error('Waitlist API error:', error);
-        if (error instanceof Error) {
-            console.error('Error message:', error.message);
-            console.error('Error stack:', error.stack);
-        }
         return response.status(500).json({
             success: false,
             error: 'Server error, please try again later',
