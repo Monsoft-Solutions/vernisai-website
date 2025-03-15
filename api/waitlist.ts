@@ -30,6 +30,12 @@ const initializeDatabase = () => {
     }
 };
 
+// Using named export with ES modules
+export const config = {
+    runtime: 'nodejs18.x',
+};
+
+// Using default export with ES modules
 export default async function handler(
     request: VercelRequest,
     response: VercelResponse,

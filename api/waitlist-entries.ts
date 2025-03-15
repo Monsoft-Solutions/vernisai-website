@@ -52,6 +52,11 @@ const authenticate = (request: VercelRequest): boolean => {
     return username === API_USERNAME && password === API_PASSWORD;
 };
 
+// Using named export with ES modules
+export const config = {
+    runtime: 'nodejs18.x',
+};
+
 export default async function handler(
     request: VercelRequest,
     response: VercelResponse,

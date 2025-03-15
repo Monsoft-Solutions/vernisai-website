@@ -8,6 +8,11 @@ import crypto from 'crypto';
  * in your Vercel project settings.
  */
 
+// Add the config export to specify the runtime
+export const config = {
+    runtime: 'nodejs18.x',
+};
+
 // Helper to get the site's sitemap URL
 const getSiteUrl = () => {
     // Get the site URL from environment variables or use a default
@@ -32,7 +37,7 @@ const getPrivateKey = () => {
 };
 
 // Create the handler with configuration
-const handler = (req: VercelRequest, res: VercelResponse) => {
+const handler = async (req: VercelRequest, res: VercelResponse) => {
     try {
         // Only allow POST requests (from Vercel deployment webhook)
         if (req.method !== 'POST') {
@@ -46,7 +51,7 @@ const handler = (req: VercelRequest, res: VercelResponse) => {
         );
 
         // Verify the signature of the request
-        if (!verifySignature(req)) {
+        if (!(await verifySignature(req))) {
             console.error('Unauthorized request');
             return res.status(401).json({ error: 'Unauthorized' });
         } else {
