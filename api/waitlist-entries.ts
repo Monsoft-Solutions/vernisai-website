@@ -54,7 +54,7 @@ const authenticate = (request: VercelRequest): boolean => {
 
 // Using named export with ES modules
 export const config = {
-    runtime: 'nodejs18.x',
+    runtime: 'nodejs',
 };
 
 export default async function handler(

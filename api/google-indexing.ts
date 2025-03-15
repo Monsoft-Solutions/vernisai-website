@@ -10,7 +10,7 @@ import crypto from 'crypto';
 
 // Add the config export to specify the runtime
 export const config = {
-    runtime: 'nodejs18.x',
+    runtime: 'nodejs',
 };
 
 // Helper to get the site's sitemap URL

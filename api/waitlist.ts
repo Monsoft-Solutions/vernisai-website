@@ -32,7 +32,7 @@ const initializeDatabase = () => {
 
 // Using named export with ES modules
 export const config = {
-    runtime: 'nodejs18.x',
+    runtime: 'nodejs',
 };
 
 // Using default export with ES modules
