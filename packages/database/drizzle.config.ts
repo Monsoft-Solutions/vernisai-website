@@ -1,4 +1,5 @@
 import { defineConfig } from 'drizzle-kit';
+import * as tables from './src/tables';
 
 // Get the database URL from environment variables
 let connectionString = process.env.DATABASE_URL || '';
@@ -10,7 +11,7 @@ if (connectionString.startsWith('"') && connectionString.endsWith('"')) {
 
 // Export the configuration
 export default defineConfig({
-    schema: './src/schema/waitlist.schema.ts',
+    schema: './src/tables',
     out: './drizzle',
     dialect: 'postgresql',
     dbCredentials: {
