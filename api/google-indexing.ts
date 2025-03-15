@@ -2,9 +2,6 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 // Import the Google Indexing handler directly to avoid package issues
 import crypto from 'crypto';
 
-// Export runtime config for Vercel serverless functions
-export const config = { runtime: 'nodejs' };
-
 /**
  * This is a Vercel API route that handles indexing site updates with Google
  * after each deployment. It should be configured as a deployment webhook
