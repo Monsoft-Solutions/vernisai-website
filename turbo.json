@@ -20,11 +20,29 @@
         },
         "lint": {
             "dependsOn": ["^lint"],
-            "outputs": []
+            "outputs": [],
+            "inputs": [
+                "src/**/*.tsx",
+                "src/**/*.ts",
+                "test/**/*.ts",
+                "test/**/*.tsx",
+                "*.js",
+                "*.ts",
+                "*.tsx"
+            ]
         },
         "lint:fix": {
             "dependsOn": ["^lint:fix"],
-            "cache": false
+            "cache": false,
+            "inputs": [
+                "src/**/*.tsx",
+                "src/**/*.ts",
+                "test/**/*.ts",
+                "test/**/*.tsx",
+                "*.js",
+                "*.ts",
+                "*.tsx"
+            ]
         },
         "typecheck": {
             "dependsOn": ["^typecheck"],
@@ -43,7 +61,16 @@
         },
         "validate": {
             "dependsOn": ["typecheck", "lint:fix", "format"],
-            "outputs": []
+            "outputs": [],
+            "inputs": [
+                "src/**/*.tsx",
+                "src/**/*.ts",
+                "test/**/*.ts",
+                "test/**/*.tsx",
+                "*.js",
+                "*.ts",
+                "*.tsx"
+            ]
         },
         "test": {
             "dependsOn": ["build"],

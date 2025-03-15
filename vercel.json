@@ -1,8 +1,15 @@
 {
     "rewrites": [
-        { "source": "/(.*)/", "destination": "/$1/index.html" },
-        { "source": "/([^.]*)", "destination": "/$1/index.html" },
+        { "source": "/api/(.*)", "destination": "/api/$1" },
         { "source": "/(.*)", "destination": "/index.html" }
     ],
-    "buildCommand": "cd apps/website && npm run build"
+    "buildCommand": "cd packages/database && npm run build && cd ../.. && cd apps/website && npm run build",
+    "outputDirectory": "apps/website/dist",
+    "functions": {
+        "api/**": {
+            "memory": 1024,
+            "maxDuration": 10
+        }
+    },
+    "installCommand": "npm install"
 }
