@@ -1,4 +1,4 @@
-export * from './schema';
+export * from './insert-tracking.schema';
 export * from './select.type';
 export * from './insert.type';
 export * from './data.type';
