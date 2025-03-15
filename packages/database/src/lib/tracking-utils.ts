@@ -1,5 +1,5 @@
 import { IncomingMessage } from 'http';
-import { AudienceTrackingData } from '../schema/audience-tracking.schema';
+import { AudienceTrackingData } from '../schemas/audience-tracking';
 
 /**
  * Parse User-Agent string to extract browser, OS, and device information

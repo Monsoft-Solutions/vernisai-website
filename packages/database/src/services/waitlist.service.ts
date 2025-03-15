@@ -1,11 +1,11 @@
 import { eq } from 'drizzle-orm';
 import { PostgresProvider } from '../lib/pg-connection';
+import { waitlistTable } from '../tables/waitlist.table';
 import {
-    waitlistTable,
     WaitlistFormData,
     WaitlistResult,
     WaitlistEntriesResult,
-} from '../schema/waitlist.schema';
+} from '../schemas/waitlist';
 
 export class WaitlistService {
     /**

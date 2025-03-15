@@ -1,13 +1,13 @@
 import { and, eq, gte, lte, sql } from 'drizzle-orm';
 import { PostgresProvider } from '../lib/pg-connection';
+import { audienceTrackingTable } from '../tables/audience-tracking.table';
 import {
-    audienceTrackingTable,
     AudienceTrackingData,
     AudienceTrackingResult,
     AudienceTrackingQueryParams,
     AudienceTrackingStatsResult,
     AudienceTrackingSelect,
-} from '../schema/audience-tracking.schema';
+} from '../schemas/audience-tracking';
 
 export class AudienceTrackingService {
     /**
