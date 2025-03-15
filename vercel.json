@@ -11,5 +11,5 @@
             "maxDuration": 10
         }
     },
-    "installCommand": "npm install"
+    "installCommand": "npm install --production=false"
 }
