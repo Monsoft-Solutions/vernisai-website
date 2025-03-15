@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
+import { CheckCircle, Loader2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -28,6 +29,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export function Waitlist() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const { toast } = useToast();
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -39,6 +41,9 @@ export function Waitlist() {
     });
 
     async function onSubmit(data: FormValues) {
+        if (isSubmitting) return;
+
+        setIsSubmitting(true);
         try {
             const response = await fetch('/api/waitlist', {
                 method: 'POST',
@@ -57,6 +62,7 @@ export function Waitlist() {
                         description: 'This email is already on our waitlist.',
                         variant: 'destructive',
                     });
+                    setIsSubmitting(false);
                     return;
                 }
 
@@ -67,8 +73,10 @@ export function Waitlist() {
                 title: 'Success!',
                 description:
                     "You've been added to our waitlist. We'll be in touch soon!",
+                variant: 'success',
             });
             form.reset();
+            setIsSubmitting(false);
         } catch (error) {
             console.error('Waitlist submission error:', error);
             toast({
@@ -77,6 +85,7 @@ export function Waitlist() {
                     'There was a problem adding you to the waitlist. Please try again.',
                 variant: 'destructive',
             });
+            setIsSubmitting(false);
         }
     }
 
@@ -88,7 +97,7 @@ export function Waitlist() {
     ];
 
     return (
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="flex w-full justify-center py-12 md:py-24 lg:py-32">
             <div className="container grid items-center gap-8 px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
                 <motion.div
                     className="space-y-4"
@@ -211,12 +220,20 @@ export function Waitlist() {
                             />
                             <Button
                                 type="submit"
-                                variant="black"
+                                variant="primary"
                                 size="lg"
-                                className="mt-6 w-full rounded-lg"
+                                className="mt-6 w-full"
+                                disabled={isSubmitting}
+                                showArrow={!isSubmitting}
+                                iconLeft={
+                                    isSubmitting ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : undefined
+                                }
                             >
-                                <span>Join Waitlist</span>
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                {isSubmitting
+                                    ? 'Submitting...'
+                                    : 'Join Waitlist'}
                             </Button>
                         </form>
                     </Form>

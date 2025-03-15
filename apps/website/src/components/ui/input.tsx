@@ -1,23 +1,57 @@
 import * as React from 'react';
+import { type VariantProps } from 'class-variance-authority';
 
 import { cn } from '../../lib/utils';
+import { inputVariants } from './input-variant';
 
-const Input = React.forwardRef<
-    HTMLInputElement,
-    React.InputHTMLAttributes<HTMLInputElement>
->(({ className, type, ...props }, ref) => {
-    return (
-        <input
-            type={type}
-            className={cn(
-                'border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
-                className,
-            )}
-            ref={ref}
-            {...props}
-        />
-    );
-});
+export interface InputProps
+    extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+        VariantProps<typeof inputVariants> {
+    icon?: React.ReactNode;
+    iconPosition?: 'left' | 'right';
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+    (
+        {
+            className,
+            type,
+            variant,
+            inputSize,
+            rounded,
+            icon,
+            iconPosition = 'left',
+            ...props
+        },
+        ref,
+    ) => {
+        return (
+            <div className="relative w-full">
+                {icon && iconPosition === 'left' && (
+                    <div className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-500">
+                        {icon}
+                    </div>
+                )}
+                <input
+                    type={type}
+                    className={cn(
+                        inputVariants({ variant, inputSize, rounded }),
+                        icon && iconPosition === 'left' && 'pl-10',
+                        icon && iconPosition === 'right' && 'pr-10',
+                        className,
+                    )}
+                    ref={ref}
+                    {...props}
+                />
+                {icon && iconPosition === 'right' && (
+                    <div className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500">
+                        {icon}
+                    </div>
+                )}
+            </div>
+        );
+    },
+);
 Input.displayName = 'Input';
 
 export { Input };

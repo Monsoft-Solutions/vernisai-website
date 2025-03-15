@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
+import { VariantProps } from 'class-variance-authority';
+import { buttonVariants } from './ui/button-variant';
 
 type CallToActionProps = {
     title: string;
@@ -13,15 +15,10 @@ type CallToActionProps = {
     icon?: ReactNode;
     height?: 'default' | 'tall' | 'extra-tall';
     alignment?: 'left' | 'center';
-    buttonVariant?:
-        | 'default'
-        | 'outline'
-        | 'secondary'
-        | 'ghost'
-        | 'link'
-        | 'destructive';
-    buttonSize?: 'default' | 'sm' | 'lg' | 'icon';
-    buttonColor?: string;
+    buttonVariant?: VariantProps<typeof buttonVariants>['variant'];
+    buttonSize?: VariantProps<typeof buttonVariants>['size'];
+    buttonAnimation?: VariantProps<typeof buttonVariants>['animation'];
+    buttonGlow?: boolean;
     textColor?: string;
     descriptionColor?: string;
 };
@@ -35,9 +32,10 @@ export function CallToAction({
     icon = <ArrowUpRight className="h-4 w-4" />,
     height = 'default',
     alignment = 'left',
-    buttonVariant = 'default',
+    buttonVariant = 'white',
     buttonSize = 'lg',
-    buttonColor = 'bg-white text-blue-600 hover:bg-blue-50 hover:text-blue-700',
+    buttonAnimation = 'scale',
+    buttonGlow = false,
     textColor = 'text-white',
     descriptionColor = 'text-blue-100',
 }: CallToActionProps) {
@@ -73,26 +71,18 @@ export function CallToAction({
                     </h3>
                     <p className={descriptionColor}>{description}</p>
                 </div>
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={alignment === 'center' ? 'mt-6' : ''}
-                >
+                <div className={alignment === 'center' ? 'mt-6' : ''}>
                     <Button
                         asChild
                         size={buttonSize}
                         variant={buttonVariant}
-                        className={buttonColor}
+                        animation={buttonAnimation}
+                        glow={buttonGlow}
+                        iconRight={icon}
                     >
-                        <Link
-                            to={buttonLink}
-                            className="flex items-center gap-2"
-                        >
-                            <span>{buttonText}</span>
-                            {icon}
-                        </Link>
+                        <Link to={buttonLink}>{buttonText}</Link>
                     </Button>
-                </motion.div>
+                </div>
             </div>
         </motion.div>
     );

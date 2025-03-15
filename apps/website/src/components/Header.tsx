@@ -485,10 +485,7 @@ export function Header() {
                             whileHover={{ scale: 1.05 }}
                             transition={{ type: 'spring', stiffness: 400 }}
                         >
-                            <Button
-                                asChild
-                                className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md transition-all duration-200 hover:from-purple-700 hover:to-indigo-700 hover:shadow-lg"
-                            >
+                            <Button asChild variant="black">
                                 <Link to="/waitlist">Join Waitlist</Link>
                             </Button>
                         </motion.div>
@@ -498,12 +495,9 @@ export function Header() {
                 {/* Mobile Navigation - Only show on mobile */}
                 <div className="flex items-center md:hidden">
                     {/* Mobile Waitlist Button */}
-                    <Link
-                        to="/waitlist"
-                        className="mr-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm"
-                    >
-                        Join Waitlist
-                    </Link>
+                    <Button asChild variant="black" size="sm" className="mr-2">
+                        <Link to="/waitlist">Join Waitlist</Link>
+                    </Button>
 
                     {/* Mobile Menu Trigger */}
                     <MobileNav />
