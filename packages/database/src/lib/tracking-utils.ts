@@ -174,6 +174,7 @@ export async function extractTrackingInfo(
     waitlistId: string,
     referrer?: string,
     utmParams?: Record<string, string>,
+    pageUrl?: string,
 ): Promise<AudienceTrackingData> {
     // Get IP address
     const ipAddress = getClientIp(req);
@@ -202,6 +203,7 @@ export async function extractTrackingInfo(
         ip_address: ipAddress,
         user_agent: userAgent,
         referrer: referer,
+        page_url: pageUrl,
         device_type: deviceType,
         browser,
         os,

@@ -98,6 +98,7 @@ export function Waitlist() {
                 ...utmParams,
                 ...storedUtmParams,
                 referrer: document.referrer || undefined,
+                page_url: window.location.href || undefined,
             };
 
             const response = await fetch('/api/waitlist', {

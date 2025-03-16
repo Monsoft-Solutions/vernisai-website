@@ -25,6 +25,7 @@ export class AudienceTrackingService {
                 ...(data.ip_address ? { ip_address: data.ip_address } : {}),
                 ...(data.user_agent ? { user_agent: data.user_agent } : {}),
                 ...(data.referrer ? { referrer: data.referrer } : {}),
+                ...(data.page_url ? { page_url: data.page_url } : {}),
                 ...(data.utm_source ? { utm_source: data.utm_source } : {}),
                 ...(data.utm_medium ? { utm_medium: data.utm_medium } : {}),
                 ...(data.utm_campaign

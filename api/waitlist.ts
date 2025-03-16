@@ -108,6 +108,7 @@ export default async function handler(
                 utm_term,
                 utm_content,
                 referrer,
+                page_url,
             } = request.body as Record<string, string>;
 
             const utmParams = {
@@ -132,6 +133,7 @@ export default async function handler(
                 Object.keys(filteredUtmParams).length > 0
                     ? filteredUtmParams
                     : undefined,
+                page_url,
             );
 
             console.warn('trackingData', trackingData);

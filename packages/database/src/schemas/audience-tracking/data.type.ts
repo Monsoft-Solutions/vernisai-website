@@ -4,6 +4,7 @@ export type AudienceTrackingData = {
     ip_address?: string;
     user_agent?: string;
     referrer?: string;
+    page_url?: string;
     utm_source?: string;
     utm_medium?: string;
     utm_campaign?: string;

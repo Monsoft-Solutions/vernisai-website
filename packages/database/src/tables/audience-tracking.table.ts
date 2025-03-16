@@ -8,6 +8,7 @@ export const audienceTrackingTable = pgTable('audience_tracking', {
     ip_address: text('ip_address'),
     user_agent: text('user_agent'),
     referrer: text('referrer'),
+    page_url: text('page_url'),
     utm_source: text('utm_source'),
     utm_medium: text('utm_medium'),
     utm_campaign: text('utm_campaign'),
