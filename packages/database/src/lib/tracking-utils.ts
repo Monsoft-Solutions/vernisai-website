@@ -1,5 +1,6 @@
 import { IncomingMessage } from 'http';
 import { AudienceTrackingData } from '../schemas/audience-tracking';
+import { IpInfoResponse } from '../types/ipinfo';
 
 /**
  * Parse User-Agent string to extract browser, OS, and device information
@@ -92,20 +93,18 @@ export function extractUtmParams(url: string): {
 
 /**
  * Get location information from IP address
- * This is a placeholder implementation. In a real-world scenario,
- * you would use a geolocation service like MaxMind, ipstack, or similar.
+ * Uses ipinfo.io service to get geolocation data
  */
 export async function getLocationFromIp(ipAddress: string): Promise<{
     country?: string;
     region?: string;
     city?: string;
+    postal?: string;
+    timezone?: string;
+    loc?: string;
+    org?: string;
 }> {
-    // This is a placeholder. In a real implementation, you would:
-    // 1. Call a geolocation API service
-    // 2. Parse the response
-    // 3. Return the location data
-
-    // For testing purposes, we'll return mock data for certain IPs
+    // Return mock data for localhost
     if (ipAddress === '127.0.0.1' || ipAddress === '::1') {
         return {
             country: 'Local',
@@ -114,18 +113,39 @@ export async function getLocationFromIp(ipAddress: string): Promise<{
         };
     }
 
-    // In a real implementation, you would make an API call here
-    // For example:
-    // const response = await fetch(`https://ipgeolocation.example.com/api/${ipAddress}`);
-    // const data = await response.json();
-    // return {
-    //     country: data.country,
-    //     region: data.region,
-    //     city: data.city,
-    // };
+    try {
+        // Get token from environment variables
+        const token = process.env.IPINFO_TOKEN;
 
-    // For now, return empty object
-    return {};
+        if (!token) {
+            console.warn('IPINFO_TOKEN environment variable is not set');
+            return {};
+        }
+
+        // Make request to ipinfo.io API
+        const response = await fetch(
+            `https://ipinfo.io/${ipAddress}?token=${token}`,
+        );
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch IP info: ${response.statusText}`);
+        }
+
+        const data: IpInfoResponse = await response.json();
+
+        return {
+            country: data.country,
+            region: data.region,
+            city: data.city,
+            postal: data.postal,
+            timezone: data.timezone,
+            loc: data.loc,
+            org: data.org,
+        };
+    } catch (error) {
+        console.error('Error fetching location data:', error);
+        return {};
+    }
 }
 
 /**
@@ -185,8 +205,14 @@ export async function extractTrackingInfo(
         device_type: deviceType,
         browser,
         os,
+        location_country: location.country,
+        location_region: location.region,
+        location_city: location.city,
+        location_postal: location.postal,
+        location_timezone: location.timezone,
+        location_coordinates: location.loc,
+        location_org: location.org,
         ...utmParameters,
-        ...location,
     };
 
     return trackingData;

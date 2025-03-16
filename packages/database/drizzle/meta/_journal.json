@@ -15,6 +15,13 @@
             "when": 1742079220376,
             "tag": "0001_outgoing_umar",
             "breakpoints": true
+        },
+        {
+            "idx": 2,
+            "version": "7",
+            "when": 1742089154943,
+            "tag": "0002_stale_shadow_king",
+            "breakpoints": true
         }
     ]
 }

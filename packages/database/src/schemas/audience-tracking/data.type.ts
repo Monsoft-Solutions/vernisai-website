@@ -12,6 +12,10 @@ export type AudienceTrackingData = {
     location_country?: string;
     location_region?: string;
     location_city?: string;
+    location_postal?: string;
+    location_timezone?: string;
+    location_coordinates?: string;
+    location_org?: string;
     device_type?: string;
     browser?: string;
     os?: string;
