@@ -123,6 +123,7 @@ export default async function handler(
                 Object.entries(utmParams).filter(([_, v]) => v !== undefined),
             );
 
+            console.log('filteredUtmParams', filteredUtmParams);
             // Extract tracking info from request
             const trackingData = await extractTrackingInfo(
                 request,
@@ -132,6 +133,8 @@ export default async function handler(
                     ? filteredUtmParams
                     : undefined,
             );
+
+            console.log('trackingData', trackingData);
 
             // Save tracking data
             const audienceTrackingService = new AudienceTrackingService();
