@@ -41,6 +41,18 @@ export class AudienceTrackingService {
                 ...(data.location_city
                     ? { location_city: data.location_city }
                     : {}),
+                ...(data.location_postal
+                    ? { location_postal: data.location_postal }
+                    : {}),
+                ...(data.location_timezone
+                    ? { location_timezone: data.location_timezone }
+                    : {}),
+                ...(data.location_coordinates
+                    ? { location_coordinates: data.location_coordinates }
+                    : {}),
+                ...(data.location_org
+                    ? { location_org: data.location_org }
+                    : {}),
                 ...(data.device_type ? { device_type: data.device_type } : {}),
                 ...(data.browser ? { browser: data.browser } : {}),
                 ...(data.os ? { os: data.os } : {}),
