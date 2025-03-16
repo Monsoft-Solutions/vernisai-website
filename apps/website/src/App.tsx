@@ -35,6 +35,9 @@ const Features = lazy(() =>
 const Pricing = lazy(() =>
     import('./pages/Pricing').then((module) => ({ default: module.Pricing })),
 );
+const ThankYou = lazy(() =>
+    import('./pages/ThankYou').then((module) => ({ default: module.ThankYou })),
+);
 const FeatureDetail = lazy(() =>
     import('./pages/FeatureDetail').then((module) => ({
         default: module.FeatureDetail,
@@ -152,6 +155,14 @@ function App() {
                         element={
                             <Suspense fallback={<PageLoader />}>
                                 <WaitlistPage />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="thank-you"
+                        element={
+                            <Suspense fallback={<PageLoader />}>
+                                <ThankYou />
                             </Suspense>
                         }
                     />

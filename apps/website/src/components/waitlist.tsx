@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { CheckCircle, Loader2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import {
@@ -56,6 +57,7 @@ export function Waitlist() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [utmParams, setUtmParams] = useState<Record<string, string>>({});
     const { toast } = useToast();
+    const navigate = useNavigate();
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -125,13 +127,6 @@ export function Waitlist() {
                 throw new Error(result.error || 'Something went wrong');
             }
 
-            toast({
-                title: 'Success!',
-                description:
-                    "You've been added to our waitlist. We'll be in touch soon!",
-                variant: 'success',
-            });
-
             // Track conversion for Google Ads if gtag is available
             if (window.gtag) {
                 try {
@@ -156,6 +151,9 @@ export function Waitlist() {
 
             form.reset();
             setIsSubmitting(false);
+
+            // Redirect to thank you page
+            navigate('/thank-you');
         } catch (error) {
             console.error('Waitlist submission error:', error);
             toast({
