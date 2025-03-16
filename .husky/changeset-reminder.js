@@ -34,20 +34,20 @@ const hasChangesDirectoryUpdates = stagedFiles.some((file) =>
 
 // If there are code changes but no changeset files and no changes directory updates
 if (hasCodeChanges && !hasChangesetFiles && !hasChangesDirectoryUpdates) {
-    console.log(
+    console.warn(
         '\x1b[33m%s\x1b[0m',
         '⚠️  Warning: You have code changes but no changeset file.',
     );
-    console.log(
+    console.warn(
         '\x1b[33m%s\x1b[0m',
         'Consider creating a changeset to document your changes:',
     );
-    console.log('\x1b[36m%s\x1b[0m', '  npm run changeset');
-    console.log(
+    console.warn('\x1b[36m%s\x1b[0m', '  npm run changeset');
+    console.warn(
         '\x1b[33m%s\x1b[0m',
         'Also remember to update the appropriate file in the changes directory.',
     );
-    console.log(
+    console.warn(
         '\x1b[33m%s\x1b[0m',
         'For more information, see docs/CHANGESETS.md',
     );
