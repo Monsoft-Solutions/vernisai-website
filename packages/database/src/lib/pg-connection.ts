@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { waitlistTable } from 'src/schema/waitlist.schema';
+import * as tables from '../tables';
 import { z } from 'zod';
 
 // Database configuration schema with strong typing
@@ -51,11 +51,9 @@ export class PostgresProvider {
                     prepare: false,
                 });
 
-                // Create Drizzle ORM instance
+                // Create Drizzle ORM instance with all tables dynamically
                 this.db = drizzle(this.instance, {
-                    schema: {
-                        waitlist: waitlistTable,
-                    },
+                    schema: tables,
                 });
 
                 return this.db;

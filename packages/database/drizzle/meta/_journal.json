@@ -1,12 +1,33 @@
 {
-    "version": "7",
-    "dialect": "postgresql",
+    "version": "5",
+    "dialect": "pg",
     "entries": [
         {
             "idx": 0,
-            "version": "7",
-            "when": 1741952932690,
+            "version": "5",
+            "when": 1709123456789,
             "tag": "0000_stormy_magdalene",
+            "breakpoints": true
+        },
+        {
+            "idx": 1,
+            "version": "5",
+            "when": 1710763200000,
+            "tag": "0001_outgoing_umar",
+            "breakpoints": true
+        },
+        {
+            "idx": 2,
+            "version": "5",
+            "when": 1710781200000,
+            "tag": "0002_stale_shadow_king",
+            "breakpoints": true
+        },
+        {
+            "idx": 3,
+            "version": "5",
+            "when": 1710790325637,
+            "tag": "0003_lush_ken_ellis",
             "breakpoints": true
         }
     ]

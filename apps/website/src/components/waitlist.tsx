@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -28,8 +28,33 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+// Helper function to get UTM parameters from URL
+function getUtmParameters(): Record<string, string> {
+    if (typeof window === 'undefined') return {};
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmParams: Record<string, string> = {};
+
+    // Extract all UTM parameters
+    [
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_term',
+        'utm_content',
+    ].forEach((param) => {
+        const value = urlParams.get(param);
+        if (value) {
+            utmParams[param] = value;
+        }
+    });
+
+    return utmParams;
+}
+
 export function Waitlist() {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [utmParams, setUtmParams] = useState<Record<string, string>>({});
     const { toast } = useToast();
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -40,17 +65,48 @@ export function Waitlist() {
         },
     });
 
+    // Capture UTM parameters when component mounts
+    useEffect(() => {
+        const params = getUtmParameters();
+        setUtmParams(params);
+
+        // Store UTM parameters in session storage for persistence across pages
+        if (Object.keys(params).length > 0) {
+            sessionStorage.setItem('utm_params', JSON.stringify(params));
+        }
+    }, []);
+
     async function onSubmit(data: FormValues) {
         if (isSubmitting) return;
 
         setIsSubmitting(true);
         try {
+            // Get stored UTM parameters from session storage if they exist
+            let storedUtmParams = {};
+            try {
+                const storedParams = sessionStorage.getItem('utm_params');
+                if (storedParams) {
+                    storedUtmParams = JSON.parse(storedParams);
+                }
+            } catch (e) {
+                console.error('Error parsing stored UTM parameters:', e);
+            }
+
+            // Combine form data with UTM parameters and referrer
+            const submissionData = {
+                ...data,
+                ...utmParams,
+                ...storedUtmParams,
+                referrer: document.referrer || undefined,
+                page_url: window.location.href || undefined,
+            };
+
             const response = await fetch('/api/waitlist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(submissionData),
             });
 
             const result = await response.json();
@@ -75,6 +131,29 @@ export function Waitlist() {
                     "You've been added to our waitlist. We'll be in touch soon!",
                 variant: 'success',
             });
+
+            // Track conversion for Google Ads if gtag is available
+            if (window.gtag) {
+                try {
+                    window.gtag('event', 'conversion', {
+                        send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL', // Replace with your actual conversion ID and label
+                        value: 1.0,
+                        currency: 'USD',
+                    });
+                } catch (e) {
+                    console.error('Error tracking Google Ads conversion:', e);
+                }
+            }
+
+            // Track conversion for Meta Ads if fbq is available
+            if (window.fbq) {
+                try {
+                    window.fbq('track', 'Lead');
+                } catch (e) {
+                    console.error('Error tracking Meta Ads conversion:', e);
+                }
+            }
+
             form.reset();
             setIsSubmitting(false);
         } catch (error) {

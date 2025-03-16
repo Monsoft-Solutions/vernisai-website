@@ -1,0 +1,1 @@
+ALTER TABLE "audience_tracking" ADD COLUMN "page_url" text;

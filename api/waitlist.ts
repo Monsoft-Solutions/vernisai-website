@@ -3,7 +3,9 @@ import {
     PostgresProvider,
     PgConfig,
     WaitlistService,
+    AudienceTrackingService,
     insertWaitlistSchema,
+    extractTrackingInfo,
 } from '@vernisai/database';
 
 // Get PostgreSQL configuration from environment variables
@@ -94,6 +96,56 @@ export default async function handler(
 
         if (!success) {
             return response.status(500).json({ success, error });
+        }
+
+        // Extract tracking information from the request
+        try {
+            // Get UTM parameters and referrer from request body if provided
+            const {
+                utm_source,
+                utm_medium,
+                utm_campaign,
+                utm_term,
+                utm_content,
+                referrer,
+                page_url,
+            } = request.body as Record<string, string>;
+
+            const utmParams = {
+                utm_source,
+                utm_medium,
+                utm_campaign,
+                utm_term,
+                utm_content,
+            };
+
+            // Only include UTM params that are defined
+            const filteredUtmParams = Object.fromEntries(
+                Object.entries(utmParams).filter(([_, v]) => v !== undefined),
+            );
+
+            console.warn('filteredUtmParams', filteredUtmParams);
+            // Extract tracking info from request
+            const trackingData = await extractTrackingInfo(
+                request,
+                data.id,
+                referrer,
+                Object.keys(filteredUtmParams).length > 0
+                    ? filteredUtmParams
+                    : undefined,
+                page_url,
+            );
+
+            console.warn('trackingData', trackingData);
+
+            // Save tracking data
+            const audienceTrackingService = new AudienceTrackingService();
+            await audienceTrackingService.saveTrackingData(trackingData);
+        } catch (trackingError) {
+            // Log tracking error but don't fail the request
+            console.error('Failed to save tracking data:', trackingError);
+            // We intentionally don't return an error to the client here
+            // as the waitlist submission was successful
         }
 
         return response.status(201).json({

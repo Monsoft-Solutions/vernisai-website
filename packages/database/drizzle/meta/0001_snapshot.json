@@ -1,0 +1,195 @@
+{
+    "id": "abda7cbd-6e15-4046-ab6a-ab91b82de70e",
+    "prevId": "f5a69d17-04ec-4f2a-b02f-c65846576861",
+    "version": "7",
+    "dialect": "postgresql",
+    "tables": {
+        "public.audience_tracking": {
+            "name": "audience_tracking",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "uuid",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "default": "gen_random_uuid()"
+                },
+                "waitlist_id": {
+                    "name": "waitlist_id",
+                    "type": "uuid",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "ip_address": {
+                    "name": "ip_address",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "user_agent": {
+                    "name": "user_agent",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "referrer": {
+                    "name": "referrer",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "utm_source": {
+                    "name": "utm_source",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "utm_medium": {
+                    "name": "utm_medium",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "utm_campaign": {
+                    "name": "utm_campaign",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "utm_term": {
+                    "name": "utm_term",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "utm_content": {
+                    "name": "utm_content",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "location_country": {
+                    "name": "location_country",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "location_region": {
+                    "name": "location_region",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "location_city": {
+                    "name": "location_city",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "device_type": {
+                    "name": "device_type",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "browser": {
+                    "name": "browser",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "os": {
+                    "name": "os",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "additional_data": {
+                    "name": "additional_data",
+                    "type": "jsonb",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "created_at": {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {
+                "audience_tracking_waitlist_id_waitlist_id_fk": {
+                    "name": "audience_tracking_waitlist_id_waitlist_id_fk",
+                    "tableFrom": "audience_tracking",
+                    "tableTo": "waitlist",
+                    "columnsFrom": ["waitlist_id"],
+                    "columnsTo": ["id"],
+                    "onDelete": "no action",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {},
+            "policies": {},
+            "checkConstraints": {}
+        },
+        "public.waitlist": {
+            "name": "waitlist",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "uuid",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "default": "gen_random_uuid()"
+                },
+                "name": {
+                    "name": "name",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "email": {
+                    "name": "email",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": true
+                },
+                "company": {
+                    "name": "company",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "created_at": {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {},
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {},
+            "policies": {},
+            "checkConstraints": {}
+        }
+    },
+    "enums": {},
+    "schemas": {},
+    "sequences": {},
+    "roles": {},
+    "policies": {},
+    "views": {},
+    "_meta": {
+        "columns": {},
+        "schemas": {},
+        "tables": {}
+    }
+}
