@@ -9,7 +9,16 @@ import {
     AudienceTrackingSelect,
 } from '../schemas/audience-tracking';
 
+// Type for breakdown field names
+type BreakdownField =
+    | 'utm_source'
+    | 'utm_medium'
+    | 'utm_campaign'
+    | 'location_country';
+
 export class AudienceTrackingService {
+    private db = PostgresProvider.getDB();
+
     /**
      * Save audience tracking data associated with a waitlist entry
      */
@@ -17,52 +26,34 @@ export class AudienceTrackingService {
         data: AudienceTrackingData,
     ): Promise<AudienceTrackingResult> {
         try {
-            const db = PostgresProvider.getDB();
-
-            // Prepare the data for insertion
+            // Create a dynamic object with only the provided fields
             const insertData = {
                 waitlist_id: data.waitlist_id,
-                ...(data.ip_address ? { ip_address: data.ip_address } : {}),
-                ...(data.user_agent ? { user_agent: data.user_agent } : {}),
-                ...(data.referrer ? { referrer: data.referrer } : {}),
-                ...(data.page_url ? { page_url: data.page_url } : {}),
-                ...(data.utm_source ? { utm_source: data.utm_source } : {}),
-                ...(data.utm_medium ? { utm_medium: data.utm_medium } : {}),
-                ...(data.utm_campaign
-                    ? { utm_campaign: data.utm_campaign }
-                    : {}),
-                ...(data.utm_term ? { utm_term: data.utm_term } : {}),
-                ...(data.utm_content ? { utm_content: data.utm_content } : {}),
-                ...(data.location_country
-                    ? { location_country: data.location_country }
-                    : {}),
-                ...(data.location_region
-                    ? { location_region: data.location_region }
-                    : {}),
-                ...(data.location_city
-                    ? { location_city: data.location_city }
-                    : {}),
-                ...(data.location_postal
-                    ? { location_postal: data.location_postal }
-                    : {}),
-                ...(data.location_timezone
-                    ? { location_timezone: data.location_timezone }
-                    : {}),
-                ...(data.location_coordinates
-                    ? { location_coordinates: data.location_coordinates }
-                    : {}),
-                ...(data.location_org
-                    ? { location_org: data.location_org }
-                    : {}),
-                ...(data.device_type ? { device_type: data.device_type } : {}),
-                ...(data.browser ? { browser: data.browser } : {}),
-                ...(data.os ? { os: data.os } : {}),
-                ...(data.additional_data
-                    ? { additional_data: data.additional_data }
-                    : {}),
+                ...this.createOptionalFields(data, [
+                    'ip_address',
+                    'user_agent',
+                    'referrer',
+                    'page_url',
+                    'utm_source',
+                    'utm_medium',
+                    'utm_campaign',
+                    'utm_term',
+                    'utm_content',
+                    'location_country',
+                    'location_region',
+                    'location_city',
+                    'location_postal',
+                    'location_timezone',
+                    'location_coordinates',
+                    'location_org',
+                    'device_type',
+                    'browser',
+                    'os',
+                    'additional_data',
+                ]),
             };
 
-            const [result] = await db
+            const [result] = await this.db
                 .insert(audienceTrackingTable)
                 .values(insertData)
                 .returning();
@@ -72,11 +63,10 @@ export class AudienceTrackingService {
                 data: result,
             };
         } catch (error) {
-            console.error('Failed to save audience tracking data:', error);
-            return {
-                success: false,
-                error: 'Failed to save audience tracking data. Please try again later.',
-            };
+            return this.handleError(
+                'Failed to save audience tracking data',
+                error,
+            );
         }
     }
 
@@ -87,9 +77,7 @@ export class AudienceTrackingService {
         waitlistId: string,
     ): Promise<AudienceTrackingSelect | null> {
         try {
-            const db = PostgresProvider.getDB();
-
-            const result = await db
+            const result = await this.db
                 .select()
                 .from(audienceTrackingTable)
                 .where(eq(audienceTrackingTable.waitlist_id, waitlistId))
@@ -97,8 +85,10 @@ export class AudienceTrackingService {
 
             return result.length > 0 ? result[0] : null;
         } catch (error) {
-            console.error('Failed to get tracking data by waitlist ID:', error);
-            throw new Error('Database error when retrieving tracking data');
+            throw this.createError(
+                'Failed to get tracking data by waitlist ID',
+                error,
+            );
         }
     }
 
@@ -109,75 +99,25 @@ export class AudienceTrackingService {
         params: AudienceTrackingQueryParams,
     ): Promise<AudienceTrackingSelect[]> {
         try {
-            const db = PostgresProvider.getDB();
-            const {
-                startDate,
-                endDate,
-                utm_source,
-                utm_medium,
-                utm_campaign,
-                location_country,
-                limit = 100,
-                offset = 0,
-            } = params;
+            const { limit = 100, offset = 0 } = params;
 
-            // Build conditions array
-            const conditions = [];
-
-            if (startDate) {
-                conditions.push(
-                    gte(audienceTrackingTable.created_at, startDate),
-                );
-            }
-
-            if (endDate) {
-                conditions.push(lte(audienceTrackingTable.created_at, endDate));
-            }
-
-            if (utm_source) {
-                conditions.push(
-                    eq(audienceTrackingTable.utm_source, utm_source),
-                );
-            }
-
-            if (utm_medium) {
-                conditions.push(
-                    eq(audienceTrackingTable.utm_medium, utm_medium),
-                );
-            }
-
-            if (utm_campaign) {
-                conditions.push(
-                    eq(audienceTrackingTable.utm_campaign, utm_campaign),
-                );
-            }
-
-            if (location_country) {
-                conditions.push(
-                    eq(
-                        audienceTrackingTable.location_country,
-                        location_country,
-                    ),
-                );
-            }
-
-            // Execute query with conditions
-            const query = db
+            // Build query with conditions
+            const query = this.db
                 .select()
                 .from(audienceTrackingTable)
                 .limit(limit)
                 .offset(offset)
                 .orderBy(audienceTrackingTable.created_at);
 
-            // Add where clause if conditions exist
+            // Add conditions if they exist
+            const conditions = this.buildQueryConditions(params);
             if (conditions.length > 0) {
                 query.where(and(...conditions));
             }
 
             return await query;
         } catch (error) {
-            console.error('Failed to query tracking data:', error);
-            throw new Error('Database error when querying tracking data');
+            throw this.createError('Failed to query tracking data', error);
         }
     }
 
@@ -188,138 +128,32 @@ export class AudienceTrackingService {
         params: AudienceTrackingQueryParams = {},
     ): Promise<AudienceTrackingStatsResult> {
         try {
-            const db = PostgresProvider.getDB();
-            const { startDate, endDate } = params;
-
             // Build conditions array for date filtering
-            const conditions = [];
-
-            if (startDate) {
-                conditions.push(
-                    gte(audienceTrackingTable.created_at, startDate),
-                );
-            }
-
-            if (endDate) {
-                conditions.push(lte(audienceTrackingTable.created_at, endDate));
-            }
+            const conditions = this.buildQueryConditions(params);
 
             // Get total count
-            const totalCountQuery = db
-                .select({ count: sql<number>`count(*)` })
-                .from(audienceTrackingTable);
+            const totalEntries = await this.getAggregateCount(conditions);
 
-            // Add where clause if conditions exist
-            if (conditions.length > 0) {
-                totalCountQuery.where(and(...conditions));
-            }
-
-            const totalCountResult = await totalCountQuery;
-            const totalEntries = totalCountResult[0]?.count || 0;
-
-            // Get source breakdown
-            const sourceBreakdownQuery = db
-                .select({
-                    source: audienceTrackingTable.utm_source,
-                    count: sql<number>`count(*)`,
-                })
-                .from(audienceTrackingTable)
-                .groupBy(audienceTrackingTable.utm_source);
-
-            if (conditions.length > 0) {
-                sourceBreakdownQuery.where(and(...conditions));
-            }
-
-            const sourceBreakdownResult = await sourceBreakdownQuery;
-            const sourceBreakdown: Record<string, number> = {};
-            sourceBreakdownResult.forEach((row) => {
-                const source = row.source || 'unknown';
-                sourceBreakdown[source] = row.count;
-            });
-
-            // Get medium breakdown
-            const mediumBreakdownQuery = db
-                .select({
-                    medium: audienceTrackingTable.utm_medium,
-                    count: sql<number>`count(*)`,
-                })
-                .from(audienceTrackingTable)
-                .groupBy(audienceTrackingTable.utm_medium);
-
-            if (conditions.length > 0) {
-                mediumBreakdownQuery.where(and(...conditions));
-            }
-
-            const mediumBreakdownResult = await mediumBreakdownQuery;
-            const mediumBreakdown: Record<string, number> = {};
-            mediumBreakdownResult.forEach((row) => {
-                const medium = row.medium || 'unknown';
-                mediumBreakdown[medium] = row.count;
-            });
-
-            // Get campaign breakdown
-            const campaignBreakdownQuery = db
-                .select({
-                    campaign: audienceTrackingTable.utm_campaign,
-                    count: sql<number>`count(*)`,
-                })
-                .from(audienceTrackingTable)
-                .groupBy(audienceTrackingTable.utm_campaign);
-
-            if (conditions.length > 0) {
-                campaignBreakdownQuery.where(and(...conditions));
-            }
-
-            const campaignBreakdownResult = await campaignBreakdownQuery;
-            const campaignBreakdown: Record<string, number> = {};
-            campaignBreakdownResult.forEach((row) => {
-                const campaign = row.campaign || 'unknown';
-                campaignBreakdown[campaign] = row.count;
-            });
-
-            // Get location breakdown
-            const locationBreakdownQuery = db
-                .select({
-                    country: audienceTrackingTable.location_country,
-                    count: sql<number>`count(*)`,
-                })
-                .from(audienceTrackingTable)
-                .groupBy(audienceTrackingTable.location_country);
-
-            if (conditions.length > 0) {
-                locationBreakdownQuery.where(and(...conditions));
-            }
-
-            const locationBreakdownResult = await locationBreakdownQuery;
-            const locationBreakdown: Record<string, number> = {};
-            locationBreakdownResult.forEach((row) => {
-                const country = row.country || 'unknown';
-                locationBreakdown[country] = row.count;
-            });
+            // Get breakdowns for different dimensions
+            const sourceBreakdown = await this.getBreakdownByField(
+                'utm_source',
+                conditions,
+            );
+            const mediumBreakdown = await this.getBreakdownByField(
+                'utm_medium',
+                conditions,
+            );
+            const campaignBreakdown = await this.getBreakdownByField(
+                'utm_campaign',
+                conditions,
+            );
+            const locationBreakdown = await this.getBreakdownByField(
+                'location_country',
+                conditions,
+            );
 
             // Get time series data (daily counts)
-            const timeSeriesQuery = db
-                .select({
-                    date: sql<string>`date_trunc('day', ${audienceTrackingTable.created_at})::text`,
-                    count: sql<number>`count(*)`,
-                })
-                .from(audienceTrackingTable)
-                .groupBy(
-                    sql`date_trunc('day', ${audienceTrackingTable.created_at})`,
-                )
-                .orderBy(
-                    sql`date_trunc('day', ${audienceTrackingTable.created_at})`,
-                );
-
-            if (conditions.length > 0) {
-                timeSeriesQuery.where(and(...conditions));
-            }
-
-            const timeSeriesResult = await timeSeriesQuery;
-            const timeSeriesData = timeSeriesResult.map((row) => ({
-                date: row.date,
-                count: row.count,
-            }));
+            const timeSeriesData = await this.getTimeSeriesData(conditions);
 
             return {
                 totalEntries,
@@ -330,10 +164,188 @@ export class AudienceTrackingService {
                 timeSeriesData,
             };
         } catch (error) {
-            console.error('Failed to get tracking stats:', error);
-            throw new Error(
-                'Database error when retrieving tracking statistics',
+            throw this.createError('Failed to get tracking stats', error);
+        }
+    }
+
+    /**
+     * Helper method to build query conditions from params
+     */
+    private buildQueryConditions(params: AudienceTrackingQueryParams) {
+        const conditions = [];
+        const {
+            startDate,
+            endDate,
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            location_country,
+        } = params;
+
+        if (startDate) {
+            conditions.push(gte(audienceTrackingTable.created_at, startDate));
+        }
+
+        if (endDate) {
+            conditions.push(lte(audienceTrackingTable.created_at, endDate));
+        }
+
+        if (utm_source) {
+            conditions.push(eq(audienceTrackingTable.utm_source, utm_source));
+        }
+
+        if (utm_medium) {
+            conditions.push(eq(audienceTrackingTable.utm_medium, utm_medium));
+        }
+
+        if (utm_campaign) {
+            conditions.push(
+                eq(audienceTrackingTable.utm_campaign, utm_campaign),
             );
         }
+
+        if (location_country) {
+            conditions.push(
+                eq(audienceTrackingTable.location_country, location_country),
+            );
+        }
+
+        return conditions;
+    }
+
+    /**
+     * Helper method to get aggregate count with conditions
+     */
+    private async getAggregateCount(conditions: any[] = []) {
+        const query = this.db
+            .select({ count: sql<number>`count(*)` })
+            .from(audienceTrackingTable);
+
+        if (conditions.length > 0) {
+            query.where(and(...conditions));
+        }
+
+        const result = await query;
+        return result[0]?.count || 0;
+    }
+
+    /**
+     * Helper method to get breakdown by a specific field
+     */
+    private async getBreakdownByField(
+        fieldName: BreakdownField,
+        conditions: any[] = [],
+    ) {
+        // Map the field name to the actual table column
+        let columnName: string;
+        let column: any;
+
+        switch (fieldName) {
+            case 'utm_source':
+                column = audienceTrackingTable.utm_source;
+                columnName = 'utm_source';
+                break;
+            case 'utm_medium':
+                column = audienceTrackingTable.utm_medium;
+                columnName = 'utm_medium';
+                break;
+            case 'utm_campaign':
+                column = audienceTrackingTable.utm_campaign;
+                columnName = 'utm_campaign';
+                break;
+            case 'location_country':
+                column = audienceTrackingTable.location_country;
+                columnName = 'location_country';
+                break;
+            default:
+                throw new Error(`Unknown field name: ${fieldName}`);
+        }
+
+        const query = this.db
+            .select({
+                value: column,
+                count: sql<number>`count(*)`,
+            })
+            .from(audienceTrackingTable)
+            .groupBy(column);
+
+        if (conditions.length > 0) {
+            query.where(and(...conditions));
+        }
+
+        const result = await query;
+        const breakdown: Record<string, number> = {};
+
+        result.forEach((row) => {
+            const value = row.value || 'unknown';
+            breakdown[value] = row.count;
+        });
+
+        return breakdown;
+    }
+
+    /**
+     * Helper method to get time series data
+     */
+    private async getTimeSeriesData(conditions: any[] = []) {
+        const query = this.db
+            .select({
+                date: sql<string>`date_trunc('day', ${audienceTrackingTable.created_at})::text`,
+                count: sql<number>`count(*)`,
+            })
+            .from(audienceTrackingTable)
+            .groupBy(
+                sql`date_trunc('day', ${audienceTrackingTable.created_at})`,
+            )
+            .orderBy(
+                sql`date_trunc('day', ${audienceTrackingTable.created_at})`,
+            );
+
+        if (conditions.length > 0) {
+            query.where(and(...conditions));
+        }
+
+        const result = await query;
+        return result.map((row) => ({
+            date: row.date,
+            count: row.count,
+        }));
+    }
+
+    /**
+     * Helper method to create optional fields object
+     */
+    private createOptionalFields(data: Record<string, any>, fields: string[]) {
+        return fields.reduce(
+            (acc, field) => {
+                if (data[field] !== undefined) {
+                    acc[field] = data[field];
+                }
+                return acc;
+            },
+            {} as Record<string, any>,
+        );
+    }
+
+    /**
+     * Helper method to handle errors consistently
+     */
+    private handleError(
+        message: string,
+        error: unknown,
+    ): AudienceTrackingResult {
+        console.error(`${message}:`, error);
+        return {
+            success: false,
+            error: `${message}. Please try again later.`,
+        };
+    }
+
+    /**
+     * Helper method to create error objects consistently
+     */
+    private createError(message: string, error: unknown): Error {
+        console.error(`${message}:`, error);
+        return new Error(`Database error when ${message.toLowerCase()}`);
     }
 }
