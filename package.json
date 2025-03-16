@@ -1,9 +1,17 @@
 {
-    "name": "vernisai-monorepo",
+    "name": "@monsoft/vernisai-website",
     "description": "VernisAI - AI-Powered No-Code Workflow Automation. Visit https://vernis.ai for more information.",
     "author": "Monsoft Solutions, LLC (https://monsoftsolutions.com)",
+    "version": "0.5.0",
+    "license": "MIT",
+    "homepage": "https://vernis.ai",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/monsoft-solutions/vernisai-website.git"
+    },
     "private": true,
     "type": "module",
+    "owner": "monsoft-solutions",
     "scripts": {
         "dev": "env-cmd -f .env/.env turbo run dev",
         "dev:vercel": "env-cmd -f .env/.env vercel dev --debug",
@@ -18,13 +26,17 @@
         "validate": "npm run format && turbo run typecheck lint:fix && npm run format:check",
         "clean": "turbo run clean",
         "prepare": "husky",
-        "pre-commit": "npm run format && lint-staged && npm run format:check",
+        "pre-commit": "node .husky/changeset-reminder.js && npm run format && lint-staged && npm run format:check",
         "db:sync": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:sync'",
         "db:generate": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:generate'",
         "db:push": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:push'",
-        "db:studio": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:studio'"
+        "db:studio": "env-cmd -f .env/.env bash -c 'cd packages/database && npm run db:studio'",
+        "changeset": "changeset",
+        "version": "changeset version",
+        "release": "changeset publish"
     },
     "devDependencies": {
+        "@changesets/cli": "2.28.1",
         "@eslint/eslintrc": "^3.0.2",
         "@eslint/js": "^9.21.0",
         "eslint": "^9.21.0",

@@ -126,6 +126,19 @@ npm run build --filter=website
 - **Typecheck**: `npm run typecheck` - Run type checking for all applications
 - **Format**: `npm run format` - Format code with Prettier
 - **Clean**: `npm run clean` - Clean build artifacts
+- **Changeset**: `npm run changeset` - Create a new changeset to document changes
+- **Version**: `npm run version` - Update versions and changelogs based on changesets
+- **Release**: `npm run release` - Publish new versions of packages
+
+## 📝 Versioning and Changelogs
+
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and changelog generation. When making changes:
+
+1. Create a changeset to document your changes: `npm run changeset`
+2. Update the appropriate file in the `changes` directory with a concise title and bullet points
+3. Commit both the changeset file and your code changes
+
+For detailed instructions on using changesets, see [docs/CHANGESETS.md](docs/CHANGESETS.md).
 
 ## 🔍 Pre-Commit Hooks
 
