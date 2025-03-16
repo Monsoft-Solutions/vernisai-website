@@ -26,6 +26,15 @@ export const routes: RouteConfig[] = [
         },
     },
     {
+        path: '/thank-you',
+        metadata: {
+            title: 'Thank You - VernisAI Waitlist',
+            description:
+                "Thank you for joining the VernisAI waitlist. We'll notify you when we have availability.",
+            prerender: true,
+        },
+    },
+    {
         path: '/features',
         metadata: {
             title: 'VernisAI Features - AI-Powered Workflow Automation',
